@@ -1,0 +1,22 @@
+{
+  "name": "@fightron/core",
+  "version": "0.1.0",
+  "description": "Fightron Core Objects",
+  "main": "index.js",
+  "scripts": {
+    "test": "standard --fix && echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pauloddr/fightron-core.git"
+  },
+  "author": "Panayotis Procopiou",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pauloddr/fightron-core/issues"
+  },
+  "homepage": "https://github.com/pauloddr/fightron-core#readme",
+  "devDependencies": {
+    "standard": "*"
+  }
+}
