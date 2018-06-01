@@ -4,7 +4,7 @@
   "description": "Fightron Core Objects",
   "main": "index.js",
   "scripts": {
-    "test": "standard --fix && echo \"Error: no test specified\" && exit 1"
+    "test": "standard --fix && nyc mocha --recursive"
   },
   "repository": {
     "type": "git",
@@ -17,6 +17,29 @@
   },
   "homepage": "https://github.com/pauloddr/fightron-core#readme",
   "devDependencies": {
+    "chai": "4.1.2",
+    "dirty-chai": "2.0.1",
+    "mocha": "5.2.0",
+    "nyc": "11.3.0",
     "standard": "*"
+  },
+  "standard": {
+    "env": "mocha",
+    "ignore": [
+      "node_modules"
+    ]
+  },
+  "nyc": {
+    "include": [
+      "**/*.js"
+    ],
+    "exclude": [
+      "test"
+    ],
+    "reporter": [
+      "lcov",
+      "text-summary",
+      "html"
+    ]
   }
 }
