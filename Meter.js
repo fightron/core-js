@@ -30,6 +30,11 @@ class Meter {
       this.onCompletion()
     }
   }
+
+  free () {
+    this.onDepletion = NOOP
+    this.onCompletion = NOOP
+  }
 }
 
 module.exports = Meter
