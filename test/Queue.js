@@ -22,6 +22,12 @@ describe('Queue', function () {
   })
 
   describe('#dequeue', function () {
+    it('returns undefined when queue is empty', function () {
+      let queue = new Queue()
+      expect(queue.dequeue()).to.equal(undefined)
+      expect(queue.length).to.equal(0)
+    })
+
     it('returns first item added', function () {
       let queue = new Queue()
       queue.enqueue('abc')
@@ -33,10 +39,16 @@ describe('Queue', function () {
       expect(queue.length).to.equal(1)
       expect(queue.dequeue()).to.equal('ghi')
       expect(queue.length).to.equal(0)
+      expect(queue.dequeue()).to.equal(undefined)
     })
   })
 
   describe('#peek', function () {
+    it('returns undefined when queue is empty', function () {
+      let queue = new Queue()
+      expect(queue.peek()).to.equal(undefined)
+    })
+
     it('returns first item added without removing it from queue', function () {
       let queue = new Queue()
       queue.enqueue('abc')
