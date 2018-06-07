@@ -29,7 +29,11 @@ class Queue {
     if (!(--this.length)) {
       this.last = undefined
     }
-    return node.item
+    var item = node.item
+    // frees dequeued node
+    node.item = undefined
+    node.next = undefined
+    return item
   }
 }
 

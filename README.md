@@ -30,9 +30,37 @@ Methods:
 
 Inspired by [tiny-queue](https://github.com/nolanlawson/tiny-queue).
 
+## Resource
+
+A Resource is an entity that has an ID and belongs to a type.
+
+Examples of Resources:
+
+* Characters,
+* Matches (e.g., saved Replays),
+* Items,
+* Costumes,
+* Poses,
+* Animations,
+* etc.
+
+It usually is stored somewhere (like a remote storage) and also is often used in APIs.
+
+Both Client and Server code can use Resources.
+
+Properties:
+
+* `id` - the remote ID of the Resource. E.g., `"123"`.
+* `type` - the Resource type. Usually in plural form. E.g, `"characters"`
+* `path` (read-only) - returns the Resource path, in the format `type/ID`. E.g., `"characters/123"`. Returns `null` if either the type or ID is null.
+
+Methods:
+
+* `fill(data)` - fills the instance with data.
+
 ## Team
 
-A Team is a group of characters.
+A Team is a group of Characters.
 
 Teams are used, among other things, for HUDs, and collision detection (no friendly fire for when multiple characters of the same team are active).
 
