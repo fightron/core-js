@@ -44,9 +44,9 @@ Examples of Resources:
 * Animations,
 * etc.
 
-It usually is stored somewhere (like a remote storage) and also is often used in APIs.
+A Resource is usually stored somewhere (like a remote storage) and is often used in APIs.
 
-Both Client and Server code can use Resources.
+Both Client and Server code can use and extend Resources.
 
 Properties:
 
@@ -56,7 +56,11 @@ Properties:
 
 Methods:
 
-* `fill(data)` - fills the instance with data.
+* `patch(data)` - fills the instance attributes with data.
+* `fingerprint()` - returns a SHA-1 hash comprised of the Resource's `identity()`. Used for cache and versioning.
+* `identity()` - returns a string with all values required for fingerprinting.
+
+For a complete list of Resources and their documentation, check out this [README](./resources/README.md).
 
 ## Team
 

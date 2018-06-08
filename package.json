@@ -16,6 +16,9 @@
     "url": "https://github.com/pauloddr/fightron-core/issues"
   },
   "homepage": "https://github.com/pauloddr/fightron-core#readme",
+  "dependencies": {
+    "crypto-js": "3.1.9-1"
+  },
   "devDependencies": {
     "chai": "4.1.2",
     "dirty-chai": "2.0.1",

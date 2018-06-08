@@ -1,9 +1,10 @@
 'use strict'
 
+const sha256 = require('crypto-js/sha256')
 const expect = require('chai').expect
-const Resource = require('../Resource')
+const Resource = require('../../resources/BaseResource')
 
-describe('Resource', function () {
+describe('resources/BaseResource', function () {
   it('initializes with correct properties', function () {
     var resource = new Resource()
     expect(resource.id).to.equal(null)
@@ -31,15 +32,37 @@ describe('Resource', function () {
     })
   })
 
-  describe('#fill', function () {
+  describe('#patch', function () {
     it('updates resource ID', function () {
       var resource = new Resource()
-      resource.fill({id: 123})
+      resource.patch({id: 123})
       expect(resource.id).to.equal('123')
-      resource.fill({}) // only updates when present
+      resource.patch({}) // only updates present attributes
       expect(resource.id).to.equal('123')
-      resource.fill({id: 0})
+      resource.patch({id: 0})
       expect(resource.id).to.equal('0')
+    })
+  })
+
+  describe('#identity', function () {
+    it('returns the resource ID', function () {
+      var resource = new Resource()
+      resource.id = 123
+      expect(resource.identity()).to.equal('123')
+    })
+  })
+
+  describe('#fingerprint', function () {
+    it("returns a sha-256 hash of the resource's identity()", function () {
+      var sha123 = sha256('123').toString()
+      var sha456 = sha256('456').toString()
+      var resource = new Resource()
+      resource.id = 123
+      expect(resource.fingerprint()).to.equal(sha123)
+      resource.id = 456
+      expect(resource.fingerprint()).to.equal(sha456)
+      resource.id = 123
+      expect(resource.fingerprint()).to.equal(sha123) // should revert to previous fingerprint
     })
   })
 })
