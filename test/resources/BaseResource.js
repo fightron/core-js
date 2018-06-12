@@ -32,6 +32,22 @@ describe('resources/BaseResource', function () {
     })
   })
 
+  describe('#filename', function () {
+    it('returns storage file path', function () {
+      var sha123 = sha256('123').toString()
+      var resource = new Resource()
+      resource.id = '123'
+      resource.type = 'characters'
+      expect(resource.filename).to.equal(`characters/123/${sha123}.json`)
+    })
+
+    it('returns null if path is null', function () {
+      var resource = new Resource()
+      resource.id = '123'
+      expect(resource.filename).to.equal(null)
+    })
+  })
+
   describe('#patch', function () {
     it('updates resource ID', function () {
       var resource = new Resource()

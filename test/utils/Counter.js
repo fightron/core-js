@@ -1,11 +1,11 @@
 'use strict'
 
 const expect = require('chai').expect
-const Meter = require('../Meter')
+const Counter = require('../../utils/Counter')
 
-describe('Meter', function () {
+describe('Counter', function () {
   // REPLACE WITH REAL TESTS
   it('exists', function () {
-    expect(Meter).to.exist()
+    expect(Counter).to.exist()
   })
 })

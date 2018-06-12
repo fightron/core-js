@@ -1,7 +1,7 @@
 'use strict'
 
 const expect = require('chai').expect
-const Queue = require('../Queue')
+const Queue = require('../../utils/Queue')
 
 describe('Queue', function () {
   it('starts with a length of zero', function () {
@@ -40,6 +40,7 @@ describe('Queue', function () {
       expect(queue.dequeue()).to.equal('ghi')
       expect(queue.length).to.equal(0)
       expect(queue.dequeue()).to.equal(undefined)
+      expect(queue.length).to.equal(0)
     })
   })
 

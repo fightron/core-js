@@ -1,7 +1,7 @@
 'use strict'
 
 const expect = require('chai').expect
-const Team = require('../Team')
+const Team = require('../../match/Team')
 
 describe('Team', function () {
   // REPLACE WITH REAL TESTS

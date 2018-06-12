@@ -30,6 +30,11 @@ class BaseResource {
     return `${this._type}/${this._id}`
   }
 
+  get filename () {
+    var path = this.path
+    return path ? `${path}/${this.fingerprint()}.json` : null
+  }
+
   patch (data) {
     if (data.id || data.id === 0) {
       this.id = data.id

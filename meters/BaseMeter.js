@@ -1,6 +1,6 @@
 const NOOP = function () {}
 
-class Meter {
+class BaseMeter {
   constructor (min, max, current) {
     this.minimum = min || 0
     this.maximum = max || 1
@@ -24,6 +24,10 @@ class Meter {
     if (previousAmount === this.current) {
       return // no change
     }
+    this.afterUpdate()
+  }
+
+  afterUpdate () {
     if (this.current === this.minimum) {
       this.onDepletion()
     } else if (this.current === this.maximum) {
@@ -37,4 +41,4 @@ class Meter {
   }
 }
 
-module.exports = Meter
+module.exports = BaseMeter
