@@ -27,7 +27,7 @@ All Resources use shortened names for their "tables" and "columns". It only affe
 
 The `patch(data)` method only accepts object literals with shortened column names. Property names inside Resource objects themselves use their normal, long versions.
 
-In the list of Resources that follows, shortened names are shown inside brackets after the Resource name (e.g., `ch` would be the "table name" for `CharacterResource`) and properties (e.g., `ch` would represent a `characterId` property in different Resources).
+In the list of Resources that follows below, shortened names are shown inside brackets after the Resource name (e.g., `ch` would be the "table name" for `CharacterResource`) and properties (e.g., `ch` would represent the "column name" for a `characterId` property in different Resources).
 
 ## AiResource (`ai`)
 
