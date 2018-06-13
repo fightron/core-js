@@ -255,7 +255,7 @@ This Resource represents a human Player. Commonly called "user".
 
 Properties:
 
-* `handle` (`h`) - Player's username. It can only accept lowercase letters, numbers, and hifen (only in the middle of the string). Cannot start with a number.
+* `handle` (`h`) - Player's username. It can only accept lowercase letters, numbers, and hyphen (only in the middle of the string). Cannot start with a number.
 * `characters` (`ch`) - a collection of `CharacterResource`s that the Player has created.
 * `inventory` (`inv`) - a collection of `ItemResource`s that are not stored in any of the Player's Characters. Works like an account storage.
 * `currencies` (`cr`) - a collection of `Currency` objects that are not stored in any of the Player's Characters.

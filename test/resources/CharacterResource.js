@@ -7,7 +7,8 @@ describe('resources/CharacterResource', function () {
   it('initializes with default properties', function () {
     var resource = new CharacterResource()
     expect(resource.isCharacterResource).to.equal(true)
-    expect(resource.meters.get('hp').current).to.be.above(1)
+    expect(resource.meters).to.equal(null)
+    expect(resource.attributes).to.equal(null)
   })
 
   describe('#free', function () {
@@ -15,6 +16,7 @@ describe('resources/CharacterResource', function () {
       var resource = new CharacterResource()
       resource.free()
       expect(resource.meters).to.equal(null)
+      expect(resource.attributes).to.equal(null)
     })
   })
 })

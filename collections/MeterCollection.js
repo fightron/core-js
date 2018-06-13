@@ -11,7 +11,7 @@ class MeterCollection extends BaseCollection {
 
   free () {
     this.get('hp').free()
-    this.clear()
+    super.free()
   }
 }
 

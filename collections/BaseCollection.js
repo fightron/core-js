@@ -13,7 +13,7 @@ class BaseCollection extends Map {
   free () {
     this.owner = null
     var key
-    var keys = this.keys
+    var keys = this.keys()
     for (key of keys) {
       this.get(key).free()
     }
