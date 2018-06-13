@@ -1,9 +1,12 @@
 'use strict'
 
+const Base = require('../utils/Base')
+
 const NOOP = function () {}
 
-class BaseMeter {
+class BaseMeter extends Base {
   constructor (min, max, current) {
+    super()
     this.minimum = min || 0
     this.maximum = max || 1
     this.current = current || this.minimum
@@ -40,6 +43,7 @@ class BaseMeter {
   free () {
     this.onDepletion = NOOP
     this.onCompletion = NOOP
+    super.free()
   }
 }
 

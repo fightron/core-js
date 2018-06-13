@@ -1,6 +1,6 @@
 'use strict'
 
-class Collection extends Map {
+class BaseCollection extends Map {
   constructor (owner) {
     super()
     this.owner = owner
@@ -12,9 +12,13 @@ class Collection extends Map {
 
   free () {
     this.owner = null
-    // TODO: free() each item
+    var key
+    var keys = this.keys
+    for (key of keys) {
+      this.get(key).free()
+    }
     this.clear()
   }
 }
 
-module.exports = Collection
+module.exports = BaseCollection

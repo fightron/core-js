@@ -1,7 +1,10 @@
 'use strict'
 
-class Team {
+const Base = require('../utils/Base')
+
+class Team extends Base {
   constructor (...characters) {
+    super()
     this.isTeam = true // internal optimization
     if (characters.length === 0) {
       throw new Error('TEAM_REQUIRES_ONE_OR_MORE_CHARACTERS')
@@ -27,6 +30,7 @@ class Team {
     // }
     this.current = null
     this.characters = null
+    super.free()
   }
 }
 

@@ -1,9 +1,11 @@
 'use strict'
 
 const sha256 = require('crypto-js/sha256')
+const Base = require('../utils/Base')
 
-class BaseResource {
+class BaseResource extends Base {
   constructor () {
+    super()
     this._id = null // remote ID
     this._type = null // resource type, usually in plural form, e.g., "characters"
     this.isResource = true // internal optimization
