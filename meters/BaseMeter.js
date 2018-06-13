@@ -1,10 +1,12 @@
+'use strict'
+
 const NOOP = function () {}
 
 class BaseMeter {
   constructor (min, max, current) {
     this.minimum = min || 0
     this.maximum = max || 1
-    this.current = current || 1
+    this.current = current || this.minimum
     this.onDepletion = NOOP
     this.onCompletion = NOOP
   }

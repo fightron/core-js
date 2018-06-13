@@ -1,3 +1,5 @@
+'use strict'
+
 // Used as a frame counter by both Client and Server.
 class Counter {
   constructor () {

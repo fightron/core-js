@@ -3,7 +3,7 @@
 const expect = require('chai').expect
 const Counter = require('../../utils/Counter')
 
-describe('Counter', function () {
+describe('utils/Counter', function () {
   // REPLACE WITH REAL TESTS
   it('exists', function () {
     expect(Counter).to.exist()

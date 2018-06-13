@@ -1,3 +1,5 @@
+'use strict'
+
 // Inspired by https://github.com/nolanlawson/tiny-queue
 
 class Queue {

@@ -3,7 +3,7 @@
 const expect = require('chai').expect
 const Queue = require('../../utils/Queue')
 
-describe('Queue', function () {
+describe('utils/Queue', function () {
   it('starts with a length of zero', function () {
     let queue = new Queue()
     expect(queue.length).to.equal(0)

@@ -1,3 +1,5 @@
+'use strict'
+
 class Team {
   constructor (...characters) {
     this.isTeam = true // internal optimization

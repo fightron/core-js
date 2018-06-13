@@ -1,3 +1,5 @@
+'use strict'
+
 const sha256 = require('crypto-js/sha256')
 
 class BaseResource {

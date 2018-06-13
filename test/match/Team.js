@@ -3,7 +3,7 @@
 const expect = require('chai').expect
 const Team = require('../../match/Team')
 
-describe('Team', function () {
+describe('match/Team', function () {
   // REPLACE WITH REAL TESTS
   it('exists', function () {
     expect(Team).to.exist()

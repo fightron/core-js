@@ -1,3 +1,5 @@
+'use strict'
+
 class Collection extends Map {
   constructor (owner) {
     super()
