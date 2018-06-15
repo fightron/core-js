@@ -7,7 +7,7 @@ class BaseResource extends Base {
   constructor () {
     super()
     this._id = null // remote ID
-    this._type = null // resource type, usually in plural form, e.g., "characters"
+    this._type = null // resource type (table name)
     this.isResource = true // internal optimization
   }
 
@@ -51,6 +51,10 @@ class BaseResource extends Base {
 
   identity () {
     return `${this.id}`
+  }
+
+  datastore () {
+    // returns data to be saved on Datastore
   }
 }
 

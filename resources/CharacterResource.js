@@ -8,12 +8,22 @@ class CharacterResource extends BaseResource {
     super()
     this._type = 'ch'
     this.isCharacterResource = true // internal optimization
-    this.meters = null
+
+    // Data Properties
     this.attributes = null
+    this.skills = null
+
+    // Runtime Properties
+    this.meters = null
+    this.enemy = null
   }
 
   prepareMeters () {
     this.meters = new MeterCollection(this)
+  }
+
+  input (inputCode) {
+    // passes inputCode onto character
   }
 
   free () {

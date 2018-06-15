@@ -19,7 +19,7 @@ Methods:
 * `fingerprint()` - returns a SHA-256 hash comprised of the Resource's `identity()`. Used for cache and versioning.
 * `identity()` - returns a string with all values required for fingerprinting.
 
-### Shortened names
+### Shortened Names
 
 Resources can be understood as "database models".
 
@@ -29,7 +29,7 @@ The `patch(data)` method only accepts object literals with shortened column name
 
 In the list of Resources that follows below, shortened names are shown inside brackets after the Resource name (e.g., `ch` would be the "table name" for `CharacterResource`) and properties (e.g., `ch` would represent the "column name" for a `characterId` property in different Resources).
 
-## AiResource (`ai`)
+## AiResource (`Ai`)
 
 This Resource holds a complete A.I. build needed for the CPU to control a character.
 
@@ -41,7 +41,7 @@ Properties:
 * `actions` (`a`) - list of `AiActionResource` objects containing the flow of the A.I. build.
 * `attributes` (`att`) - list of `AiAttribute` objects with the A.I. Attribute values for this build.
 
-## AiActionResource (`aiA`)
+## AiActionResource (`AiA`)
 
 This Resource holds a single A.I. Action for a Character.
 
@@ -58,7 +58,7 @@ Properties:
 * `inputSequenceId` (`in`) - input sequence to enter if action rolls successfully. Can be a single button/directional press or a complete sequence. The accuracy and speed of the entered sequence depends on the __Execution__ A.I. Attribute.
 * `nextActionId` (`n`) - instead of entering an input sequence, the successful activation of this action can reroute to another action. Mutually exclusive with `inputSequenceId`.
 
-## AiMemoryResource (`aiM`)
+## AiMemoryResource (`AiM`)
 
 This Resource holds a single memorized Skill that was used against a Character.
 
@@ -89,7 +89,7 @@ The maximum allowed value of the `practice` property depends on the __Memory__ A
 
 So, the higher the __Memory__ Attribute, the more days it can take for the Skill to be forgotten.
 
-## AnimationResource (`ani`)
+## AnimationResource (`Ani`)
 
 An Animation contains a list of Poses that are applied to a Character's Skeleton within a timeframe.
 
@@ -98,8 +98,76 @@ Properties:
 * `name` (`n`)
 * `skeleton` (`s`) - Skeleton ID the Animation is compatible with.
 * `keyframes` (`k`) - a collection of `AnimationKeyframe` objects, which contain references to Poses.
+* `onHitId` (`h`) - (optional) ID of the Animation to play when this Animation is associated with an Active Skill, and that Skill hits the enemy.
+* `onBlockId` (`b`) - (optional) ID of the Animation to play when this Animation is associated with an Active Skill, and that Skill is blocked by the enemy.
+* `skillId` (`sk`) - (optional) Parent Skill ID this Animation is compatible with. This is what determines which "Skill Skins" are available to different Skills.
 
-## CostumeResource (`cm`)
+## CharacterResource (`Ch`)
+
+A `CharacterResource` can be either a Character created by a Player, or a NPC (Non-Player Character).
+
+This resource only holds information about a Character in regards of gameplay. Character profile data is held by `ProfileResource`.
+
+Properties:
+
+* `playerId` (`pl`) - ID of the Player who created the Character. For NPCs, this property is equal to `"npc"`.
+* `skeleton` (`s`) - Character's Skeleton ID (e.g., `"human"`)
+* `profileId` (`pf`) - default Profile ID. See `ProfileResource` for details.
+
+Runtime Properties:
+
+* `enemies` - used during a match. It's an array of `CharacterResource`'s that are enemies.
+
+Methods:
+
+* `compute()` - update `CharacterSkillResource` with their computed values based on Attributes and Enhancements currently active on the Character.
+
+## PlayerEnhancementResource (`ChE`)
+
+This Resource holds one Enhancement in possession of the Character.
+
+Properties:
+
+* `playerId` (`pl`)
+* `enhancementId` (`en`)
+* `characterId` (`ch`) - will be present if Enhancement is bound to a specific character (cannot be used on a different character). Some character-oriented rewards (story missions, A.I. leagues, etc) will have this property set.
+* `bound` (`b`) - `true` if bound to player (cannot be traded). Some player-oriented rewards will have this property set.
+
+## CharacterGameResource (`ChG`)
+
+This Resource holds the progression of a Character in different games.
+
+It allows one Character to be used in multiple Games. See the `GameResource` for more details about the different Games being offered and future possibilities.
+
+Properties:
+
+* `characterId` (`ch`)
+* `gameId` (`g`) - the Game ID the Character belongs to.
+* `level` (`l`) - current level. Defaults to 1.
+
+## CharacterFightingStyleResource (`ChF`)
+
+This Resource holds a single Fighting Style that a Character has unlocked.
+
+Properties:
+
+* `characterId` (`ch`)
+* `fightingStyleId` (`fs`)
+
+## CharacterSkillResource (`ChS`)
+
+This Resource holds a single Skill that a Character has earned.
+
+Properties:
+
+* `characterId` (`ch`)
+* `skillId` (`sk`)
+* `level` (`l`)
+* `animationId` (`ani`) - Animation to override default, a.k.a. Skill "Skin".
+* `enhancements` (`en`) - an array of Character Enhancement IDs that are slotted into this Skill.
+* `flags` (`fl`) - an array of Skill Flags currently active for this Skill.
+
+## CostumeResource (`Cm`)
 
 A Costume is a collection of Items that are placed onto a Character's Skeleton.
 
@@ -112,69 +180,27 @@ Properties:
 * `paletteId` (`pal`) - default Palette ID to be used in Fighter Select.
 * `items` (`im`) - a collection of `CostumeItem` objects.
 
-## CharacterResource (`ch`)
+## CurrencyResource (`Cr`)
 
-A `CharacterResource` can be either a Character created by a Player, or a NPC (Non-Player Character).
-
-This resource only holds information about a Character in regards of gameplay. Character profile data is held by `ProfileResource`.
+This Resource holds information about a Currency.
 
 Properties:
 
-* `playerId` (`pl`) - ID of the Player who created the Character. For NPCs, this property is equal to `"npc"`.
-* `skeleton` (`s`) - Character's Skeleton ID (e.g., `"human"`)
-* `level` (`l`) - Character's current Level.
-* `xp` (`xp`) - experience earned on the current Level. When the amount required to level up is reached, the `level` property goes up by 1, and this property resets to zero, then incremented by any leftover from the previous calculation.
-* `inventory` (`inv`) - a collection of `CharacterItem` objects in possession of the Character.
-* `costumeId` (`cm`) - default Costume ID for the Character.
-* `paletteId` (`pal`) - default Palette ID for the Character.
-* `version` (`v`) - Character's current version fingerprint, which is generated based on the Character's equipped Items, Skills, Mechanics, etc.
+* `name` (`n`)
 
-## CharacterGameResource (`chG`)
+## EnhancementResource (`En`)
 
-This Resource holds the progression of a Character in different games.
-
-It allows one Character to be used in multiple games. See the `GameResource` for more details about the different games being offered and future possibilities.
+Enhancements are items that can be slotted into Skills to improve them.
 
 Properties:
 
-* `characterId` (`ch`)
-* `gameId` (`g`) - the Game ID the Character belongs to.
-* `level` (`l`) - current level.
-* `xp` (`xp`) - exprience earned in the current level.
+* `name` (`n`)
+* `bonuses` (`b`) - array of bonuses applied by the Enhancement:
+  * `target` (`t`) - `"a"` for Attribute (Active or Passive)
+  * `id` (`i`) - ID of the target (e.g., `"STR"` for enhancing the Strength Attribute).
+  * `amount` (`v`) - bonus amount.
 
-## CharacterMechanicResource (`chM`)
-
-This Resource holds a single Mechanic that a Character has unlocked.
-
-Properties:
-
-* `characterId` (`ch`)
-* `mechanicId` (`mc`)
-* `locked` (`l`) - Mechanic will be locked if the Player changes the Skill's level required for this Mechanic to unlock.
-* `active` (`a`) - unlocked Mechanics can be active or inactive per Player's choice.
-
-## CharacterSkillResource (`chS`)
-
-This Resource holds a single Skill that a Character has earned.
-
-Properties:
-
-* `characterId` (`ch`)
-* `skillId` (`sk`)
-* `level` (`l`)
-* `enhancements` (`en`) - an array of Enhancement IDs that are slotted into this Skill.
-* `flags` (`fl`) - an array of Skill Flags currently active for this Skill.
-
-## CharacterFightingStyleResource (`chF`)
-
-This Resource holds a single Fighting Style that a Character has unlocked.
-
-Properties:
-
-* `characterId` (`ch`)
-* `fightingStyleId` (`fs`)
-
-## FightingStyleResource (`fs`)
+## FightingStyleResource (`Fs`)
 
 This Resource contains information about Fighting Styles.
 
@@ -184,7 +210,7 @@ Properties:
 * `country` (`c`) - code of country of origin.
 * `bonuses` (`b`) - a collection of Attribute bonuses applied to Characters that choose this Fighting Style.
 
-## GameResource (`game`)
+## GameResource (`Game`)
 
 A "Game" is used to isolate certain aspects of gameplay (like progression) in their own "universes".
 
@@ -192,16 +218,32 @@ Properties:
 
 * `name` (`n`) - Game name.
 * `description` (`d`) - a long description of the game.
-* `maxLevel` (`l`)
+* `currencyId` (`cr`) - ID of the Currency that represents experience to reach next level in this game.
+* `progression` (`tb`) - progression table. It's an array of levels and their requirements:
+  * `level` (`l`) - Level number.
+  * `amount` (`v`) - amount of XP required to reach this Level.
 
 There will be two "Games" in the first release of this project:
 
-* `ft` - the fighting game, excluding A.I. mode.
-* `ftA` - the fighting game, only A.I. mode.
+* `fg` - the fighting game, except A.I. mode.
+* `fgA` - the fighting game, A.I. mode only.
 
 This Resource will be used when a new "Game" is released under this project (e.g., a dancing game, a racing game, etc). One Character will be able to be used in multiple games, keeping their cosmetic details, but having independent progression. See the `CharacterGameResource` for more details.
 
-## InventoryResource (`inv`)
+## GeometryResource (`Geo`)
+
+A Geometry holds vertices, faces, and other 3D information that are necessary to render a 3D object on the screen.
+
+Geometries are used to render mostly everything, such as Items, Character Costume parts, Effects, terrain, sky boxes, etc.
+
+Properties:
+
+* `name` (`n`) - Geometry name (e.g., `"Cube"`)
+* `vertices` (`v`) - an array of `Vertex` objects.
+* `faces` (`f`) - an array of `Face` objects.
+* `morphs` (`m`) - an array of `Morph` objects.
+
+## InventoryResource (`Inv`)
 
 This Resource holds a single Item in possession of a Player.
 
@@ -214,17 +256,52 @@ Properties:
 * `costumeId` (`cm`) - ID of the Costume this Item is currently placed on to.
 * `colors` (`cl`) - an array of Palette properties (`color0` to `color9`, `eye0`, `eye1`, `light0` and `light1`) that are used to apply colors to the Item's regions. The final color is decided by the Palette picked by the Player during Fighter Select.
 
-## ItemResource (`im`)
+## ItemResource (`Im`)
 
-This Resource holds information about an Item, which is a combination of Geometries.
+This Resource holds information about an Item, which is a combination of one or more Geometries.
 
 Properties:
 
 * `name` (`n`)
 * `geometries` (`geo`) - a collection of `ItemGeometry` objects.
 * `regions` (`r`) - a collection of `ItemRegion` objects.
+* `boneIds` (`b`) - (optional) an array of Bone IDs where this Item goes on to. When not present, this Item can be placed on a Stage.
 
-## MechanicResource (`mc`)
+## MatchResource (`Mt`)
+
+This Resource holds informations about a match between Characters.
+
+Initially, Matches will only support two single Characters, but this Resource is being built with Teams in mind for future support.
+
+Properties:
+
+* `teams` (`tm`) - an array of Teams:
+  * `side` (`s`) - screen side this Team will be placed. `"l"` for left, `"r"` for right.
+  * `color` (`c`) - team color, in HEX format. Defaults to blue/green for left teams, red/orange for right teams.
+  * `characterIds` (`ch`) - array of Character IDs that belong to this team. Attacks will not collide with Characters of the same Team (friendly fire).
+  * `weight` (`w`) - Health Points multiplier for each Character in this team. Used when the number of Characters between teams are different. Teams with less Characters have more HP. Defaults to 1.
+* `ft` (`f`) - first Team to reach this number of rounds won wins the match. Defaults to 2. In Team matches, defaults to 1.
+* `time` (`t`) - time limit per round in seconds. Defaults to 99.
+* `rounds` (`r`) - an array of rounds:
+  * `number` (`n`) - the round number.
+  * `characterIds` (`ch`) - array of two Character IDs that started the round.
+  * `loser` (`l`) - Character ID that lost the round.
+  * `time` (`t`) - remaining time in seconds after the end of the round.
+* `winner` (`w`) - Team index that won the match.
+* `ragequit` (`q`) - array of Character indexes that rage-quit'd the match. If all Characters in a Team ragequit or disconnect, the opposing Team is declared the winner.
+* `saved` (`s`) - `true` if replay information has been saved for this match and uploaded in to the cloud.
+* `rewards` (`cr`) - an array of rewards given to each Character, including losers, after each round ends:
+  * `round` (`r`) - Round number. Will be `null` for Match-wide rewards.
+  * `characterId` (`ch`)
+  * `currencyId` (`cr`)
+  * `amount` (`v`) - amount can be negative (damage costs, etc).
+
+Runtime Properties:
+
+* `replay` - a large array of messages sent to the client over the course of the match. This data is used to save replay files in the cloud.
+
+
+## MechanicResource (`Mc`)
 
 This Resource refers to a single fighting game Mechanic, which can be unlocked by leveling up Core Skills.
 
@@ -235,7 +312,7 @@ Properties:
 * `skillId` (`sk`) - ID of the Core Skill that unlocks the Mechanic.
 * `level` (`l`) - Skill Level required to unlock the Mechanic.
 
-## PaletteResource (`pal`)
+## PaletteResource (`Pal`)
 
 A Palette is a list of Colors that the Player can use to assign colors to certain Character details, and also color Items in their inventory.
 
@@ -249,18 +326,18 @@ Properties:
 
 Eyes and lighting effects can be changed by Skills. It works like this: if a Skill changes a character's eye colors (or lighting on their costumes), it will switch from `eye0` to `eye1`, and `light0` to `light1` So if you don't want the color to change, set the same color to both.
 
-## PlayerResource (`pl`)
+## PlayerResource (`Pl`)
 
 This Resource represents a human Player. Commonly called "user".
 
 Properties:
 
 * `handle` (`h`) - Player's username. It can only accept lowercase letters, numbers, and hyphen (only in the middle of the string). Cannot start with a number.
-* `characters` (`ch`) - a collection of `CharacterResource`s that the Player has created.
-* `inventory` (`inv`) - a collection of `ItemResource`s that are not stored in any of the Player's Characters. Works like an account storage.
-* `currencies` (`cr`) - a collection of `Currency` objects that are not stored in any of the Player's Characters.
+* `characters` (`ch`) - a collection of `CharacterResource`s that belong to the Player.
+* `currencies` (`cr`) - a collection of `PlayerCurrencyResource` objects.
+* `inventory` (`inv`) - a collection of `PlayerItemResource` objects.
 
-## PoseResource (`po`)
+## PoseResource (`Po`)
 
 This Resource holds the bone rotations of a given Skeleton.
 
@@ -270,17 +347,20 @@ Properties:
 * `skeleton` (`s`) - Skeleton ID the Pose is compatible with (e.g., `"human"`).
 * `rotations` (`r`) - a collection of `BoneRotation` objects.
 
-## ProfileResource (`prf`)
+## ProfileResource (`Pf`)
 
-A Profile holds personal information about a Character that is not related to gameplay.
+A Profile holds personal information about a Character in a given time and universe.
 
-A Character can have more than one Profile (alternate personas, clones, etc).
+A Character can have more than one Profile (alternate personas, younger versions, etc).
+
+Everything that's related to gameplay is tied to a Profile rather than a Character, so that different Profiles can have completely different gameplay styles.
 
 Properties:
 
 * `characterId` (`ch`)
-* `permalink` (`p`) - a unique handle that is shown in URLs when viewing character information. Only applicable to NPCs.
 * `shortName` (`sN`) - Character's nickname. This is the name that appears on the HUD (Health bar).
+* `fightingStyleId` (`fs`) - the Fighting Style chosen upon Character creation.
+* `permalink` (`p`) - a unique handle that is shown in URLs when viewing character information. Only applicable to NPCs.
 * `firstName` (`fN`) - Character's first name.
 * `middleNames` (`mN`) - Character's middle names.
 * `lastName` (`lN`) - Character's last name.
@@ -288,16 +368,23 @@ Properties:
 * `age` (`a`) - Character's age.
 * `country` (`c`) - code of the Character'country of origin.
 * `description` (`d`) - long text with brief character story.
+* `costumeId` (`cm`) - default Costume ID for the Character.
+* `paletteId` (`pal`) - default Palette ID for the Character.
+* `version` (`v`) - Character's current version fingerprint, which is generated based on the Character's equipped Items, Skills, Mechanics, etc.
 
-## SkillResource (`sk`)
+## SkillResource (`Sk`)
 
 A Skill represents a fighting game move or technique.
 
 Properties:
 
+* `alias` (`as`) - normalized ID of the Skill. Used in Daily Practice, A.I., and other mechanics.
 * `name` (`n`) - name of the Skill.
 * `parent` (`p`) - ID of the parent Skill.
-* `animationId` (`ani`) - ID of the animation used to present this Skill.
+* `minimumLevel` (`min`) - minimum level this Skill is usable. Usually 1 for Active Skills and 0 for Core Skills.
+* `maximumLevel` (`max`) - maximum level of the Skill. Defaults to 10.
+* `performance` (`p`) - performance bonus per Level. Usually 1 for Active Skills and 0 for Core Skills.
+* `animationId` (`ani`) - ID of the default animation of this Skill.
 * `fightingStyleIds` (`fs`) - an array of Fighting Style IDs that Characters need to belong to, to be able to use this Skill.
 * `keyframes` (`k`) - a collection of `SkillKeyframe` objects with information about hitboxes, positioning, and other details.
-* `flags` (`fl`) - an array of allowed Skill Flags and their penalties.
+* `flags` (`fl`) - an array of allowed Skill Flags and their penalties for this particular Skill.
