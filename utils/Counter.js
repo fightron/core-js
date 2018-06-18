@@ -1,7 +1,8 @@
-'use strict'
+/* eslint-disable import/first */
+require('esm')
 
 // Used as a frame counter by both Client and Server.
-class Counter {
+export class Counter {
   constructor () {
     this.current = 0
     this._freeze = 0
@@ -30,5 +31,3 @@ class Counter {
     return this._freeze
   }
 }
-
-module.exports = Counter

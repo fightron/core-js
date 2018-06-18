@@ -1,8 +1,9 @@
-'use strict'
+/* eslint-disable import/first */
+require('esm')
 
-const BaseMeter = require('./BaseMeter')
+import {Meter} from '../Meter'
 
-class CharacterMeter extends BaseMeter {
+export class CharacterMeter extends Meter {
   constructor (characterResource) {
     if (!characterResource || !characterResource.isCharacterResource) {
       throw new Error('CHARACTER_METER_REQUIRES_CHARACTER_RESOURCE')
@@ -16,5 +17,3 @@ class CharacterMeter extends BaseMeter {
     super.free()
   }
 }
-
-module.exports = CharacterMeter

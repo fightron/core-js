@@ -1,8 +1,6 @@
-'use strict'
-
-const expect = require('chai').expect
-const CharacterMeter = require('../../meters/CharacterMeter')
-const CharacterResource = require('../../resources/CharacterResource')
+import {expect} from 'chai'
+import {CharacterMeter} from '../../../gameplay/meters/CharacterMeter'
+import {CharacterResource} from '../../../resources/CharacterResource'
 
 // TODO: move to behavior
 

@@ -1,7 +1,5 @@
-'use strict'
-
-const expect = require('chai').expect
-const Queue = require('../../utils/Queue')
+import {expect} from 'chai'
+import {Queue} from '../../utils/Queue'
 
 describe('utils/Queue', function () {
   it('starts with a length of zero', function () {

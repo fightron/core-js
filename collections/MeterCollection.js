@@ -1,9 +1,10 @@
-'use strict'
+/* eslint-disable import/first */
+require('esm')
 
-const BaseCollection = require('./BaseCollection')
-const HealthMeter = require('../meters/HealthMeter')
+import {BaseCollection} from './BaseCollection'
+import {HealthMeter} from '../gameplay/meters/HealthMeter'
 
-class MeterCollection extends BaseCollection {
+export class MeterCollection extends BaseCollection {
   constructor (characterResource) {
     super(characterResource)
     this.set('hp', new HealthMeter(characterResource))
@@ -14,5 +15,3 @@ class MeterCollection extends BaseCollection {
     super.free()
   }
 }
-
-module.exports = MeterCollection

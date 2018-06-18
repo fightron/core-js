@@ -1,12 +1,16 @@
-'use strict'
+/* eslint-disable import/first */
+require('esm')
 
-const BaseResource = require('./BaseResource')
-const MeterCollection = require('../collections/MeterCollection')
+import {BaseResource} from './BaseResource'
 
-class CharacterResource extends BaseResource {
+import {AttributeCollection} from '../collections/AttributeCollection'
+import {MeterCollection} from '../collections/MeterCollection'
+import {SkillCollection} from '../collections/SkillCollection'
+
+export class CharacterResource extends BaseResource {
   constructor () {
     super()
-    this._type = 'ch'
+    this._type = 'Ch'
     this.isCharacterResource = true // internal optimization
 
     // Data Properties
@@ -15,11 +19,22 @@ class CharacterResource extends BaseResource {
 
     // Runtime Properties
     this.meters = null
-    this.enemy = null
+    this.enemies = []
+  }
+
+  prepareAttributes () {
+    if (this.attributes) return
+    this.attributes = new AttributeCollection(this)
   }
 
   prepareMeters () {
+    if (this.meters) return
     this.meters = new MeterCollection(this)
+  }
+
+  prepareSkills () {
+    if (this.skills) return
+    this.skills = new SkillCollection(this)
   }
 
   input (inputCode) {
@@ -48,5 +63,3 @@ class CharacterResource extends BaseResource {
     this.meters = null
   }
 }
-
-module.exports = CharacterResource

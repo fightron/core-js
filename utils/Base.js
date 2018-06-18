@@ -1,11 +1,9 @@
-'use strict'
+/* eslint-disable import/first */
+require('esm')
 
 // Base class used by mostly everything.
-
-class Base {
+export class Base {
   free () {
     // implemented by subclasses
   }
 }
-
-module.exports = Base

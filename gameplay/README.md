@@ -15,10 +15,23 @@ var match = new Match(character1, character2)
 match.rounds.next() // start next round
 ```
 
-## Team
+## Meter
 
-A Team is a group of Characters.
+Meters are used for different things:
 
-Teams are used, among other things, for HUDs, and collision detection (no friendly fire for when multiple characters of the same team are active).
+* Character meters (Health, Shields, Focus, Special, Revenge)
+* Attributes, as they behave like meters
 
-Teamplay is not currently implemented, but using "teams of one" as a starting point will make this feature easier to implement when the time comes.
+Properties:
+
+* `minimum` - the minimum amount of meter. Defaults to zero.
+* `maximum` - the maximum amount of meter. Defaults to 1.
+* `current` - the current amount of meter. Defaults to `minimum`.
+* `onChange` - a callback for when the meter changes its value. Defaults to an empty function.
+* `onDepletion` - a callback for when the meter fully depletes. Defaults to an empty function.
+* `onCompletion` - a callback for when the meter becomes full. Defaults to an empty function.
+
+Methods:
+
+* `set(amount, skipCallbacks)` - sets the meter to a fixed amount. Automatically calls callbacks unless `skipCallbacks` parameter equals `true`.
+* `change(amount, skipCallbacks)` - change the meter amount incrementally. Pass negative values to decrease the amount. Automatically calls callbacks unless `skipCallbacks` parameter equals `true`.

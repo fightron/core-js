@@ -1,21 +1,22 @@
-'use strict'
+/* eslint-disable import/first */
+require('esm')
 
-const Base = require('../utils/Base')
-const Team = require('./Team')
-const Collection = require('../collections/BaseCollection')
+import {Base} from '../utils/Base'
+// const Team = require('./Team')
+import {Collection} from '../collections/BaseCollection'
 
 const NOOP = function () {}
 
-const STATUS_BUILDING = 0
-const STATUS_INTRO = 1  // character intros
-const STATUS_READY = 2  // ready...
-const STATUS_COMBAT = 3 // ... go!
-const STATUS_KO = 4
-const STATUS_WINNER = 5 // round result
-const STATUS_RESULT = 6 // match result
-const STATUS_ENDED = -1
+export const STATUS_BUILDING = 0
+// export const STATUS_INTRO = 1 // character intros
+// export const STATUS_READY = 2 // ready...
+export const STATUS_COMBAT = 3 // ... go!
+// export const STATUS_KO = 4
+// export const STATUS_WINNER = 5 // round result
+// export const STATUS_RESULT = 6 // match result
+export const STATUS_ENDED = -1
 
-class Match extends Base {
+export class Match extends Base {
   constructor () {
     super()
     this.characters = new Collection(this)
@@ -25,12 +26,14 @@ class Match extends Base {
     this.status = STATUS_BUILDING
   }
 
-  set characters (characterResource1, characterResource2) {
+  set characters (characterResources) {
     this.characters.clear()
-    this.characters.add(characterResource1)
-    this.characters.add(characterResource2)
-    characterResource1.enemy = characterResource2
-    characterResource2.enemy = characterResource1
+    var ch1 = characterResources[0]
+    var ch2 = characterResources[1]
+    this.characters.add(ch1)
+    this.characters.add(ch2)
+    ch1.enemies.push(ch2)
+    ch2.enemies.push(ch1)
   }
 
   input (characterId, input) {
@@ -50,7 +53,7 @@ class Match extends Base {
 
   use (characterId, slotId) {
     if (this.status !== STATUS_COMBAT && slotId !== 'idle') {
-      return
+
     }
     // makes a character use a skill
   }
@@ -63,17 +66,15 @@ class Match extends Base {
   }
 }
 
-function assembleCharacterOrTeam (characterOrTeam) {
-  if (!characterOrTeam) {
-    throw new Error('MATCH_REQUIRES_CHARACTER_OR_TEAM')
-  }
-  if (characterOrTeam.isCharacterResource) {
-    return new Team(characterOrTeam)
-  } else if (characterOrTeam.isTeam) {
-    return characterOrTeam
-  } else {
-    throw new Error('MATCH_REQUIRES_CHARACTER_OR_TEAM')
-  }
-}
-
-module.exports = Match
+// function assembleCharacterOrTeam (characterOrTeam) {
+//   if (!characterOrTeam) {
+//     throw new Error('MATCH_REQUIRES_CHARACTER_OR_TEAM')
+//   }
+//   if (characterOrTeam.isCharacterResource) {
+//     return new Team(characterOrTeam)
+//   } else if (characterOrTeam.isTeam) {
+//     return characterOrTeam
+//   } else {
+//     throw new Error('MATCH_REQUIRES_CHARACTER_OR_TEAM')
+//   }
+// }

@@ -1,6 +1,7 @@
-'use strict'
+/* eslint-disable import/first */
+require('esm')
 
-class BaseCollection extends Map {
+export class BaseCollection extends Map {
   constructor (owner) {
     super()
     this.owner = owner
@@ -20,5 +21,3 @@ class BaseCollection extends Map {
     this.clear()
   }
 }
-
-module.exports = BaseCollection

@@ -1,0 +1,31 @@
+{
+  "attributes": {
+    "STR": "Strength",
+    "VIT": "Vitality",
+    "AGI": "Agility",
+    "DEX": "Dexterity",
+    "INT": "Intelligence",
+    "CHA": "Charisma",
+    "MEM": "Memory",
+    "EXE": "Execution",
+    "REA": "Reaction",
+    "CON": "Confirms",
+    "PSI": "Mindfulness"
+  },
+  "meters": {
+    "short": {
+      "hp": "HP",
+      "sp": "SP",
+      "sh": "SH",
+      "fp": "FP",
+      "rv": "GD"
+    },
+    "long": {
+      "hp": "Health Points",
+      "sp": "Special Points",
+      "sh": "Shield Points",
+      "fp": "Focus Points",
+      "rv": "Guardian Drive"
+    }
+  }
+}

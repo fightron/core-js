@@ -1,8 +1,6 @@
-'use strict'
-
-const expect = require('chai').expect
-const HealthMeter = require('../../meters/HealthMeter')
-const CharacterResource = require('../../resources/CharacterResource')
+import {expect} from 'chai'
+import {HealthMeter} from '../../../gameplay/meters/HealthMeter'
+import {CharacterResource} from '../../../resources/CharacterResource'
 
 describe('meters/HealthMeter', function () {
   it('initializes with correct defaults', function () {

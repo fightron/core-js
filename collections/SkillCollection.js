@@ -1,19 +1,10 @@
-'use strict'
+/* eslint-disable import/first */
+require('esm')
 
-const BaseCollection = require('./BaseCollection')
+import {BaseCollection} from './BaseCollection'
 
-class SkillCollection extends BaseCollection {
-  constructor (characterResource) {
-    super(characterResource)
-  }
-
+export class SkillCollection extends BaseCollection {
   input (inputCode) {
     // passes inputCode onto all skills
   }
-
-  free () {
-    super.free()
-  }
 }
-
-module.exports = SkillCollection

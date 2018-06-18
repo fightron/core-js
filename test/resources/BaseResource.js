@@ -1,12 +1,10 @@
-'use strict'
-
-const sha256 = require('crypto-js/sha256')
-const expect = require('chai').expect
-const Resource = require('../../resources/BaseResource')
+import sha256 from 'crypto-js/sha256'
+import {expect} from 'chai'
+import {BaseResource} from '../../resources/BaseResource'
 
 describe('resources/BaseResource', function () {
   it('initializes with correct properties', function () {
-    var resource = new Resource()
+    var resource = new BaseResource()
     expect(resource.id).to.equal(null)
     expect(resource.type).to.equal(null)
     expect(resource.path).to.equal(null)
@@ -15,7 +13,7 @@ describe('resources/BaseResource', function () {
 
   describe('#path', function () {
     it('is updated when ID or type changes', function () {
-      var resource = new Resource()
+      var resource = new BaseResource()
       resource.id = '0123'
       resource.type = 'characters'
       expect(resource.path).to.equal('characters/0123')
@@ -35,14 +33,14 @@ describe('resources/BaseResource', function () {
   describe('#filename', function () {
     it('returns storage file path', function () {
       var sha123 = sha256('123').toString()
-      var resource = new Resource()
+      var resource = new BaseResource()
       resource.id = '123'
       resource.type = 'characters'
       expect(resource.filename).to.equal(`characters/123/${sha123}.json`)
     })
 
     it('returns null if path is null', function () {
-      var resource = new Resource()
+      var resource = new BaseResource()
       resource.id = '123'
       expect(resource.filename).to.equal(null)
     })
@@ -50,7 +48,7 @@ describe('resources/BaseResource', function () {
 
   describe('#patch', function () {
     it('updates resource ID', function () {
-      var resource = new Resource()
+      var resource = new BaseResource()
       resource.patch({id: 123})
       expect(resource.id).to.equal('123')
       resource.patch({}) // only updates present attributes
@@ -62,7 +60,7 @@ describe('resources/BaseResource', function () {
 
   describe('#identity', function () {
     it('returns the resource ID', function () {
-      var resource = new Resource()
+      var resource = new BaseResource()
       resource.id = 123
       expect(resource.identity()).to.equal('123')
     })
@@ -72,7 +70,7 @@ describe('resources/BaseResource', function () {
     it("returns a sha-256 hash of the resource's identity()", function () {
       var sha123 = sha256('123').toString()
       var sha456 = sha256('456').toString()
-      var resource = new Resource()
+      var resource = new BaseResource()
       resource.id = 123
       expect(resource.fingerprint()).to.equal(sha123)
       resource.id = 456

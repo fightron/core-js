@@ -1,7 +1,5 @@
-'use strict'
-
-const expect = require('chai').expect
-const Counter = require('../../utils/Counter')
+import {expect} from 'chai'
+import {Counter} from '../../utils/Counter'
 
 describe('utils/Counter', function () {
   // REPLACE WITH REAL TESTS

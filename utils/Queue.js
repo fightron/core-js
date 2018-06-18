@@ -1,8 +1,9 @@
-'use strict'
+/* eslint-disable import/first */
+require('esm')
 
 // Inspired by https://github.com/nolanlawson/tiny-queue
 
-class Queue {
+export class Queue {
   constructor () {
     this.length = 0
     this.first = undefined
@@ -38,5 +39,3 @@ class Queue {
     return item
   }
 }
-
-module.exports = Queue

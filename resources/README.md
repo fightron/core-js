@@ -31,15 +31,20 @@ In the list of Resources that follows below, shortened names are shown inside br
 
 ## AiResource (`Ai`)
 
-This Resource holds a complete A.I. build needed for the CPU to control a character.
+This Resource holds a complete A.I. build needed for the CPU to control a Character.
 
 Properties:
 
-* `characterId` (`ch`) - ID of the Character this build belongs to.
+* `profileId` (`pf`) - ID of the Profile this build belongs to.
 * `name` (`n`) - name of the build.
 * `memory` (`m`) - list of `AiMemoryResource` objects containing memorized Skills and their timeouts.
 * `actions` (`a`) - list of `AiActionResource` objects containing the flow of the A.I. build.
-* `attributes` (`att`) - list of `AiAttribute` objects with the A.I. Attribute values for this build.
+* `attributes` (`att`) - list of `AiAttribute` objects with the A.I. Attribute values for this build:
+  * `memory` (`m`)
+  * `execution` (`e`)
+  * `reaction` (`r`)
+  * `confirms` (`c`)
+  * `mindfulness` (`p`)
 
 ## AiActionResource (`AiA`)
 
@@ -54,7 +59,7 @@ Properties:
 * `minDistance` (`miD`) - minimum distance for the action to activate, in centimeters. Defaults to zero.
 * `maxDistance` (`maD`) - maximum distance for the action to activate, in centimeters. Defaults to full screen distance (value TBD).
 * `airborne` (`air`) - set to `true` to make this action only executable while the Character is in the air.
-* `skillId` (`sk`) - (optional) ID of the Skill the enemy will execute that triggers this action. When present, the action will be flagged as "reaction". The Skill must be in the robot's "Memory" (see next Resource) for this reaction to be executable.
+* `aiMemoryId` (`aim`) - (optional) ID of the Memory with the Skill the enemy will execute that triggers this action. When present, the action will be flagged as "reaction". The Memory must be valid (not forgotten) for this reaction to be executable.
 * `inputSequenceId` (`in`) - input sequence to enter if action rolls successfully. Can be a single button/directional press or a complete sequence. The accuracy and speed of the entered sequence depends on the __Execution__ A.I. Attribute.
 * `nextActionId` (`n`) - instead of entering an input sequence, the successful activation of this action can reroute to another action. Mutually exclusive with `inputSequenceId`.
 

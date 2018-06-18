@@ -1,7 +1,5 @@
-'use strict'
-
-const expect = require('chai').expect
-const BaseCollection = require('../../collections/BaseCollection')
+import {expect} from 'chai'
+import {BaseCollection} from '../../collections/BaseCollection'
 
 describe('collections/BaseCollection', function () {
   // REPLACE WITH REAL TESTS

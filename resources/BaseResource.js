@@ -1,9 +1,10 @@
-'use strict'
+/* eslint-disable import/first */
+require('esm')
 
-const sha256 = require('crypto-js/sha256')
-const Base = require('../utils/Base')
+import sha256 from 'crypto-js/sha256'
+import {Base} from '../utils/Base'
 
-class BaseResource extends Base {
+export class BaseResource extends Base {
   constructor () {
     super()
     this._id = null // remote ID
@@ -57,5 +58,3 @@ class BaseResource extends Base {
     // returns data to be saved on Datastore
   }
 }
-
-module.exports = BaseResource
