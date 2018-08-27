@@ -1,6 +1,3 @@
-/* eslint-disable import/first */
-require('esm')
-
 // Used as a frame counter by both Client and Server.
 export class Counter {
   constructor () {

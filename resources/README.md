@@ -56,8 +56,8 @@ Properties:
 * `priority` (`p`) - an arbitrary integer. Higher value means higher precedence. If two actions have the same priority, the one created first will take precedence. Defaults to zero.
 * `idle` (`i`) - when `true`, this action is cancellable into reactions (other actions with `skillId`). Mutually exclusive with `skillId`.
 * `chance` (`c`) - chance of activation as a float between 0 and 1, where 1 means 100% chance.
-* `minDistance` (`miD`) - minimum distance for the action to activate, in centimeters. Defaults to zero.
-* `maxDistance` (`maD`) - maximum distance for the action to activate, in centimeters. Defaults to full screen distance (value TBD).
+* `minDistance` (`miD`) - minimum enemy distance for the action to activate, in centimeters. Defaults to zero.
+* `maxDistance` (`maD`) - maximum enemy distance for the action to activate, in centimeters. Defaults to full screen distance (value TBD).
 * `airborne` (`air`) - set to `true` to make this action only executable while the Character is in the air.
 * `aiMemoryId` (`aim`) - (optional) ID of the Memory with the Skill the enemy will execute that triggers this action. When present, the action will be flagged as "reaction". The Memory must be valid (not forgotten) for this reaction to be executable.
 * `inputSequenceId` (`in`) - input sequence to enter if action rolls successfully. Can be a single button/directional press or a complete sequence. The accuracy and speed of the entered sequence depends on the __Execution__ A.I. Attribute.
@@ -172,6 +172,14 @@ Properties:
 * `enhancements` (`en`) - an array of Character Enhancement IDs that are slotted into this Skill.
 * `flags` (`fl`) - an array of Skill Flags currently active for this Skill.
 
+## CinematicResource (`Cnm`)
+
+A Cinematic is a fixed sequence of Animations involving two Characters, camera angles, and additional effects.
+
+Properties:
+
+* (TBD)
+
 ## CostumeResource (`Cm`)
 
 A Costume is a collection of Items that are placed onto a Character's Skeleton.
@@ -243,9 +251,9 @@ Geometries are used to render mostly everything, such as Items, Character Costum
 
 Properties:
 
-* `name` (`n`) - Geometry name (e.g., `"Cube"`)
 * `vertices` (`v`) - an array of `Vertex` objects.
 * `faces` (`f`) - an array of `Face` objects.
+* `regions` (`r`) - an array of `Region` objects.
 * `morphs` (`m`) - an array of `Morph` objects.
 
 ## InventoryResource (`Inv`)

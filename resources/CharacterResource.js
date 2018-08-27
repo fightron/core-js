@@ -1,6 +1,3 @@
-/* eslint-disable import/first */
-require('esm')
-
 import {BaseResource} from './BaseResource'
 
 import {AttributeCollection} from '../collections/AttributeCollection'

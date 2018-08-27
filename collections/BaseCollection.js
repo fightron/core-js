@@ -1,6 +1,3 @@
-/* eslint-disable import/first */
-require('esm')
-
 export class BaseCollection extends Map {
   constructor (owner) {
     super()

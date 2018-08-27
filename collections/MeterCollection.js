@@ -1,6 +1,3 @@
-/* eslint-disable import/first */
-require('esm')
-
 import {BaseCollection} from './BaseCollection'
 import {HealthMeter} from '../gameplay/meters/HealthMeter'
 

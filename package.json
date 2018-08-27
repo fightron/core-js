@@ -1,7 +1,7 @@
 {
   "name": "@fightron/core",
   "version": "0.1.0",
-  "description": "Fightron Core Objects",
+  "description": "Fightron Engine - Core Objects",
   "main": "index.js",
   "scripts": {
     "test": "standard --fix && nyc mocha --recursive"
@@ -10,44 +10,37 @@
     "type": "git",
     "url": "git+https://github.com/pauloddr/fightron-core.git"
   },
-  "author": "Panayotis Procopiou",
+  "author": "Panayotis Procopiou <fightron@pauloddr.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/pauloddr/fightron-core/issues"
   },
   "homepage": "https://github.com/pauloddr/fightron-core#readme",
   "dependencies": {
-    "crypto-js": "3.1.9-1",
-    "esm": "3.0.51"
+    "crypto-js": "^3.1.9-1"
   },
   "devDependencies": {
-    "chai": "4.1.2",
-    "dirty-chai": "2.0.1",
-    "mocha": "5.2.0",
-    "nyc": "11.3.0",
+    "chai": "^4.1.2",
+    "dirty-chai": "^2.0.1",
+    "esm": "^3.0.80",
+    "mocha": "^5.2.0",
+    "nyc": "^11.3.0",
     "standard": "*"
   },
   "standard": {
-    "env": "mocha",
-    "ignore": [
-      "node_modules"
-    ]
+    "env": "mocha"
   },
   "nyc": {
     "include": [
-      "**/*.js"
-    ],
-    "exclude": [
-      "config",
-      "test"
+      "collections",
+      "gameplay",
+      "globals",
+      "resources"
     ],
     "reporter": [
       "lcov",
       "text-summary",
       "html"
     ]
-  },
-  "directories": {
-    "test": "test"
   }
 }

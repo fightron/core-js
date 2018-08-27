@@ -1,6 +1,3 @@
-/* eslint-disable import/first */
-require('esm')
-
 import {Meter} from './Meter'
 
 export class Attribute extends Meter {

@@ -1,6 +1,3 @@
-/* eslint-disable import/first */
-require('esm')
-
 // Inspired by https://github.com/nolanlawson/tiny-queue
 
 export class Queue {

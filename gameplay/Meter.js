@@ -1,6 +1,3 @@
-/* eslint-disable import/first */
-require('esm')
-
 import {Base} from '../utils/Base'
 
 const NOOP = function () {}

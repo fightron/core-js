@@ -1,6 +1,3 @@
-/* eslint-disable import/first */
-require('esm')
-
 import {ActiveAttribute} from './ActiveAttribute'
 
 export class VitalityAttribute extends ActiveAttribute {

@@ -1,6 +1,3 @@
-/* eslint-disable import/first */
-require('esm')
-
 import sha256 from 'crypto-js/sha256'
 import {Base} from '../utils/Base'
 
