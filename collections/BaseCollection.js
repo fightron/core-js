@@ -2,10 +2,17 @@ export class BaseCollection extends Map {
   constructor (owner) {
     super()
     this.owner = owner
+    this.objectClass = null
   }
 
   add (object) {
-    this.set(object.id, object)
+    var ObjectClass = this.objectClass
+    if (ObjectClass) {
+      var instance = new ObjectClass(object, this.owner)
+      this.set(instance.id, instance)
+    } else {
+      this.set(object.id, object)
+    }
   }
 
   free () {
