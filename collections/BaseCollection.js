@@ -5,13 +5,13 @@ export class BaseCollection extends Map {
     this.objectClass = null
   }
 
-  add (object) {
+  add (object, id) {
     var ObjectClass = this.objectClass
     if (ObjectClass) {
       var instance = new ObjectClass(object, this.owner)
-      this.set(instance.id, instance)
+      this.set(id || instance.id, instance)
     } else {
-      this.set(object.id, object)
+      this.set(id || object.id, object)
     }
   }
 

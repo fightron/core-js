@@ -276,9 +276,47 @@ This Resource holds information about an Item, which is a combination of one or 
 Properties:
 
 * `name` (`n`)
-* `geometries` (`geo`) - a collection of `ItemGeometry` objects.
-* `regions` (`r`) - a collection of `ItemRegion` objects.
-* `boneIds` (`b`) - (optional) an array of Bone IDs where this Item goes on to. When not present, this Item can be placed on a Stage.
+* `parts` (`p`) - a collection of `ItemPart` objects:
+  * `id` - part ID.
+  * `resourceType` (`rT`) - possible values: `"g"` (geometry), `"p"` (point - a blank Object3D), `"l"` (light)
+  * `resourceId` (`rI`) - part type ID. Example: when `type` is a geometry, this property holds the geometry ID.
+  * `parent` (`par`) - parent part ID. First object is always "root". All other objects must have a parent.
+  * `position` (`p`) - contains a `Vector3` object.
+  * `rotation` (`r`) - contains a `Euler` object.
+  * `quaternion` (`q`) - contains a `Quaternion` object.
+  * `scale` (`s`) - contains a `Vector3` object.
+  * `lightType` (`l`) - only for light parts. Possible values: `"a"` (ambient light), `"s"` (spotlight), `"d"` (directional light).
+  * `castShadow` (`cs`) - determines if rendered geometry casts shadows, or if light casts shadows. Not applicable to points.
+  * `receiveShadow` (`rs`) - determines if rendered geometry receives shadows. Not applicable to points.
+  * `outline` (`o`) - `true` if rendered geometry should have an outline effect. Not applicable to points and lights.
+  * `slot` (`sl`) - slot name. Only applicable to points. Allows other spawns to be attached to this slot.
+* `regions` (`r`) - a collection of paintable `ItemRegion` objects:
+  * `id` - region ID.
+  * `partId` (`p`) - must be a geometry part.
+  * `regions` (`r`) - array of region IDs of the geometry that should be painted with a single color.
+  * `color` (`c`) - default color of this region.
+* `slots` (`sl`) - array of `ItemSlot` objects (only required for costume pieces):
+  * `skeleton` (`s`) - Skeleton ID this Item is compatible with.
+  * `bone` (`b`) - Bone ID this Item will be attached to.
+  * `slot` (`sl`) - if present, attachment will happen at the Item currently attached to the Bone instead of the Bone itself. Used for accessories.
+  * `partId` (`p`) - part that should be attached to the Bone or Slot. If `null`, the root part will be attached.
+    * If part has a parent, it will be removed, as hierarchy will be handled by the Skeleton in this case.
+
+## SpawnResource (`Spw`)
+
+A Spawn is an Item in the possession of a Character or placed into a Stage. One Item can have multiple Spawns, and each Spawn can be customized with different colors and modifiers.
+
+Properties:
+
+* `id` - Spawn ID.
+* `item` (`itm`) - Item ID.
+* `character` (`ch`) - Character ID this Spawn belongs to. `null` if Spawn is a Stage Item.
+* `properties` (`p`) - a collection of `SpawnProperty` objects:
+  * `type` (`t`) - property type. Possible values: `"p"` (Part) or `"r"` (Region).
+  * `id` - ID of the Part of Region, depending on the type value.
+  * `offset` (`p`) - position adjustment (incremental). A `Vector3` object.
+  * `color` (`c`) - region or part color. Also sets light color.
+  * `intensity` (`i`) - light intensity. Not applicable to geometries or points.
 
 ## MatchResource (`Mt`)
 
@@ -289,9 +327,10 @@ Initially, Matches will only support two single Characters, but this Resource is
 Properties:
 
 * `teams` (`tm`) - an array of Teams:
+  * `id` - Team ID. Usually starts from `1` up to how many Teams are currently playing.
   * `side` (`s`) - screen side this Team will be placed. `"l"` for left, `"r"` for right.
   * `color` (`c`) - team color, in HEX format. Defaults to blue/green for left teams, red/orange for right teams.
-  * `characterIds` (`ch`) - array of Character IDs that belong to this team. Attacks will not collide with Characters of the same Team (friendly fire).
+  * `characterIds` (`ch`) - array of Character IDs that belong to this team. Attacks will not collide with Characters of the same Team, and they can pass through each other.
   * `weight` (`w`) - Health Points multiplier for each Character in this team. Used when the number of Characters between teams are different. Teams with less Characters have more HP. Defaults to 1.
 * `ft` (`f`) - first Team to reach this number of rounds won wins the match. Defaults to 2. In Team matches, defaults to 1.
 * `time` (`t`) - time limit per round in seconds. Defaults to 99.
@@ -300,9 +339,9 @@ Properties:
   * `characterIds` (`ch`) - array of two Character IDs that started the round.
   * `loser` (`l`) - Character ID that lost the round.
   * `time` (`t`) - remaining time in seconds after the end of the round.
-* `winner` (`w`) - Team index that won the match.
+* `winner` (`w`) - Team ID that won the match.
 * `ragequit` (`q`) - array of Character indexes that rage-quit'd the match. If all Characters in a Team ragequit or disconnect, the opposing Team is declared the winner.
-* `saved` (`s`) - `true` if replay information has been saved for this match and uploaded in to the cloud.
+* `saved` (`s`) - `true` if replay information has been saved for this match and uploaded to the cloud.
 * `rewards` (`cr`) - an array of rewards given to each Character, including losers, after each round ends:
   * `round` (`r`) - Round number. Will be `null` for Match-wide rewards.
   * `characterId` (`ch`)
@@ -312,7 +351,6 @@ Properties:
 Runtime Properties:
 
 * `replay` - a large array of messages sent to the client over the course of the match. This data is used to save replay files in the cloud.
-
 
 ## MechanicResource (`Mc`)
 
