@@ -1,7 +1,7 @@
-import {BaseCollection} from './BaseCollection'
+import {MapCollection} from './MapCollection'
 import {HealthMeter} from '../gameplay/meters/HealthMeter'
 
-export class MeterCollection extends BaseCollection {
+export class MeterCollection extends MapCollection {
   constructor (characterResource) {
     super(characterResource)
     this.set('hp', new HealthMeter(characterResource))

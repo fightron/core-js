@@ -251,6 +251,7 @@ Geometries are used to render mostly everything, such as Items, Character Costum
 
 Properties:
 
+* `parent` - ID of parent Geometry. Parent will be loaded and merged into this resource before other attributes are applied.
 * `vertices` (`v`) - an array of `Vertex` objects.
 * `faces` (`f`) - an array of `Face` objects.
 * `regions` (`r`) - an array of `Region` objects.

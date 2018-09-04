@@ -1,12 +1,15 @@
 import {BaseResource} from './BaseResource'
+import {VertexCollection} from '../collections/VertexCollection'
+import {FaceCollection} from '../collections/FaceCollection'
 
 export class GeometryResource extends BaseResource {
   constructor () {
     super()
     this._type = 'Geo'
+    this._parent = null // Parent Geometry ID
     this.isGeometryResource = true // internal optimization
-    this.vertices = null
-    this.faces = null
+    this.vertices = new VertexCollection(this)
+    this.faces = new FaceCollection(this)
     this.regions = null
     this.morphs = null
   }
@@ -16,17 +19,9 @@ export class GeometryResource extends BaseResource {
       return
     }
     super.patch(data)
-    if (data.vertices) {
-      this.vertices = data.vertices
-    }
-    if (data.faces) {
-      this.faces = data.faces
-    }
-    if (data.regions) {
-      this.regions = data.regions
-    }
-    if (data.morphs) {
-      this.morphs = data.morphs
-    }
+    this.vertices.load(data.v)
+    this.faces.load(data.f)
+    this.regions.load(data.r)
+    // this.morphs.load(data.m)
   }
 }

@@ -1,4 +1,4 @@
-# @fightron/core/utils
+# @fightron/core/lib
 
 Utility and helper objects.
 

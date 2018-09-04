@@ -1,7 +1,7 @@
 import {expect} from 'chai'
-import {Queue} from '../../utils/Queue'
+import {Queue} from '../../lib/Queue'
 
-describe('utils/Queue', function () {
+describe('lib/Queue', function () {
   it('starts with a length of zero', function () {
     let queue = new Queue()
     expect(queue.length).to.equal(0)

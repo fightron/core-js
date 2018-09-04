@@ -1,6 +1,6 @@
-import {Base} from '../utils/Base'
+import {Base} from '../lib/Base'
 // const Team = require('./Team')
-import {Collection} from '../collections/BaseCollection'
+import {Collection} from '../collections/MapCollection'
 
 const NOOP = function () {}
 

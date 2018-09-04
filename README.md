@@ -7,7 +7,7 @@ This project is divided in namespaces, as follows:
 * [__Collections__](./collections/README.md): arrays of items that belong to an object.
 * [__Gameplay__](./gameplay/README.md): classes directly related to gameplay.
 * [__Resources__](./resources/README.md): data entities.
-* [__Utils__](./utils/README.md): helper classes
+* [__Lib__](./lib/README.md): classes that don't fall into any of the categories above.
 
 Each namespace has its own README. Click the links above to read them.
 

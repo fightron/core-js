@@ -31,10 +31,13 @@
     "env": "mocha"
   },
   "nyc": {
+    "all": true,
     "include": [
+      "3d",
       "collections",
       "gameplay",
       "globals",
+      "lib",
       "resources"
     ],
     "reporter": [

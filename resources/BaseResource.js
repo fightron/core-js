@@ -1,5 +1,5 @@
 import sha256 from 'crypto-js/sha256'
-import {Base} from '../utils/Base'
+import {Base} from '../lib/Base'
 
 export class BaseResource extends Base {
   constructor () {
@@ -51,7 +51,7 @@ export class BaseResource extends Base {
     return `${this.id}`
   }
 
-  datastore () {
-    // returns data to be saved on Datastore
-  }
+  // Data to be saved in Datastore
+  // Should be overwritten by subclasses.
+  json () {}
 }

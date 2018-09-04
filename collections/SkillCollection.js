@@ -1,6 +1,6 @@
-import {BaseCollection} from './BaseCollection'
+import {MapCollection} from './MapCollection'
 
-export class SkillCollection extends BaseCollection {
+export class SkillCollection extends MapCollection {
   input (inputCode) {
     // passes inputCode onto all skills
   }

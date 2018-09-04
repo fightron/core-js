@@ -1,4 +1,4 @@
-import {Base} from '../utils/Base'
+import {Base} from '../lib/Base'
 
 const NOOP = function () {}
 

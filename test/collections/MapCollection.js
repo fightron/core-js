@@ -1,9 +1,9 @@
 import {expect} from 'chai'
-import {BaseCollection} from '../../collections/BaseCollection'
+import {MapCollection} from '../../collections/MapCollection'
 
-describe('collections/BaseCollection', function () {
+describe('collections/MapCollection', function () {
   before(function () {
-    this.collection = new BaseCollection()
+    this.collection = new MapCollection()
   })
 
   describe('#add', function () {

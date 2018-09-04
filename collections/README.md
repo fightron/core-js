@@ -1,15 +1,15 @@
 # @fightron/core/collections
 
-Collections are just extended `Map`s which have an owner (which can be any arbritrary object).
+Collections are just extended `Map`s or `Array`s which have an owner (which can be any arbitrary object).
 
-It's used in many different places where string lookup is needed within a collection (search by key). Some examples:
+It's used in many different places where string lookup is needed within a collection. Some examples:
 
 * Character meters
 * Character attributes
 * Character skills
+* Etc.
 
-Maps are used instead of object properties because keys can have characters that are not compatible with property names (such as hyphen).
+There are two "base" collections:
 
-Methods:
-
-* `add(object)` - adds an object to the collection, with `object.id` being used as key.
+* `ArrayCollection` - extends from `Array`.
+* `MapCollection` - extends from `Map`.

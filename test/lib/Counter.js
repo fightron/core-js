@@ -1,7 +1,7 @@
 import {expect} from 'chai'
-import {Counter} from '../../utils/Counter'
+import {Counter} from '../../lib/Counter'
 
-describe('utils/Counter', function () {
+describe('lib/Counter', function () {
   // REPLACE WITH REAL TESTS
   it('exists', function () {
     expect(Counter).to.exist()
