@@ -1,3 +1,4 @@
+--recursive
 --colors
 --require=esm
 --require=./config/mocha.js

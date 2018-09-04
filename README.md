@@ -1,5 +1,8 @@
 # @fightron/core
 
+[![Build Status](https://travis-ci.com/fightron/core.svg?branch=master)](https://travis-ci.com/fightron/core)
+[![Coverage Status](https://coveralls.io/repos/github/fightron/core/badge.svg?branch=master)](https://coveralls.io/github/fightron/core?branch=master)
+
 __Fightron Engine__ Core Objects that can be used by both Client and Server components.
 
 This project is divided in namespaces, as follows:
