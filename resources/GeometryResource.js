@@ -21,7 +21,14 @@ export class GeometryResource extends BaseResource {
     super.patch(data)
     this.vertices.load(data.v)
     this.faces.load(data.f)
-    this.regions.load(data.r)
+    // this.regions.load(data.r)
     // this.morphs.load(data.m)
+  }
+
+  free () {
+    this.faces.free()
+    this.vertices.free()
+    this.faces = null
+    this.vertices = null
   }
 }

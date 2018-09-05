@@ -1,0 +1,29 @@
+{
+  "id": "triangle",
+  "v": [
+    {"id": "top", "y": 1, "n": {"y": 1}},
+    {"id": "front-left", "x": -1, "z": 1, "mi": "front-right", "n": {"x": -1, "z": 1}},
+    {"id": "back", "z": -1}
+  ],
+  "f": [
+    {
+      "id": "front",
+      "a": "top", "b": "front-left", "c": "front-right",
+      "n": {"b": {"x": -2, "z": 1} }
+    },
+    {
+      "id": "left",
+      "a": "top", "b": "back", "c": "front-left",
+      "mi": "right",
+      "n": {"b": {"z": -1}}
+    },
+    {
+      "id": "bottom",
+      "a": "front-left", "b": "back", "c": "front-right"
+    }
+  ],
+  "r": [
+    {"id": "cover", "f": ["front", "left", "right"]},
+    {"id": "bottom", "f": ["bottom"]}
+  ]
+}

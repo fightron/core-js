@@ -7,13 +7,16 @@ describe('3d/Face3', function () {
   var a = new Vertex(1, 0, 0)
   var b = new Vertex(0, 1, 0)
   var c = new Vertex(0, 0, 1)
+  var d = new Vertex(0, 0, -1)
   var n = new Vector3(1, 0, 0)
   var o = {}
 
   a.id = 'v-1'
   a.normal = new Vector3(0, 1, 0)
   b.id = 'v-2'
+  b.normal = new Vector3(0, -1, 0)
   c.id = 'v-3'
+  c.normal = new Vector3(0, 0, 1)
 
   describe('constructor', function () {
     it('initializes with vertices', function () {
@@ -38,20 +41,20 @@ describe('3d/Face3', function () {
         expect(face.normals.a.x).to.equal(0)
         expect(face.normals.a.y).to.equal(1)
         expect(face.normals.a.z).to.equal(0)
-        expect(face.normals.b).to.not.exist()
-        expect(face.normals.c).to.not.exist()
+        expect(face.normals.b.x).to.equal(0)
+        expect(face.normals.b.y).to.equal(-1)
+        expect(face.normals.b.z).to.equal(0)
+        expect(face.normals.c.x).to.equal(0)
+        expect(face.normals.c.y).to.equal(0)
+        expect(face.normals.c.z).to.equal(1)
         face = new Face3(b, a, c)
         expect(face.normals.b.x).to.equal(0)
         expect(face.normals.b.y).to.equal(1)
         expect(face.normals.b.z).to.equal(0)
-        expect(face.normals.a).to.not.exist()
-        expect(face.normals.c).to.not.exist()
         face = new Face3(b, c, a)
         expect(face.normals.c.x).to.equal(0)
         expect(face.normals.c.y).to.equal(1)
         expect(face.normals.c.z).to.equal(0)
-        expect(face.normals.a).to.not.exist()
-        expect(face.normals.b).to.not.exist()
       })
 
       it('sets vertex normals for vertices without normals', function () {
@@ -62,12 +65,10 @@ describe('3d/Face3', function () {
         expect(face.normals.b.x).to.equal(1)
         expect(face.normals.b.y).to.equal(0)
         expect(face.normals.b.z).to.equal(0)
-        expect(face.normals.c).to.not.exist()
         face = new Face3(a, b, c, {c: n})
         expect(face.normals.c.x).to.equal(1)
         expect(face.normals.c.y).to.equal(0)
         expect(face.normals.c.z).to.equal(0)
-        expect(face.normals.b).to.not.exist()
       })
 
       it('overwrites vertex normals from vertices with default normals', function () {
@@ -75,12 +76,10 @@ describe('3d/Face3', function () {
         expect(face.normals.a.x).to.equal(1)
         expect(face.normals.a.y).to.equal(0)
         expect(face.normals.a.z).to.equal(0)
-        expect(face.normals.b).to.not.exist()
-        expect(face.normals.c).to.not.exist()
       })
 
-      it('does not set normals if none are found', function () {
-        var face = new Face3(b, b, c)
+      it('does not set face normals if any vertex normal is not present', function () {
+        var face = new Face3(b, c, d)
         expect(face.normals).to.equal(null)
       })
     })

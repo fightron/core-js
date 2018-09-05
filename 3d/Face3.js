@@ -35,7 +35,7 @@ export class Face3 extends Base {
       if (dB) { normals.b = new Vector3(dB.x, dB.y, dB.z) }
       if (dC) { normals.c = new Vector3(dC.x, dC.y, dC.z) }
     }
-    if (normals.a || normals.b || normals.c) {
+    if (normals.a && normals.b && normals.c) {
       this.normals = normals
     }
   }
