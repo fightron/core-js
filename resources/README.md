@@ -283,7 +283,7 @@ Properties:
   * `resourceId` (`rI`) - part type ID. Example: when `type` is a geometry, this property holds the geometry ID.
   * `parent` (`par`) - parent part ID. First object is always "root". All other objects must have a parent.
   * `position` (`p`) - contains a `Vector3` object.
-  * `rotation` (`r`) - contains a `Euler` object.
+  * `rotation` (`r`) - contains a `Vector3` object.
   * `quaternion` (`q`) - contains a `Quaternion` object.
   * `scale` (`s`) - contains a `Vector3` object.
   * `lightType` (`l`) - only for light parts. Possible values: `"a"` (ambient light), `"s"` (spotlight), `"d"` (directional light).

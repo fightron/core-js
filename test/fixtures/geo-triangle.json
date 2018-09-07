@@ -1,9 +1,9 @@
 {
   "id": "triangle",
   "v": [
-    {"id": "top", "y": 1, "n": {"y": 1}},
-    {"id": "front-left", "x": -1, "z": 1, "mi": "front-right", "n": {"x": -1, "z": 1}},
-    {"id": "back", "z": -1}
+    {"id": "top", "y": 100, "n": {"y": 1}},
+    {"id": "front-left", "x": -100, "z": 100, "mi": "front-right", "n": {"x": -1, "z": 1}},
+    {"id": "back", "z": -100}
   ],
   "f": [
     {
