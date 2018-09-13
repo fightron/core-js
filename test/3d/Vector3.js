@@ -19,6 +19,32 @@ describe('3d/Vector3', function () {
     })
   })
 
+  describe('increment', function () {
+    it('increments coordinates', function () {
+      var vector = new Vector3(1, 2, 3)
+      vector.increment(1, 2, 3)
+      expect(vector.x).to.equal(2)
+      expect(vector.y).to.equal(4)
+      expect(vector.z).to.equal(6)
+    })
+
+    it('defaults to zeros', function () {
+      var vector = new Vector3(1, 2, 3)
+      vector.increment(1, null, undefined)
+      expect(vector.x).to.equal(2)
+      expect(vector.y).to.equal(2)
+      expect(vector.z).to.equal(3)
+      vector.increment(null, 2, undefined)
+      expect(vector.x).to.equal(2)
+      expect(vector.y).to.equal(4)
+      expect(vector.z).to.equal(3)
+      vector.increment(null, null, 3)
+      expect(vector.x).to.equal(2)
+      expect(vector.y).to.equal(4)
+      expect(vector.z).to.equal(6)
+    })
+  })
+
   describe('clone', function () {
     before(function () {
       this.vector = new Vector3(1, 2, 3)

@@ -1,0 +1,19 @@
+{
+  "id": "three-triangles",
+  "sch": "three-triangles",
+  "p": [
+    {
+      "id": "1",
+      "r": {"y": -1}
+    },
+    {
+      "id": "3",
+      "p": {"y": -1},
+      "s": {"x": -1, "z": -1}
+    }
+  ],
+  "c": [
+    {"id": "top", "c": "red"},
+    {"id": "bottom", "c": "blue"}
+  ]
+}

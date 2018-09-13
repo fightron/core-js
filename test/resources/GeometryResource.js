@@ -1,6 +1,6 @@
 import {expect} from 'chai'
 import {GeometryResource} from '../../resources/GeometryResource'
-import triangleGeometry from '../fixtures/geo-triangle'
+import triangleGeometry from '../fixtures/geometries/triangle'
 
 describe('resources/GeometryResource', function () {
   it('initializes with default properties', function () {

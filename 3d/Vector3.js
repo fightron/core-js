@@ -13,6 +13,12 @@ export class Vector3 extends Base {
     this.z = z || 0
   }
 
+  increment (x, y, z) {
+    if (x) { this.x += x }
+    if (y) { this.y += y }
+    if (z) { this.z += z }
+  }
+
   clone () {
     return new Vector3(this.x, this.y, this.z)
   }

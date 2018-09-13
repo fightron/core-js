@@ -24,6 +24,6 @@
   ],
   "r": [
     {"id": "cover", "f": ["front", "left", "right"]},
-    {"id": "bottom", "f": ["bottom"]}
+    {"id": "gutter", "f": ["bottom"]}
   ]
 }

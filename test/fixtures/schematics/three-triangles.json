@@ -1,0 +1,59 @@
+{
+  "id": "three-triangles",
+  "n": "Three Triangles on top of each other",
+  "p": [
+    {
+      "id": "1",
+      "rT": "g", "rI": "triangle",
+      "r": {"y": 1},
+      "cs": true,
+      "o": true
+    },
+    {
+      "id": "2",
+      "rT": "g", "rI": "triangle",
+      "par": "1",
+      "rs": true,
+      "p": {"y": 100}
+    },
+    {
+      "id": "3",
+      "rT": "g", "rI": "triangle",
+      "par": "2",
+      "p": {"y": 101},
+      "s": {"x": 2, "z": 2}
+    }
+  ],
+  "r": [
+    {
+      "id": "bottom",
+      "p": [
+        {"id": "1", "r": ["cover"]}
+      ],
+      "c": "red"
+    },
+    {
+      "id": "mid",
+      "p": [
+        {"id": "2", "r": ["cover"]}
+      ],
+      "c": "green"
+    },
+    {
+      "id": "top",
+      "p": [
+        {"id": "3", "r": ["cover"]}
+      ],
+      "c": "blue"
+    },
+    {
+      "id": "gutter",
+      "p": [
+        {"id": "1", "r": ["gutter"]},
+        {"id": "2", "r": ["gutter"]},
+        {"id": "3", "r": ["gutter"]}
+      ],
+      "g": true
+    }
+  ]
+}

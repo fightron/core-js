@@ -257,29 +257,16 @@ Properties:
 * `regions` (`r`) - an array of `Region` objects.
 * `morphs` (`m`) - an array of `Morph` objects.
 
-## InventoryResource (`Inv`)
+## SchematicResource (`Sch`)
 
-This Resource holds a single Item in possession of a Player.
-
-It also defines the Item's customization, such as colors, etc.
-
-Properties:
-
-* `playerId` (`pl`)
-* `itemId` (`im`)
-* `costumeId` (`cm`) - ID of the Costume this Item is currently placed on to.
-* `colors` (`cl`) - an array of Palette properties (`color0` to `color9`, `eye0`, `eye1`, `light0` and `light1`) that are used to apply colors to the Item's regions. The final color is decided by the Palette picked by the Player during Fighter Select.
-
-## ItemResource (`Im`)
-
-This Resource holds information about an Item, which is a combination of one or more Geometries.
+A `SchematicResource` holds all information needed to create a Item. It is a combination of Geometries, Points, and Lights.
 
 Properties:
 
 * `name` (`n`)
-* `parts` (`p`) - a collection of `ItemPart` objects:
+* `parts` (`p`) - a collection of `SchematicPart` objects:
   * `id` - part ID.
-  * `resourceType` (`rT`) - possible values: `"g"` (geometry), `"p"` (point - a blank Object3D), `"l"` (light)
+  * `resourceType` (`rT`) - possible values: `"g"` (geometry), `"p"` (point), `"l"` (light)
   * `resourceId` (`rI`) - part type ID. Example: when `type` is a geometry, this property holds the geometry ID.
   * `parent` (`par`) - parent part ID. First object is always "root". All other objects must have a parent.
   * `position` (`p`) - contains a `Vector3` object.
@@ -290,33 +277,46 @@ Properties:
   * `castShadow` (`cs`) - determines if rendered geometry casts shadows, or if light casts shadows. Not applicable to points.
   * `receiveShadow` (`rs`) - determines if rendered geometry receives shadows. Not applicable to points.
   * `outline` (`o`) - `true` if rendered geometry should have an outline effect. Not applicable to points and lights.
-  * `slot` (`sl`) - slot name. Only applicable to points. Allows other spawns to be attached to this slot.
-* `regions` (`r`) - a collection of paintable `ItemRegion` objects:
+  * `slot` (`sl`) - slot name. Only applicable to points. Allows other Items to be attached to this slot.
+* `regions` (`r`) - a collection of paintable `SchematicRegion` objects:
   * `id` - region ID.
-  * `partId` (`p`) - must be a geometry part.
-  * `regions` (`r`) - array of region IDs of the geometry that should be painted with a single color.
+  * `name` (`n`) - region name, visible to the player.
   * `color` (`c`) - default color of this region.
-* `slots` (`sl`) - array of `ItemSlot` objects (only required for costume pieces):
+  * `parts` (`p`) - a collection of `SchematicRegionPart` objects:
+    * `id` - part ID.
+    * `regions` (`r`) - array of Region IDs from that part.
+  * `gutter` (`g`) - `true` if region is a gutter (it will use a global basic black material).
+* `slots` (`sl`) - array of `SchematicSlot` objects (only required for costume pieces):
   * `skeleton` (`s`) - Skeleton ID this Item is compatible with.
   * `bone` (`b`) - Bone ID this Item will be attached to.
   * `slot` (`sl`) - if present, attachment will happen at the Item currently attached to the Bone instead of the Bone itself. Used for accessories.
   * `partId` (`p`) - part that should be attached to the Bone or Slot. If `null`, the root part will be attached.
     * If part has a parent, it will be removed, as hierarchy will be handled by the Skeleton in this case.
 
-## SpawnResource (`Spw`)
+Methods:
 
-A Spawn is an Item in the possession of a Character or placed into a Stage. One Item can have multiple Spawns, and each Spawn can be customized with different colors and modifiers.
+* `createItem()` - creates an `ItemResource` from this Schematic.
+
+## ItemResource (`Itm`)
+
+An Item is the resulting creation from a Schematic. In regards to data storage, an Item is always in the possession of a character or a stage.
+
+The same Schematic can generate multiple copies of the same Item, and each copy can be customized with its own colors and modifiers.
 
 Properties:
 
-* `id` - Spawn ID.
-* `item` (`itm`) - Item ID.
-* `character` (`ch`) - Character ID this Spawn belongs to. `null` if Spawn is a Stage Item.
-* `properties` (`p`) - a collection of `SpawnProperty` objects:
-  * `type` (`t`) - property type. Possible values: `"p"` (Part) or `"r"` (Region).
-  * `id` - ID of the Part of Region, depending on the type value.
-  * `offset` (`p`) - position adjustment (incremental). A `Vector3` object.
-  * `color` (`c`) - region or part color. Also sets light color.
+* `id` - Item ID. Same copies of the same Item must have their own IDs.
+* `schematic` (`sch`) - Schematic ID.
+* `character` (`ch`) - Character ID this Item belongs to. `null` if Item is a Stage Item.
+* `colors` (`c`) - an optional collection of `ItemColor` objects:
+  * `id` - region ID that should be painted.
+  * `color` (`c`) - color ID. Can be a fixed color (by X11 name) or a character color code (`c0` to `c9`, `e0` or `e1`, `l0` or `l1`).
+* `parts` (`p`) - an optional collection of `ItemPart` objects:
+  * `id` - part ID to customize.
+  * `position` (`p`) - position offset (incremental). A `Vector3` object.
+  * `rotation` (`r`) - rotation offset (incremental). A `Vector3` object.
+  * `scale` (`s`) - scale offset (incremental). A `Vector3` object.
+  * `color` (`c`) - light color. Not applicable to geometries or points.
   * `intensity` (`i`) - light intensity. Not applicable to geometries or points.
 
 ## MatchResource (`Mt`)
@@ -327,12 +327,11 @@ Initially, Matches will only support two single Characters, but this Resource is
 
 Properties:
 
-* `teams` (`tm`) - an array of Teams:
+* `teams` (`tm`) - an array of `Team` objects:
   * `id` - Team ID. Usually starts from `1` up to how many Teams are currently playing.
   * `side` (`s`) - screen side this Team will be placed. `"l"` for left, `"r"` for right.
   * `color` (`c`) - team color, in HEX format. Defaults to blue/green for left teams, red/orange for right teams.
-  * `characterIds` (`ch`) - array of Character IDs that belong to this team. Attacks will not collide with Characters of the same Team, and they can pass through each other.
-  * `weight` (`w`) - Health Points multiplier for each Character in this team. Used when the number of Characters between teams are different. Teams with less Characters have more HP. Defaults to 1.
+  * `multiplier` (`m`) - PAssive Atribute multiplier for each Character in this team. Used when the number of Characters between teams are different. Teams with less Characters have higher multipliers. Defaults to 1.
 * `ft` (`f`) - first Team to reach this number of rounds won wins the match. Defaults to 2. In Team matches, defaults to 1.
 * `time` (`t`) - time limit per round in seconds. Defaults to 99.
 * `rounds` (`r`) - an array of rounds:
@@ -387,7 +386,6 @@ Properties:
 * `handle` (`h`) - Player's username. It can only accept lowercase letters, numbers, and hyphen (only in the middle of the string). Cannot start with a number.
 * `characters` (`ch`) - a collection of `CharacterResource`s that belong to the Player.
 * `currencies` (`cr`) - a collection of `PlayerCurrencyResource` objects.
-* `inventory` (`inv`) - a collection of `PlayerItemResource` objects.
 
 ## PoseResource (`Po`)
 
