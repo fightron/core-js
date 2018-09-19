@@ -8,7 +8,7 @@ export class BaseResource extends Base {
     this._type = null // resource type (table name)
     this.isResource = true // internal optimization
     this.renderableClass = null
-    this.renderable = null
+    this.renderable = null // object to be rendered (client-dependent)
   }
 
   set id (value) {
@@ -53,16 +53,9 @@ export class BaseResource extends Base {
     return `${this.id}`
   }
 
-  // Build renderable object
-  build () {
-    const Renderable = this.renderableClass
-    if (!Renderable) {
-      return
-    }
-    Renderable.inject(this)
-  }
-
   // Data to be saved in Datastore
   // Should be overwritten by subclasses.
-  json () {}
+  json () {
+    return {}
+  }
 }
