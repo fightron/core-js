@@ -24,46 +24,49 @@ describe('resources/ItemResource', function () {
       })
 
       it('loads with correct number of parts', function () {
-        expect(this.item.parts.length).to.equal(3)
+        expect(this.item.parts.length).to.equal(5)
       })
 
       it('names parts correctly', function () {
-        expect(this.item.parts[0].id).to.equal('1')
-        expect(this.item.parts[1].id).to.equal('2')
-        expect(this.item.parts[2].id).to.equal('3')
+        expect(this.item.parts[0].id).to.equal('root')
+        expect(this.item.parts[1].id).to.equal('1')
+        expect(this.item.parts[2].id).to.equal('2')
+        expect(this.item.parts[3].id).to.equal('3')
+        expect(this.item.parts[4].id).to.equal('light')
       })
 
       it('positions parts correctly', function () {
-        expect(this.item.parts[0].position.y).to.equal(0)
-        expect(this.item.parts[1].position.y).to.equal(100)
+        expect(this.item.parts[1].position.y).to.equal(0)
         expect(this.item.parts[2].position.y).to.equal(100)
+        expect(this.item.parts[3].position.y).to.equal(100)
       })
 
       it('rotates parts correctly', function () {
-        expect(this.item.parts[0].rotation.y).to.equal(0)
+        expect(this.item.parts[1].rotation.y).to.equal(0)
       })
 
       it('scales parts correctly', function () {
-        expect(this.item.parts[2].scale.x).to.equal(1)
-        expect(this.item.parts[2].scale.z).to.equal(1)
+        expect(this.item.parts[3].scale.x).to.equal(1)
+        expect(this.item.parts[3].scale.z).to.equal(1)
       })
 
       it('sets part parents', function () {
         expect(this.item.parts[0].parent).to.not.exist()
         expect(this.item.parts[1].parent).to.equal(this.item.parts[0])
         expect(this.item.parts[2].parent).to.equal(this.item.parts[1])
+        expect(this.item.parts[3].parent).to.equal(this.item.parts[2])
       })
 
       it('sets shadow properties correctly', function () {
-        expect(this.item.parts[0].castShadow).to.equal(true)
-        expect(this.item.parts[0].receiveShadow).to.equal(false)
-        expect(this.item.parts[1].castShadow).to.equal(false)
-        expect(this.item.parts[1].receiveShadow).to.equal(true)
+        expect(this.item.parts[1].castShadow).to.equal(true)
+        expect(this.item.parts[1].receiveShadow).to.equal(false)
+        expect(this.item.parts[2].castShadow).to.equal(false)
+        expect(this.item.parts[2].receiveShadow).to.equal(true)
       })
 
       it('sets outline property correctly', function () {
-        expect(this.item.parts[0].outline).to.equal(true)
-        expect(this.item.parts[1].outline).to.equal(false)
+        expect(this.item.parts[1].outline).to.equal(true)
+        expect(this.item.parts[2].outline).to.equal(false)
       })
     })
   })

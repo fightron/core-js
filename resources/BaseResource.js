@@ -7,8 +7,7 @@ export class BaseResource extends Base {
     this._id = null // remote ID
     this._type = null // resource type (table name)
     this.isResource = true // internal optimization
-    this.renderableClass = null
-    this.renderable = null // object to be rendered (client-dependent)
+    this.renderable = null // renderable object (client-dependent)
   }
 
   set id (value) {
@@ -57,5 +56,10 @@ export class BaseResource extends Base {
   // Should be overwritten by subclasses.
   json () {
     return {}
+  }
+
+  free () {
+    this.renderable = null
+    super.free()
   }
 }

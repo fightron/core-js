@@ -273,7 +273,7 @@ Properties:
   * `rotation` (`r`) - contains a `Vector3` object.
   * `quaternion` (`q`) - contains a `Quaternion` object.
   * `scale` (`s`) - contains a `Vector3` object.
-  * `lightType` (`l`) - only for light parts. Possible values: `"a"` (ambient light), `"s"` (spotlight), `"d"` (directional light).
+  * `lightType` (`l`) - only for light parts. Possible values: `"a"` (ambient light), `"s"` (spotlight), `"d"` (directional light), `"h"` (hemisphere light).
   * `castShadow` (`cs`) - determines if rendered geometry casts shadows, or if light casts shadows. Not applicable to points.
   * `receiveShadow` (`rs`) - determines if rendered geometry receives shadows. Not applicable to points.
   * `outline` (`o`) - `true` if rendered geometry should have an outline effect. Not applicable to points and lights.

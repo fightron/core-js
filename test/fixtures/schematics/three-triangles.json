@@ -3,8 +3,13 @@
   "n": "Three Triangles on top of each other",
   "p": [
     {
+      "id": "root",
+      "rT": "p"
+    },
+    {
       "id": "1",
       "rT": "g", "rI": "triangle",
+      "par": "root",
       "r": {"y": 1},
       "cs": true,
       "o": true
@@ -22,6 +27,13 @@
       "par": "2",
       "p": {"y": 101},
       "s": {"x": 2, "z": 2}
+    },
+    {
+      "id": "light",
+      "rT": "l",
+      "l": "d",
+      "cs": true,
+      "p": {"x": 100, "y": 500}
     }
   ],
   "r": [
