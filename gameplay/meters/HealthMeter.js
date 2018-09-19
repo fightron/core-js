@@ -1,4 +1,4 @@
-import {CharacterMeter} from './CharacterMeter'
+import { CharacterMeter } from './CharacterMeter'
 
 export const DEFAULT_HEALTH = 800
 

@@ -1,5 +1,5 @@
-import {expect} from 'chai'
-import {Meter} from '../../gameplay/Meter'
+import { expect } from 'chai'
+import { Meter } from '../../gameplay/Meter'
 
 describe('gameplay/Meter', function () {
   it('initializes with correct defaults', function () {

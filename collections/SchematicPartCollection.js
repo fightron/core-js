@@ -1,5 +1,5 @@
-import {ArrayCollection} from './ArrayCollection'
-import {SchematicPart} from '../lib/SchematicPart'
+import { ArrayCollection } from './ArrayCollection'
+import { SchematicPart } from '../lib/SchematicPart'
 
 export class SchematicPartCollection extends ArrayCollection {
   add (/* one SchematicPart */ data) {

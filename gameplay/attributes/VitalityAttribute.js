@@ -1,4 +1,4 @@
-import {ActiveAttribute} from './ActiveAttribute'
+import { ActiveAttribute } from './ActiveAttribute'
 
 export class VitalityAttribute extends ActiveAttribute {
   constructor () {

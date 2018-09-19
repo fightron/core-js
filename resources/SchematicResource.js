@@ -1,5 +1,5 @@
-import {BaseResource} from './BaseResource'
-import {SchematicPartCollection} from '../collections/SchematicPartCollection'
+import { BaseResource } from './BaseResource'
+import { SchematicPartCollection } from '../collections/SchematicPartCollection'
 
 export class SchematicResource extends BaseResource {
   constructor () {

@@ -9,6 +9,10 @@ export class MapCollection extends Map {
     this.set(id || object.id, object)
   }
 
+  find (id) {
+    return this.get(id)
+  }
+
   free () {
     this.owner = null
     var key, object

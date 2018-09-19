@@ -1,6 +1,6 @@
-import {BaseResource} from './BaseResource'
-import {VertexCollection} from '../collections/VertexCollection'
-import {FaceCollection} from '../collections/FaceCollection'
+import { BaseResource } from './BaseResource'
+import { VertexCollection } from '../collections/VertexCollection'
+import { FaceCollection } from '../collections/FaceCollection'
 
 export class GeometryResource extends BaseResource {
   constructor () {

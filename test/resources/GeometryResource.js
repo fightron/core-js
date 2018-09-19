@@ -1,5 +1,5 @@
-import {expect} from 'chai'
-import {GeometryResource} from '../../resources/GeometryResource'
+import { expect } from 'chai'
+import { GeometryResource } from '../../resources/GeometryResource'
 import triangleGeometry from '../fixtures/geometries/triangle'
 
 describe('resources/GeometryResource', function () {

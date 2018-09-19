@@ -1,6 +1,6 @@
-import {expect} from 'chai'
-import {Vertex} from '../../3d/Vertex'
-import {Vector3} from '../../3d/Vector3'
+import { expect } from 'chai'
+import { Vertex } from '../../3d/Vertex'
+import { Vector3 } from '../../3d/Vector3'
 
 describe('3d/Vertex', function () {
   describe('constructor', function () {

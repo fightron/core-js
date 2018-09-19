@@ -18,7 +18,8 @@
   },
   "homepage": "https://github.com/pauloddr/fightron-core#readme",
   "dependencies": {
-    "crypto-js": "^3.1.9-1"
+    "aa-rectangle-javascript": "github:pauloddr/aa-rectangle-javascript",
+    "crypto-js": "3.1.9-1"
   },
   "devDependencies": {
     "chai": "4.1.2",

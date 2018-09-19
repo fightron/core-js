@@ -1,6 +1,6 @@
-import {expect} from 'chai'
-import {CharacterMeter} from '../../../gameplay/meters/CharacterMeter'
-import {CharacterResource} from '../../../resources/CharacterResource'
+import { expect } from 'chai'
+import { CharacterMeter } from '../../../gameplay/meters/CharacterMeter'
+import { CharacterResource } from '../../../resources/CharacterResource'
 
 // TODO: move to behavior
 

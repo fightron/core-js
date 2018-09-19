@@ -1,4 +1,4 @@
-import {MapCollection} from './MapCollection'
+import { MapCollection } from './MapCollection'
 
 export class SkillCollection extends MapCollection {
   input (inputCode) {

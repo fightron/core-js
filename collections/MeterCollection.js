@@ -1,5 +1,5 @@
-import {MapCollection} from './MapCollection'
-import {HealthMeter} from '../gameplay/meters/HealthMeter'
+import { MapCollection } from './MapCollection'
+import { HealthMeter } from '../gameplay/meters/HealthMeter'
 
 export class MeterCollection extends MapCollection {
   constructor (characterResource) {

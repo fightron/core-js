@@ -1,5 +1,5 @@
-import {expect} from 'chai'
-import {Queue} from '../../lib/Queue'
+import { expect } from 'chai'
+import { Queue } from '../../lib/Queue'
 
 describe('lib/Queue', function () {
   it('starts with a length of zero', function () {

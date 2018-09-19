@@ -1,5 +1,5 @@
-import {Base} from '../lib/Base'
-import {Vector3} from './Vector3'
+import { Base } from '../lib/Base'
+import { Vector3 } from './Vector3'
 
 export class Face3 extends Base {
   constructor (a, b, c, normals) {

@@ -1,4 +1,4 @@
-import {Meter} from '../Meter'
+import { Meter } from '../Meter'
 
 export class CharacterMeter extends Meter {
   constructor (characterResource) {

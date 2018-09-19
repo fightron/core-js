@@ -1,4 +1,4 @@
-import {ArrayCollection} from './ArrayCollection'
+import { ArrayCollection } from './ArrayCollection'
 
 export class RegionCollection extends ArrayCollection {
   constructor () {

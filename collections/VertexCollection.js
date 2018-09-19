@@ -1,6 +1,6 @@
-import {ArrayCollection} from './ArrayCollection'
-import {Vertex} from '../3d/Vertex'
-import {Vector3} from '../3d/Vector3'
+import { ArrayCollection } from './ArrayCollection'
+import { Vertex } from '../3d/Vertex'
+import { Vector3 } from '../3d/Vector3'
 
 export class VertexCollection extends ArrayCollection {
   add (/* one Vertex */ data) {

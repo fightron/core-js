@@ -1,7 +1,7 @@
-import {expect} from 'chai'
-import {Face3} from '../../3d/Face3'
-import {Vertex} from '../../3d/Vertex'
-import {Vector3} from '../../3d/Vector3'
+import { expect } from 'chai'
+import { Face3 } from '../../3d/Face3'
+import { Vertex } from '../../3d/Vertex'
+import { Vector3 } from '../../3d/Vector3'
 
 describe('3d/Face3', function () {
   var a = new Vertex(1, 0, 0)
@@ -58,21 +58,21 @@ describe('3d/Face3', function () {
       })
 
       it('sets vertex normals for vertices without normals', function () {
-        var face = new Face3(a, b, c, {b: n})
+        var face = new Face3(a, b, c, { b: n })
         expect(face.normals.a.x).to.equal(0)
         expect(face.normals.a.y).to.equal(1)
         expect(face.normals.a.z).to.equal(0)
         expect(face.normals.b.x).to.equal(1)
         expect(face.normals.b.y).to.equal(0)
         expect(face.normals.b.z).to.equal(0)
-        face = new Face3(a, b, c, {c: n})
+        face = new Face3(a, b, c, { c: n })
         expect(face.normals.c.x).to.equal(1)
         expect(face.normals.c.y).to.equal(0)
         expect(face.normals.c.z).to.equal(0)
       })
 
       it('overwrites vertex normals from vertices with default normals', function () {
-        var face = new Face3(a, b, c, {a: n})
+        var face = new Face3(a, b, c, { a: n })
         expect(face.normals.a.x).to.equal(1)
         expect(face.normals.a.y).to.equal(0)
         expect(face.normals.a.z).to.equal(0)

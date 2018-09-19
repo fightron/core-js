@@ -1,5 +1,5 @@
-import {expect} from 'chai'
-import {CharacterResource} from '../../resources/CharacterResource'
+import { expect } from 'chai'
+import { CharacterResource } from '../../resources/CharacterResource'
 
 describe('resources/CharacterResource', function () {
   it('initializes with default properties', function () {

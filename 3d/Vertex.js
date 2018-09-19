@@ -1,4 +1,4 @@
-import {Vector3} from './Vector3'
+import { Vector3 } from './Vector3'
 
 export class Vertex extends Vector3 {
   constructor (x, y, z) {

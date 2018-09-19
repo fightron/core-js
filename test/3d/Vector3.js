@@ -1,5 +1,5 @@
-import {expect} from 'chai'
-import {Vector3} from '../../3d/Vector3'
+import { expect } from 'chai'
+import { Vector3 } from '../../3d/Vector3'
 
 describe('3d/Vector3', function () {
   describe('constructor', function () {

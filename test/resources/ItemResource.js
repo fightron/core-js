@@ -1,8 +1,8 @@
-import {expect} from 'chai'
-import {ItemResource} from '../../resources/ItemResource'
+import { expect } from 'chai'
+import { ItemResource } from '../../resources/ItemResource'
 import triangleSchematic from '../fixtures/schematics/three-triangles'
 import triangleItem from '../fixtures/items/three-triangles'
-import {SchematicResource} from '../../resources/SchematicResource'
+import { SchematicResource } from '../../resources/SchematicResource'
 
 describe('resources/ItemResource', function () {
   it('initializes with default properties', function () {

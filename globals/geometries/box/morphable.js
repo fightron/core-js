@@ -1,4 +1,4 @@
-import {GeometryResource} from '../../../resources/GeometryResource'
+import { GeometryResource } from '../../../resources/GeometryResource'
 
 import data from './morphable.json'
 

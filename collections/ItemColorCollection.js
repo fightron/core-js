@@ -1,5 +1,5 @@
-import {ArrayCollection} from './ArrayCollection'
-import {ItemColor} from '../lib/ItemColor'
+import { ArrayCollection } from './ArrayCollection'
+import { ItemColor } from '../lib/ItemColor'
 
 export class ItemColorCollection extends ArrayCollection {
   add (/* one ItemColor */ data) {

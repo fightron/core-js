@@ -1,8 +1,8 @@
-import {BaseResource} from './BaseResource'
+import { BaseResource } from './BaseResource'
 
-import {AttributeCollection} from '../collections/AttributeCollection'
-import {MeterCollection} from '../collections/MeterCollection'
-import {SkillCollection} from '../collections/SkillCollection'
+import { AttributeCollection } from '../collections/AttributeCollection'
+import { MeterCollection } from '../collections/MeterCollection'
+import { SkillCollection } from '../collections/SkillCollection'
 
 export class CharacterResource extends BaseResource {
   constructor () {

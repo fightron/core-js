@@ -1,5 +1,5 @@
-import {ArrayCollection} from './ArrayCollection'
-import {Face3} from '../3d/Face3'
+import { ArrayCollection } from './ArrayCollection'
+import { Face3 } from '../3d/Face3'
 
 export class FaceCollection extends ArrayCollection {
   add (/* one Face */ data) {

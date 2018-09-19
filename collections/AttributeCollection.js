@@ -1,5 +1,5 @@
-import {MapCollection} from './MapCollection'
-import {VitalityAttribute} from '../gameplay/attributes/VitalityAttribute'
+import { MapCollection } from './MapCollection'
+import { VitalityAttribute } from '../gameplay/attributes/VitalityAttribute'
 
 export class AttributeCollection extends MapCollection {
   constructor () {

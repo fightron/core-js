@@ -1,4 +1,4 @@
-import {Attribute} from '../Attribute'
+import { Attribute } from '../Attribute'
 
 export class ActiveAttribute extends Attribute {
   constructor (id) {

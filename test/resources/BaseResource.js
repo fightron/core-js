@@ -1,6 +1,6 @@
 import sha256 from 'crypto-js/sha256'
-import {expect} from 'chai'
-import {BaseResource} from '../../resources/BaseResource'
+import { expect } from 'chai'
+import { BaseResource } from '../../resources/BaseResource'
 
 describe('resources/BaseResource', function () {
   it('initializes with correct properties', function () {
@@ -49,11 +49,11 @@ describe('resources/BaseResource', function () {
   describe('#patch', function () {
     it('updates resource ID', function () {
       var resource = new BaseResource()
-      resource.patch({id: 123})
+      resource.patch({ id: 123 })
       expect(resource.id).to.equal('123')
       resource.patch({}) // only updates present attributes
       expect(resource.id).to.equal('123')
-      resource.patch({id: 0})
+      resource.patch({ id: 0 })
       expect(resource.id).to.equal('0')
     })
   })

@@ -1,6 +1,6 @@
-import {BaseResource} from './BaseResource'
-import {ItemColorCollection} from '../collections/ItemColorCollection'
-import {ItemPartCollection} from '../collections/ItemPartCollection'
+import { BaseResource } from './BaseResource'
+import { ItemColorCollection } from '../collections/ItemColorCollection'
+import { ItemPartCollection } from '../collections/ItemPartCollection'
 
 export class ItemResource extends BaseResource {
   constructor () {

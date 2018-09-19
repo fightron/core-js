@@ -1,5 +1,5 @@
-import {expect} from 'chai'
-import {Base} from '../../lib/Base'
+import { expect } from 'chai'
+import { Base } from '../../lib/Base'
 
 describe('lib/Base', function () {
   before(function () {

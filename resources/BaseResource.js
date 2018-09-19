@@ -1,5 +1,5 @@
 import sha256 from 'crypto-js/sha256'
-import {Base} from '../lib/Base'
+import { Base } from '../lib/Base'
 
 export class BaseResource extends Base {
   constructor () {
@@ -7,6 +7,8 @@ export class BaseResource extends Base {
     this._id = null // remote ID
     this._type = null // resource type (table name)
     this.isResource = true // internal optimization
+    this.renderableClass = null
+    this.renderable = null
   }
 
   set id (value) {
@@ -49,6 +51,15 @@ export class BaseResource extends Base {
 
   identity () {
     return `${this.id}`
+  }
+
+  // Build renderable object
+  build () {
+    const Renderable = this.renderableClass
+    if (!Renderable) {
+      return
+    }
+    Renderable.inject(this)
   }
 
   // Data to be saved in Datastore
