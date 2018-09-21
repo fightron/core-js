@@ -32,6 +32,7 @@
       "id": "light",
       "rT": "l",
       "l": "d",
+      "par": "root",
       "cs": true,
       "p": {"x": 100, "y": 500}
     }
