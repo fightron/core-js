@@ -422,6 +422,21 @@ Properties:
 * `paletteId` (`pal`) - default Palette ID for the Character.
 * `version` (`v`) - Character's current version fingerprint, which is generated based on the Character's equipped Items, Skills, Mechanics, etc.
 
+## SkeletonResource (`Sl`)
+
+This Resource holds the definitions of a Skeleton.
+
+Many `CharacterResource`s can share a single `SkeletonResource`. However, Skeleton renderables aren't reusable because their runtime rotations are character-dependent. Clients must attach the Skeleton renderable to the Character instance itself.
+
+Properties:
+
+* `name` (`n`) - Skeleton name. (E.g., `"human"`)
+* `bones` (`b`) - a collection of `Bone` objects:
+  * `id` - Bone ID.
+  * `parent` (`par`) - Parent Bone.
+  * `position` (`p`) - a `Vector3` position of the end of the bone.
+  * `rotationOrder` (`rO`) - rotation order of the bone. Defaults to `"XYZ"`.
+
 ## SkillResource (`Sk`)
 
 A Skill represents a fighting game move or technique.

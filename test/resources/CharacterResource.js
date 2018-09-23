@@ -5,16 +5,16 @@ describe('resources/CharacterResource', function () {
   it('initializes with default properties', function () {
     var resource = new CharacterResource()
     expect(resource.isCharacterResource).to.equal(true)
-    expect(resource.meters).to.equal(null)
-    expect(resource.attributes).to.equal(null)
   })
 
   describe('#free', function () {
-    it('frees all collections', function () {
-      var resource = new CharacterResource()
-      resource.free()
-      expect(resource.meters).to.equal(null)
-      expect(resource.attributes).to.equal(null)
+    before(function () {
+      this.resource = new CharacterResource()
+      this.resource.free()
+    })
+
+    it('sets skeleton to null', function () {
+      expect(this.resource.skeleton).to.equal(null)
     })
   })
 })

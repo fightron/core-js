@@ -3,6 +3,7 @@ export class ArrayCollection extends Array {
     super()
     this.owner = owner
     this.dictionary = new Map()
+    this.isArrayCollection = true
   }
 
   find (id) {

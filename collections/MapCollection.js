@@ -2,6 +2,7 @@ export class MapCollection extends Map {
   constructor (owner) {
     super()
     this.owner = owner
+    this.isMapCollection = true
     this._free = false
   }
 
