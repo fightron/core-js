@@ -37,6 +37,7 @@
     "all": true,
     "include": [
       "3d",
+      "client",
       "collections",
       "gameplay",
       "globals",

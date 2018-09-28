@@ -13,10 +13,11 @@ export class ItemResource extends BaseResource {
     this.isItemResource = true
   }
 
-  patch (data, schematic) {
+  patch (data, client) {
     if (!data) return
+    var schematic = client.schematics.find(data.sch)
     if (!schematic) {
-      throw new Error('ITEM_RESOURCE_PATCH_REQUIRES_SCHEMATIC')
+      throw new Error('ITEM_RESOURCE_PATCH_SCHEMATIC_NOT_FOUND')
     }
     super.patch(data)
     this.schematic = schematic

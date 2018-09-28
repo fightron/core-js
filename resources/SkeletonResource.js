@@ -10,7 +10,7 @@ export class SkeletonResource extends BaseResource {
     this.bones = new BoneCollection(this)
   }
 
-  patch (data) {
+  patch (data, _client) {
     super.patch(data)
     this.name = data.n
     var bones = data.b

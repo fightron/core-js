@@ -1,8 +1,9 @@
 import { expect } from 'chai'
 import { ItemResource } from '../../resources/ItemResource'
+import triangleGeometry from '../fixtures/geometries/triangle'
 import triangleSchematic from '../fixtures/schematics/three-triangles'
 import triangleItem from '../fixtures/items/three-triangles'
-import { SchematicResource } from '../../resources/SchematicResource'
+import { Client } from '../../client'
 
 describe('resources/ItemResource', function () {
   it('initializes with default properties', function () {
@@ -11,12 +12,16 @@ describe('resources/ItemResource', function () {
   })
 
   describe('#patch', function () {
+    before(function () {
+      this.client = new Client()
+      this.client.command('+', 'g', triangleGeometry)
+      this.client.command('+', 's', triangleSchematic)
+    })
+
     context('with valid parameters', function () {
       before(function () {
         this.item = new ItemResource()
-        var schematic = new SchematicResource()
-        schematic.patch(triangleSchematic)
-        this.item.patch(triangleItem, schematic)
+        this.item.patch(triangleItem, this.client)
       })
 
       it('sets item ID', function () {

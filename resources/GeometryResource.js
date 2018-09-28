@@ -14,7 +14,7 @@ export class GeometryResource extends BaseResource {
     this.morphs = null
   }
 
-  patch (data) {
+  patch (data, _client) {
     if (!data) {
       return
     }

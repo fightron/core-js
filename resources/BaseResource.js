@@ -38,7 +38,7 @@ export class BaseResource extends Base {
     return path ? `${path}/${this.fingerprint()}.json` : null
   }
 
-  patch (data) {
+  patch (data, _client) {
     if (data.id || data.id === 0) {
       this.id = data.id
     }

@@ -10,7 +10,7 @@ export class SchematicResource extends BaseResource {
     this.parts = new SchematicPartCollection(this)
   }
 
-  patch (data) {
+  patch (data, _client) {
     if (!data) return
     super.patch(data)
     this.name = data.n

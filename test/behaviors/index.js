@@ -1,10 +1,4 @@
-export var behaves = {
-  like: {
-    a: {
-      //
-    },
-    an: {
-      //
-    }
-  }
-}
+var behaves = require('./namespace')
+module.exports = behaves
+
+require('./Client')
