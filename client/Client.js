@@ -22,8 +22,7 @@ export class Client extends Base {
     this.hud = null
     this.game = null
     this.counter = new Counter()
-    this.renderFps = new Fps(50)
-    this.commandFps = new Fps(50)
+    this.fps = new Fps(50)
     this.nextFrameFn = animationFrameFn // can be overwritten by clients
     this.render = this.render.bind(this)
     this.initializeCollections()
@@ -50,9 +49,9 @@ export class Client extends Base {
       return
     }
     this.nextFrameFn(this.render)
-    this.renderFps.start()
+    this.fps.start()
     this.renderFrame()
-    this.renderFps.end()
+    this.fps.end()
   }
 
   set rendering (v) {
@@ -83,13 +82,12 @@ export class Client extends Base {
     return this._game
   }
 
+  // This probably should go in the Game class.
   receive (/* Worker Event */ event) {
     // event.data is a JSON string. See:
     // -- https://nolanlawson.com/2016/02/29/high-performance-web-worker-messages/
-    this.commandFps.start()
     var [command, ...rest] = JSON.parse(event.data)
     this.command(command, ...rest)
-    this.commandFps.end()
   }
 
   command (command, ...rest) {
