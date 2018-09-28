@@ -266,7 +266,7 @@ Properties:
 * `name` (`n`)
 * `parts` (`p`) - a collection of `SchematicPart` objects:
   * `id` - part ID.
-  * `resourceType` (`rT`) - possible values: `"g"` (geometry), `"p"` (point), `"l"` (light)
+  * `resourceType` (`rT`) - possible values: `"g"` (geometry), `"p"` (point), `"l"` (light).
   * `resourceId` (`rI`) - part type ID. Example: when `type` is a geometry, this property holds the geometry ID.
   * `parent` (`par`) - parent part ID. First object is always "root". All other objects must have a parent.
   * `position` (`p`) - contains a `Vector3` object.
@@ -277,21 +277,19 @@ Properties:
   * `castShadow` (`cs`) - determines if rendered geometry casts shadows, or if light casts shadows. Not applicable to points.
   * `receiveShadow` (`rs`) - determines if rendered geometry receives shadows. Not applicable to points.
   * `outline` (`o`) - `true` if rendered geometry should have an outline effect. Not applicable to points and lights.
-  * `slot` (`sl`) - slot name. Only applicable to points. Allows other Items to be attached to this slot.
+  * `slot` (`sl`) - slot name. Only applicable to points. Allows other Items (accessories) to be attached to this slot.
 * `regions` (`r`) - a collection of paintable `SchematicRegion` objects:
   * `id` - region ID.
   * `name` (`n`) - region name, visible to the player.
+  * `material` (`m`) - material type. Possible values: `"b"` (Basic), `"t"` (Toon).
+  * `side` (`s`) - face rendering mode. Possible values: `"f"` (front-side, default), `"b"` (back-side), `"d"` (double-side).
   * `color` (`c`) - default color of this region.
+  * `alpha` (`a`) - transparency amount, where `0.0` is fully transparent and `1.0` (default) is fully opaque.
+  * `fixed` (`f`) - if `true`, this region's color can't be customized by the player. Used for gutters.
+  * `scope` (`sc`) - used for Material instancing. Possible values: `"g"` (use global material, can't be changed), `"c"` (use character material, will change according to character), `"i"` (new material instance, required if material attributes are subject to change at runtime).
   * `parts` (`p`) - a collection of `SchematicRegionPart` objects:
     * `id` - part ID.
     * `regions` (`r`) - array of Region IDs from that part.
-  * `gutter` (`g`) - `true` if region is a gutter (it will use a global basic black material).
-* `slots` (`sl`) - array of `SchematicSlot` objects (only required for costume pieces):
-  * `skeleton` (`s`) - Skeleton ID this Item is compatible with.
-  * `bone` (`b`) - Bone ID this Item will be attached to.
-  * `slot` (`sl`) - if present, attachment will happen at the Item currently attached to the Bone instead of the Bone itself. Used for accessories.
-  * `partId` (`p`) - part that should be attached to the Bone or Slot. If `null`, the root part will be attached.
-    * If part has a parent, it will be removed, as hierarchy will be handled by the Skeleton in this case.
 
 Methods:
 
@@ -307,9 +305,10 @@ Properties:
 
 * `id` - Item ID. Same copies of the same Item must have their own IDs.
 * `schematic` (`sch`) - Schematic ID.
-* `character` (`ch`) - Character ID this Item belongs to. `null` if Item is a Stage Item.
-* `colors` (`c`) - an optional collection of `ItemColor` objects:
-  * `id` - region ID that should be painted.
+* `ownerType` (`oT`) - owner type. Possible values: `"c"` (Character), `"s"` (Stage).
+* `ownerId` (`oI`) - owner ID.
+* `regions` (`r`) - an optional collection of `ItemRegion` objects:
+  * `id` - SchematicRegion ID that should be painted.
   * `color` (`c`) - color ID. Can be a fixed color (by X11 name) or a character color code (`c0` to `c9`, `e0` or `e1`, `l0` or `l1`).
 * `parts` (`p`) - an optional collection of `ItemPart` objects:
   * `id` - part ID to customize.
