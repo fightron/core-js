@@ -92,7 +92,7 @@ export class Client extends Base {
 
   command (command, ...rest) {
     // ifs are faster than hash lookups due to command priority.
-    // Below are the more important item commands.
+    // Below are the most important item commands.
     if (command === 'p' ||
         command === 'po' ||
         command === 'p+' ||
@@ -124,16 +124,20 @@ export class Client extends Base {
 
   cameraCommand (command, ...rest) {
     if (command === 'p') {
-      return this.setCameraPosition(...rest)
+      this.setCameraPosition(...rest)
+      return
     }
     if (command === 'r') {
-      return this.setCameraRotation(...rest)
+      this.setCameraRotation(...rest)
+      return
     }
     if (command === 't') {
-      return this.setCameraTarget(...rest)
+      this.setCameraTarget(...rest)
+      return
     }
     if (command === '>') {
-      return this.setCameraParent(...rest)
+      this.setCameraParent(...rest)
+      return
     }
     console.warn('UNKNOWN_CAM_COMMAND', command)
   }
@@ -151,13 +155,16 @@ export class Client extends Base {
     }
     // Commands ordered by priority.
     if (command === 'p') {
-      return this.setRenderablePosition(renderable, ...rest)
+      this.setRenderablePosition(renderable, ...rest)
+      return
     }
     if (command === 'r') {
-      return this.setRenderableRotation(renderable, ...rest)
+      this.setRenderableRotation(renderable, ...rest)
+      return
     }
     if (command === 'po') {
-      return this.setItemPose(item, ...rest)
+      this.setItemPose(item, ...rest)
+      return
     }
     console.warn('itemCommand: invalid command', command, itemId, rest)
   }
@@ -173,10 +180,12 @@ export class Client extends Base {
       return
     }
     if (command === '+') {
-      return collection.add(data)
+      collection.add(data)
+      return
     }
     if (command === '-') {
-      return collection.remove(data.id)
+      collection.remove(data.id)
+      return
     }
     console.warn('collectionCommand: invalid command', command)
   }
