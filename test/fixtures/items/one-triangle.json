@@ -1,0 +1,8 @@
+{
+  "id": "one-triangle",
+  "sch": "one-triangle",
+  "c": [
+    {"id": "top", "c": "yellow"},
+    {"id": "bottom", "c": "blue"}
+  ]
+}

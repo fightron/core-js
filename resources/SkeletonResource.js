@@ -11,6 +11,7 @@ export class SkeletonResource extends BaseResource {
   }
 
   patch (data, _client) {
+    if (!data) return
     super.patch(data)
     this.name = data.n
     var bones = data.b

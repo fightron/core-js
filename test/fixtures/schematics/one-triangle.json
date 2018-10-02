@@ -1,0 +1,28 @@
+{
+  "id": "one-triangle",
+  "n": "One Triangle to use on a skeleton",
+  "p": [
+    {
+      "id": "part",
+      "rT": "g", "rI": "triangle",
+      "cs": true,
+      "o": true
+    }
+  ],
+  "r": [
+    {
+      "id": "top",
+      "p": [
+        {"id": "part", "r": ["cover"]}
+      ],
+      "c": "red"
+    },
+    {
+      "id": "bottom",
+      "p": [
+        {"id": "part", "r": ["gutter"]}
+      ],
+      "c": "green"
+    }
+  ]
+}

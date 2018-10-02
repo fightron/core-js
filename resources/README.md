@@ -180,19 +180,6 @@ Properties:
 
 * (TBD)
 
-## CostumeResource (`Cm`)
-
-A Costume is a collection of Items that are placed onto a Character's Skeleton.
-
-Properties:
-
-* `characterId` (`ch`) - ID of the Character that owns this Costume.
-* `name` (`n`) - a friendly name defined by the Player.
-* `skeleton` (`s`) - Skeleton ID the Costume is compatible with.
-* `poseId` (`po`) - Pose ID for the Character to be used in Fighter Select.
-* `paletteId` (`pal`) - default Palette ID to be used in Fighter Select.
-* `items` (`im`) - a collection of `CostumeItem` objects.
-
 ## CurrencyResource (`Cr`)
 
 This Resource holds information about a Currency.
@@ -406,9 +393,9 @@ Everything that's related to gameplay is tied to a Profile rather than a Charact
 
 Properties:
 
-* `characterId` (`ch`)
+* `character` (`ch`)
 * `shortName` (`sN`) - Character's nickname. This is the name that appears on the HUD (Health bar).
-* `fightingStyleId` (`fs`) - the Fighting Style chosen upon Character creation.
+* `fightingStyle` (`fs`) - the Fighting Style chosen upon Character creation.
 * `permalink` (`p`) - a unique handle that is shown in URLs when viewing character information. Only applicable to NPCs.
 * `firstName` (`fN`) - Character's first name.
 * `middleNames` (`mN`) - Character's middle names.
@@ -417,9 +404,22 @@ Properties:
 * `age` (`a`) - Character's age.
 * `country` (`c`) - code of the Character'country of origin.
 * `description` (`d`) - long text with brief character story.
-* `costumeId` (`cm`) - default Costume ID for the Character.
-* `paletteId` (`pal`) - default Palette ID for the Character.
+* `pose` (`po`) - Pose to use in Fighter Select.
 * `version` (`v`) - Character's current version fingerprint, which is generated based on the Character's equipped Items, Skills, Mechanics, etc.
+
+## RigResource (`Rig`)
+
+A Rig represents a Skeleton with a number of Items mounted at its Bone locations.
+
+It's used for costumes and stage items.
+
+Properties:
+
+* `profile` (`pf`) - Profile this Rig belongs to. Can be null (stage items).
+* `skeleton` (`sl`)
+* `items` (`i`) - array of `RigItem` objects:
+  * `id` - Item ID.
+  * `slot` (`s`) - Bone slot this Item should be attached onto.
 
 ## SkeletonResource (`Sl`)
 

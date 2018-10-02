@@ -1,13 +1,20 @@
 import { expect } from 'chai'
-import { humanSkeletonResource } from '../../../globals/skeletons/human'
+import { SkeletonResource } from '../../../resources/SkeletonResource'
+
+import humanSkeleton from '../../../globals/skeletons/human'
 
 describe('globals/skeletons/human', function () {
+  before(function () {
+    this.resource = new SkeletonResource()
+    this.resource.patch(humanSkeleton)
+  })
+
   it('has correct id and name', function () {
-    expect(humanSkeletonResource.id).to.equal('h')
-    expect(humanSkeletonResource.name).to.equal('Human')
+    expect(this.resource.id).to.equal('h')
+    expect(this.resource.name).to.equal('Human')
   })
 
   it('has all bones', function () {
-    expect(humanSkeletonResource.bones).to.have.length(54)
+    expect(this.resource.bones).to.have.length(54)
   })
 })
