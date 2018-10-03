@@ -2,9 +2,14 @@
 
 import { expect } from 'chai'
 import { behaves } from './namespace'
+
 import triangleGeometry from '../fixtures/geometries/triangle'
 import threeTrianglesSchematic from '../fixtures/schematics/three-triangles'
+import oneTriangleSchematic from '../fixtures/schematics/one-triangle'
 import threeTrianglesItem from '../fixtures/items/three-triangles'
+import oneTriangleItem from '../fixtures/items/one-triangle'
+import humanSkeleton from '../../globals/skeletons/human'
+import triangleHumanRig from '../fixtures/rigs/triangle-human'
 
 behaves.like.a.Client = function (client) {
   describe('instance', function () {
@@ -26,7 +31,7 @@ behaves.like.a.Client = function (client) {
           context('g', function () {
             before(function () {
               this.client.command('+', 'g', triangleGeometry)
-              this.geometry = this.client.geometries.get('triangle')
+              this.geometry = this.client.geometries.find('triangle')
             })
 
             it('adds a GeometryResource to client.geometries', function () {
@@ -40,7 +45,8 @@ behaves.like.a.Client = function (client) {
           context('s', function () {
             before(function () {
               this.client.command('+', 's', threeTrianglesSchematic)
-              this.schematic = this.client.schematics.get('three-triangles')
+              this.client.command('+', 's', oneTriangleSchematic)
+              this.schematic = this.client.schematics.find('three-triangles')
             })
 
             it('adds a SchematicResource to client.schematics', function () {
@@ -53,13 +59,45 @@ behaves.like.a.Client = function (client) {
           context('i', function () {
             before(function () {
               this.client.command('+', 'i', threeTrianglesItem)
-              this.item = this.client.items.get('three-triangles')
+              this.client.command('+', 'i', oneTriangleItem)
+              this.item = this.client.items.find('three-triangles')
             })
 
             it('adds a ItemResource to client.items', function () {
               expect(this.item).to.exist()
               expect(this.item.isItemResource).to.equal(true)
               expect(this.item.parts).to.have.length(5)
+            })
+          })
+
+          context('sl', function () {
+            before(function () {
+              this.client.command('+', 'sl', humanSkeleton)
+              this.skeleton = this.client.skeletons.find('h')
+            })
+
+            it('adds a SkeletonResource to client.skeletons', function () {
+              expect(this.skeleton).to.exist()
+              expect(this.skeleton.id).to.equal('h')
+            })
+          })
+
+          context('r', function () {
+            before(function () {
+              this.client.command('+', 'r', triangleHumanRig)
+              this.rig = this.client.rigs.find('triangle-human')
+            })
+
+            it('adds a RigResource to client.rigs', function () {
+              expect(this.rig).to.exist()
+              expect(this.rig.isRigResource).to.equal(true)
+              expect(this.rig.items).to.have.length(1)
+            })
+
+            it('assigns correct item references', function () {
+              expect(this.rig.skeleton).to.equal(this.client.skeletons.find('h'))
+              expect(this.rig.items[0].item).to.equal(this.client.items.find('one-triangle'))
+              expect(this.rig.items[0].slot).to.equal('H')
             })
           })
 
