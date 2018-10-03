@@ -10,6 +10,7 @@ export class RigResource extends BaseResource {
     this.isRigResource = true // internal optimization
     this.skeleton = null
     this.items = new ArrayCollection(this)
+    this.bones = new Map() // renderable bones, mapped by ID
   }
 
   patch (data, client) {
@@ -38,6 +39,7 @@ export class RigResource extends BaseResource {
     this.skeleton = null
     this.items.free()
     this.items = null
+    this.bones = null
     super.free()
   }
 }
