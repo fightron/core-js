@@ -1,20 +1,16 @@
 import {
   NECK_HEIGHT,
-  // SHOULDER_HEIGHT,
   SHOULDER_OFFSET,
   CHEST_HEIGHT,
-  // CHEST_WIDTH,
+  STOMACH_HEIGHT,
   ABDOMEN_HEIGHT,
   HIP_HEIGHT,
-  // HIP_WIDTH,
-  // HIP_DEPTH,
   ARM_UPPER_HEIGHT,
   ARM_LOWER_HEIGHT,
   PALM_HEIGHT,
   FINGER_SEGMENT_HEIGHT,
   FINGER_SEGMENT_HEIGHT_90,
   FINGER_SEGMENT_HEIGHT_80,
-  // FINGER_WIDTH,
   THUMB_WIDTH,
   THUMB_OFFSET,
   THUMB_SEGMENT_HEIGHT,
@@ -26,7 +22,7 @@ import {
   LEG_LOWER_HEIGHT,
   LEG_OFFSET,
   FOOT_HEIGHT,
-  FOOT_BASE_DEPTH
+  FOOT_DEPTH
 } from './human-constants'
 
 export default {
@@ -42,11 +38,11 @@ export default {
     { id: 'LLR', par: 'LUR', p: { y: -LEG_UPPER_HEIGHT } },
     { id: 'FL' /* Foot Left */, par: 'LLL', rO: 'XZY', p: { y: -LEG_LOWER_HEIGHT } },
     { id: 'FR', par: 'LLR', rO: 'XZY', p: { y: -LEG_LOWER_HEIGHT } },
-    { id: 'TL' /* Toes Left */, par: 'FL', p: { y: -FOOT_HEIGHT, z: FOOT_BASE_DEPTH } },
-    { id: 'TR', par: 'FR', p: { y: -FOOT_HEIGHT, z: FOOT_BASE_DEPTH } },
+    { id: 'TL' /* Toes Left */, par: 'FL', p: { y: -FOOT_HEIGHT, z: FOOT_DEPTH } },
+    { id: 'TR', par: 'FR', p: { y: -FOOT_HEIGHT, z: FOOT_DEPTH } },
     { id: 'A' /* Abdomen */, par: 'Cn' },
     { id: 'S' /* Stomach */, par: 'A', p: { y: ABDOMEN_HEIGHT } },
-    { id: 'C' /* Chest */, par: 'S', p: { y: ABDOMEN_HEIGHT } },
+    { id: 'C' /* Chest */, par: 'S', p: { y: STOMACH_HEIGHT } },
     { id: 'N' /* Neck */, par: 'C', p: { y: CHEST_HEIGHT } },
     { id: 'H' /* Head */, par: 'N', p: { y: NECK_HEIGHT } },
     { id: 'SL' /* Shoulder Left */, par: 'C', rO: 'YXZ', p: { x: SHOULDER_OFFSET, y: CHEST_HEIGHT } },

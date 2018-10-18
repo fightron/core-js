@@ -83,9 +83,9 @@ export class KeyboardInput extends BaseInput {
   }
 
   uninstall (windowInstance) {
-    windowInstance.removeEventListener('keydown', this.onKeyDown)
-    windowInstance.removeEventListener('keyup', this.onKeyUp)
-    windowInstance.removeEventListener('blur', this.onWindowBlur)
+    windowInstance.removeEventListener('keydown', this.onKeyDown, false)
+    windowInstance.removeEventListener('keyup', this.onKeyUp, false)
+    windowInstance.removeEventListener('blur', this.onWindowBlur, false)
   }
 
   defaults () {

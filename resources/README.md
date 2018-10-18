@@ -251,6 +251,7 @@ A `SchematicResource` holds all information needed to create a Item. It is a com
 Properties:
 
 * `name` (`n`)
+* `unlockable` (`u`) - `true` if this Schematic needs to be unlocked to be accessible by players in costume creation.
 * `parts` (`p`) - a collection of `SchematicPart` objects:
   * `id` - part ID.
   * `resourceType` (`rT`) - possible values: `"g"` (geometry), `"p"` (point), `"l"` (light).
@@ -277,10 +278,6 @@ Properties:
   * `parts` (`p`) - a collection of `SchematicRegionPart` objects:
     * `id` - part ID.
     * `regions` (`r`) - array of Region IDs from that part.
-
-Methods:
-
-* `createItem()` - creates an `ItemResource` from this Schematic.
 
 ## ItemResource (`Itm`)
 
@@ -317,7 +314,7 @@ Properties:
   * `id` - Team ID. Usually starts from `1` up to how many Teams are currently playing.
   * `side` (`s`) - screen side this Team will be placed. `"l"` for left, `"r"` for right.
   * `color` (`c`) - team color, in HEX format. Defaults to blue/green for left teams, red/orange for right teams.
-  * `multiplier` (`m`) - PAssive Atribute multiplier for each Character in this team. Used when the number of Characters between teams are different. Teams with less Characters have higher multipliers. Defaults to 1.
+  * `multiplier` (`m`) - Passive Atribute multiplier for each Character in this team. Used when the number of Characters between teams are different. Teams with less Characters have higher multipliers. Defaults to 1.
 * `ft` (`f`) - first Team to reach this number of rounds won wins the match. Defaults to 2. In Team matches, defaults to 1.
 * `time` (`t`) - time limit per round in seconds. Defaults to 99.
 * `rounds` (`r`) - an array of rounds:

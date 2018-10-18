@@ -11,6 +11,11 @@ import { ItemResource } from '../resources/ItemResource'
 import { SkeletonResource } from '../resources/SkeletonResource'
 import { RigResource } from '../resources/RigResource'
 
+// Global collections are always loaded with every client instance.
+import geometries from '../globals/geometries'
+import skeletons from '../globals/skeletons'
+import schematics from '../globals/schematics'
+
 const NOOP = () => {}
 
 export class Client extends Base {
@@ -18,7 +23,7 @@ export class Client extends Base {
     super()
     this.isClient = true
     this.rendering = false
-    this.color = 'navy'
+    this.color = '#7da3be'
     this.hud = null
     this.game = null
     this.counter = new Counter()
@@ -27,6 +32,7 @@ export class Client extends Base {
     this.render = this.render.bind(this)
     this.initializeCollections()
     this.initializeCamera()
+    this.loadGlobals()
   }
 
   initializeCollections () {
@@ -38,6 +44,18 @@ export class Client extends Base {
     this.poses = new ClientCollection(this, 'po')
     this.animations = new ClientCollection(this, 'am')
     this.sounds = new ClientCollection(this, 'snd')
+  }
+
+  loadGlobals () {
+    for (var geometry of geometries) {
+      this.geometries.add(geometry)
+    }
+    for (var skeleton of skeletons) {
+      this.skeletons.add(skeleton)
+    }
+    for (var schematic of schematics) {
+      this.schematics.add(schematic)
+    }
   }
 
   initializeCamera () {

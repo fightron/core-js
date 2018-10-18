@@ -8,7 +8,6 @@ import threeTrianglesSchematic from '../fixtures/schematics/three-triangles'
 import oneTriangleSchematic from '../fixtures/schematics/one-triangle'
 import threeTrianglesItem from '../fixtures/items/three-triangles'
 import oneTriangleItem from '../fixtures/items/one-triangle'
-import humanSkeleton from '../../globals/skeletons/human'
 import triangleHumanRig from '../fixtures/rigs/triangle-human'
 
 behaves.like.a.Client = function (client) {
@@ -72,7 +71,7 @@ behaves.like.a.Client = function (client) {
 
           context('sl', function () {
             before(function () {
-              this.client.command('+', 'sl', humanSkeleton)
+              // Already loaded globally
               this.skeleton = this.client.skeletons.find('h')
             })
 
