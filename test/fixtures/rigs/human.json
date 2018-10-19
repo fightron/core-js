@@ -8,11 +8,33 @@
     { "id": "b0-stomach", "s": "S" },
     { "id": "b0-abdomen", "s": "A" },
     { "id": "b0-hip", "s": "W" },
+
+    { "id": "b0-shoulder-left", "s": "SL" },
+    { "id": "b0-shoulder-right", "s": "SR" },
+    { "id": "b0-arm-upper-left", "s": "AUL" },
+    { "id": "b0-arm-upper-right", "s": "AUR" },
+    { "id": "b0-arm-lower-left", "s": "ALL" },
+    { "id": "b0-arm-lower-right", "s": "ALR" },
+    { "id": "b0-palm-left", "s": "PL" },
+    { "id": "b0-palm-right", "s": "PR" },
+
     { "id": "b0-leg-upper-left", "s": "LUL" },
     { "id": "b0-leg-upper-right", "s": "LUR" },
     { "id": "b0-leg-lower-left", "s": "LLL" },
     { "id": "b0-leg-lower-right", "s": "LLR" },
     { "id": "b0-foot-left", "s": "FL" },
-    { "id": "b0-foot-right", "s": "FR" }
+    { "id": "b0-foot-right", "s": "FR" },
+
+    { "id": "b0-thumb-base-left", "s": "TBL" },
+    { "id": "b0-thumb-mid-left", "s": "TML" },
+    { "id": "b0-thumb-tip-left", "s": "TTL" },
+    { "id": "b0-thumb-base-right", "s": "TBR" },
+    { "id": "b0-thumb-mid-right", "s": "TMR" },
+    { "id": "b0-thumb-tip-right", "s": "TTR" },
+
+    { "id": "b0-index-base-left", "s": "IBL" },
+    { "id": "b0-index-mid-left", "s": "IML" },
+    { "id": "b0-index-base-right", "s": "IBR" },
+    { "id": "b0-index-mid-right", "s": "IMR" }
   ]
 }

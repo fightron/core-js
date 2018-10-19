@@ -5,8 +5,8 @@ import {
 } from '../../skeletons/human-constants'
 
 export default {
-  id: 'b0-shoulder-left',
-  name: 'B0 - Shoulder (Left)',
+  id: 'b0-shoulder-right',
+  name: 'B0 - Shoulder (Right)',
   p: [
     {
       id: '0',
@@ -21,7 +21,7 @@ export default {
         z: SHOULDER_DEPTH / 2
       },
       p: {
-        x: SHOULDER_WIDTH / 2
+        x: -SHOULDER_WIDTH / 2
       }
     }
   ]
