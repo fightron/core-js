@@ -25,6 +25,19 @@ import thumbTip from './thumb-tip'
 
 import indexBase from './index-base'
 import indexMid from './index-mid'
+import indexTip from './index-tip'
+
+import middleBase from './middle-base'
+import middleMid from './middle-mid'
+import middleTip from './middle-tip'
+
+import ringBase from './ring-base'
+import ringMid from './ring-mid'
+import ringTip from './ring-tip'
+
+import pinkyBase from './pinky-base'
+import pinkyMid from './pinky-mid'
+import pinkyTip from './pinky-tip'
 
 export default [
   head,
@@ -40,5 +53,8 @@ export default [
   legUpper, legLower,
   foot,
   thumbBaseLeft, thumbBaseRight, thumbMid, thumbTip,
-  indexBase, indexMid
+  indexBase, indexMid, indexTip,
+  middleBase, middleMid, middleTip,
+  ringBase, ringMid, ringTip,
+  pinkyBase, pinkyMid, pinkyTip
 ]

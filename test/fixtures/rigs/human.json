@@ -34,7 +34,30 @@
 
     { "id": "b0-index-base-left", "s": "IBL" },
     { "id": "b0-index-mid-left", "s": "IML" },
+    { "id": "b0-index-tip-left", "s": "ITL" },
     { "id": "b0-index-base-right", "s": "IBR" },
-    { "id": "b0-index-mid-right", "s": "IMR" }
+    { "id": "b0-index-mid-right", "s": "IMR" },
+    { "id": "b0-index-tip-right", "s": "ITR" },
+
+    { "id": "b0-middle-base-left", "s": "MBL" },
+    { "id": "b0-middle-mid-left", "s": "MML" },
+    { "id": "b0-middle-tip-left", "s": "MTL" },
+    { "id": "b0-middle-base-right", "s": "MBR" },
+    { "id": "b0-middle-mid-right", "s": "MMR" },
+    { "id": "b0-middle-tip-right", "s": "MTR" },
+
+    { "id": "b0-ring-base-left", "s": "RBL" },
+    { "id": "b0-ring-mid-left", "s": "RML" },
+    { "id": "b0-ring-tip-left", "s": "RTL" },
+    { "id": "b0-ring-base-right", "s": "RBR" },
+    { "id": "b0-ring-mid-right", "s": "RMR" },
+    { "id": "b0-ring-tip-right", "s": "RTR" },
+
+    { "id": "b0-pinky-base-left", "s": "PBL" },
+    { "id": "b0-pinky-mid-left", "s": "PML" },
+    { "id": "b0-pinky-tip-left", "s": "PTL" },
+    { "id": "b0-pinky-base-right", "s": "PBR" },
+    { "id": "b0-pinky-mid-right", "s": "PMR" },
+    { "id": "b0-pinky-tip-right", "s": "PTR" }
   ]
 }

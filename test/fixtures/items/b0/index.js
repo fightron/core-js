@@ -32,6 +32,29 @@ import indexBaseLeft from './index-base-left'
 import indexBaseRight from './index-base-right'
 import indexMidLeft from './index-mid-left'
 import indexMidRight from './index-mid-right'
+import indexTipLeft from './index-tip-left'
+import indexTipRight from './index-tip-right'
+
+import middleBaseLeft from './middle-base-left'
+import middleBaseRight from './middle-base-right'
+import middleMidLeft from './middle-mid-left'
+import middleMidRight from './middle-mid-right'
+import middleTipLeft from './middle-tip-left'
+import middleTipRight from './middle-tip-right'
+
+import ringBaseLeft from './ring-base-left'
+import ringBaseRight from './ring-base-right'
+import ringMidLeft from './ring-mid-left'
+import ringMidRight from './ring-mid-right'
+import ringTipLeft from './ring-tip-left'
+import ringTipRight from './ring-tip-right'
+
+import pinkyBaseLeft from './pinky-base-left'
+import pinkyBaseRight from './pinky-base-right'
+import pinkyMidLeft from './pinky-mid-left'
+import pinkyMidRight from './pinky-mid-right'
+import pinkyTipLeft from './pinky-tip-left'
+import pinkyTipRight from './pinky-tip-right'
 
 export default [
   head,
@@ -51,6 +74,15 @@ export default [
   thumbBaseLeft, thumbMidLeft, thumbTipLeft,
   thumbBaseRight, thumbMidRight, thumbTipRight,
 
-  indexBaseLeft, indexMidLeft,
-  indexBaseRight, indexMidRight
+  indexBaseLeft, indexMidLeft, indexTipLeft,
+  indexBaseRight, indexMidRight, indexTipRight,
+
+  middleBaseLeft, middleMidLeft, middleTipLeft,
+  middleBaseRight, middleMidRight, middleTipRight,
+
+  ringBaseLeft, ringMidLeft, ringTipLeft,
+  ringBaseRight, ringMidRight, ringTipRight,
+
+  pinkyBaseLeft, pinkyMidLeft, pinkyTipLeft,
+  pinkyBaseRight, pinkyMidRight, pinkyTipRight
 ]
