@@ -1,4 +1,7 @@
 {
   "id": "b0-arm-upper-right",
-  "sch": "b0-arm-upper-right"
+  "sch": "b0-arm-upper",
+  "p": [
+    {"id": "0", "c": "red"}
+  ]
 }

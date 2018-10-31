@@ -5,8 +5,8 @@ describe('lib/Fps', function () {
   describe('constructor', function () {
     it('initializes with defaults', function () {
       var fps = new Fps()
-      expect(fps.size).to.equal(10)
-      expect(fps.samples).to.have.length(10)
+      expect(fps.size).to.equal(60)
+      expect(fps.samples).to.have.length(60)
       expect(fps.position).to.equal(0)
       expect(fps.total).to.equal(0.0)
       expect(fps.now).to.exist()

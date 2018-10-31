@@ -27,7 +27,7 @@ export const STOMACH_DEPTH = ONE_HEAD * 0.8
 
 export const ABDOMEN_HEIGHT = ONE_HEAD / 2
 export const ABDOMEN_WIDTH = ONE_HEAD * 0.8
-export const ABDOMEN_DEPTH = ONE_HEAD * 0.8
+export const ABDOMEN_DEPTH = ONE_HEAD * 0.5
 
 export const HIP_HEIGHT = ONE_HEAD / 2
 export const HIP_WIDTH = ONE_HEAD * 1.4
@@ -66,6 +66,10 @@ export const LEG_OFFSET = ONE_HEAD / 2.5
 export const FOOT_HEIGHT = ONE_HEAD / 2
 export const FOOT_WIDTH = ONE_HEAD / 1.5
 export const FOOT_DEPTH = ONE_HEAD / 1.5
+
+export const TOES_HEIGHT = FOOT_HEIGHT / 2
+export const TOES_WIDTH = FOOT_WIDTH
+export const TOES_DEPTH = FOOT_DEPTH / 1.8
 
 // Hands
 

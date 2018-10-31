@@ -23,7 +23,8 @@ export default {
       p: {
         y: (HEAD_HEIGHT / 2) - 2,
         z: HEAD_DEPTH / 8
-      }
+      },
+      c: 'magenta'
     }
   ]
 }

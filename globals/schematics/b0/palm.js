@@ -5,8 +5,8 @@ import {
 } from '../../skeletons/human-constants'
 
 export default {
-  id: 'b0-palm-right',
-  name: 'B0 - Palm (Right)',
+  id: 'b0-palm',
+  name: 'B0 - Palm',
   p: [
     {
       id: '0',
@@ -22,7 +22,8 @@ export default {
       },
       p: {
         y: -PALM_HEIGHT / 2
-      }
+      },
+      c: 'yellow'
     }
   ]
 }

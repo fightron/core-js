@@ -22,7 +22,8 @@ export default {
       },
       p: {
         x: SHOULDER_WIDTH / 2
-      }
+      },
+      c: 'cyan'
     }
   ]
 }

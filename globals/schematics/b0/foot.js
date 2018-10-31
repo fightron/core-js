@@ -17,12 +17,14 @@ export default {
       o: true,
       s: {
         x: FOOT_WIDTH / 2,
-        y: FOOT_HEIGHT / 2,
-        z: FOOT_DEPTH / 2
+        y: FOOT_HEIGHT / 4,
+        z: (FOOT_DEPTH / 2) + (FOOT_DEPTH / 4)
       },
       p: {
-        y: -FOOT_HEIGHT / 2
-      }
+        y: (-FOOT_HEIGHT) + (FOOT_HEIGHT / 4),
+        z: (FOOT_DEPTH / 4)
+      },
+      c: 'yellow'
     }
   ]
 }

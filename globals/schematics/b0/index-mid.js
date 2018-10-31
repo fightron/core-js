@@ -23,7 +23,8 @@ export default {
       p: {
         x: INDEX_WIDTH / 2,
         y: -INDEX_MID_HEIGHT / 2
-      }
+      },
+      c: 'yellow'
     }
   ]
 }

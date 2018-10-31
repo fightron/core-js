@@ -23,7 +23,8 @@ export default {
       p: {
         x: RING_WIDTH / 2,
         y: -RING_MID_HEIGHT / 2
-      }
+      },
+      c: 'yellow'
     }
   ]
 }

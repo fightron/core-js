@@ -7,16 +7,14 @@ import hip from './hip'
 
 import shoulderLeft from './shoulder-left'
 import shoulderRight from './shoulder-right'
-import armUpperLeft from './arm-upper-left'
-import armUpperRight from './arm-upper-right'
-import armLowerLeft from './arm-lower-left'
-import armLowerRight from './arm-lower-right'
-import palmLeft from './palm-left'
-import palmRight from './palm-right'
+import armUpper from './arm-upper'
+import armLower from './arm-lower'
+import palm from './palm'
 
 import legUpper from './leg-upper'
 import legLower from './leg-lower'
 import foot from './foot'
+import toes from './toes'
 
 import thumbBaseLeft from './thumb-base-left'
 import thumbBaseRight from './thumb-base-right'
@@ -42,16 +40,17 @@ import pinkyTip from './pinky-tip'
 export default [
   head,
   neck,
-  shoulderLeft, shoulderRight,
-  armUpperLeft, armUpperRight,
-  armLowerLeft, armLowerRight,
-  palmLeft, palmRight,
   chest,
   stomach,
   abdomen,
   hip,
+
+  shoulderLeft, shoulderRight,
+  armUpper, armLower, palm,
+
   legUpper, legLower,
-  foot,
+  foot, toes,
+
   thumbBaseLeft, thumbBaseRight, thumbMid, thumbTip,
   indexBase, indexMid, indexTip,
   middleBase, middleMid, middleTip,

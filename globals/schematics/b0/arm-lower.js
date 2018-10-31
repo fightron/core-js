@@ -5,8 +5,8 @@ import {
 } from '../../skeletons/human-constants'
 
 export default {
-  id: 'b0-arm-lower-left',
-  name: 'B0 - Arm (Lower, Left)',
+  id: 'b0-arm-lower',
+  name: 'B0 - Arm (Lower)',
   p: [
     {
       id: '0',
@@ -22,7 +22,8 @@ export default {
       },
       p: {
         y: -ARM_LOWER_HEIGHT / 2
-      }
+      },
+      c: 'cyan'
     }
   ]
 }

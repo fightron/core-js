@@ -23,7 +23,8 @@ export default {
       p: {
         x: THUMB_WIDTH / 2,
         y: -THUMB_BASE_HEIGHT / 2
-      }
+      },
+      c: 'yellow'
     }
   ]
 }

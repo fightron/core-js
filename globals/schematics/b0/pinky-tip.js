@@ -23,7 +23,8 @@ export default {
       p: {
         x: PINKY_WIDTH / 2,
         y: -PINKY_TIP_HEIGHT / 2
-      }
+      },
+      c: 'yellow'
     }
   ]
 }

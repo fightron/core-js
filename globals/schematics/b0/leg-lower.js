@@ -22,7 +22,8 @@ export default {
       },
       p: {
         y: -LEG_LOWER_HEIGHT / 2
-      }
+      },
+      c: 'cyan'
     }
   ]
 }

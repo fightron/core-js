@@ -101,7 +101,7 @@ An Animation contains a list of Poses that are applied to a Character's Skeleton
 Properties:
 
 * `name` (`n`)
-* `skeleton` (`s`) - Skeleton ID the Animation is compatible with.
+* `skeleton` (`sl`) - Skeleton ID the Animation is compatible with.
 * `keyframes` (`k`) - a collection of `AnimationKeyframe` objects, which contain references to Poses.
 * `onHitId` (`h`) - (optional) ID of the Animation to play when this Animation is associated with an Active Skill, and that Skill hits the enemy.
 * `onBlockId` (`b`) - (optional) ID of the Animation to play when this Animation is associated with an Active Skill, and that Skill is blocked by the enemy.
@@ -116,7 +116,7 @@ This resource only holds information about a Character in regards of gameplay. C
 Properties:
 
 * `playerId` (`pl`) - ID of the Player who created the Character. For NPCs, this property is equal to `"npc"`.
-* `skeleton` (`s`) - Character's Skeleton ID (e.g., `"human"`)
+* `skeleton` (`sl`) - Character's Skeleton ID (e.g., `"human"`)
 * `profileId` (`pf`) - default Profile ID. See `ProfileResource` for details.
 
 Runtime Properties:
@@ -287,7 +287,7 @@ The same Schematic can generate multiple copies of the same Item, and each copy 
 
 Properties:
 
-* `id` - Item ID. Same copies of the same Item must have their own IDs.
+* `id` - Item ID. Repeated Items generated from the same Schematic must have their own IDs.
 * `schematic` (`sch`) - Schematic ID.
 * `ownerType` (`oT`) - owner type. Possible values: `"c"` (Character), `"s"` (Stage).
 * `ownerId` (`oI`) - owner ID.
@@ -299,7 +299,7 @@ Properties:
   * `position` (`p`) - position offset (incremental). A `Vector3` object.
   * `rotation` (`r`) - rotation offset (incremental). A `Vector3` object.
   * `scale` (`s`) - scale offset (incremental). A `Vector3` object.
-  * `color` (`c`) - light color. Not applicable to geometries or points.
+  * `color` (`c`) - light color, or geometry default color. Not applicable to points.
   * `intensity` (`i`) - light intensity. Not applicable to geometries or points.
 
 ## MatchResource (`Mt`)
@@ -377,8 +377,11 @@ This Resource holds the bone rotations of a given Skeleton.
 Properties:
 
 * `name` (`n`) - name of the Pose.
-* `skeleton` (`s`) - Skeleton ID the Pose is compatible with (e.g., `"human"`).
-* `rotations` (`r`) - a collection of `BoneRotation` objects.
+* `skeleton` (`sl`) - Skeleton ID the Pose is compatible with (e.g., `"human"`).
+* `rotations` (`r`) - a collection of `BoneRotation` objects:
+  * `id` - Bone ID to rotate.
+  * `x`/`y`/`z` - Euler rotation values in radians. Defaults to zero.
+  * `q` - array of quaternion values. If present, will be used to generate Euler rotations. This exists to allow Bones to change their rotation order if needed.
 
 ## ProfileResource (`Pf`)
 

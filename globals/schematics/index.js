@@ -1,3 +1,11 @@
 import b0 from './b0'
+import lights from './lights'
+import stages from './stages'
 
-export default b0
+var result = []
+
+result.push(...b0)
+result.push(...lights)
+result.push(...stages)
+
+export default result

@@ -23,7 +23,8 @@ export default {
       p: {
         x: MIDDLE_WIDTH / 2,
         y: -MIDDLE_MID_HEIGHT / 2
-      }
+      },
+      c: 'yellow'
     }
   ]
 }

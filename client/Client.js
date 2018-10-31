@@ -15,6 +15,7 @@ import { RigResource } from '../resources/RigResource'
 import geometries from '../globals/geometries'
 import skeletons from '../globals/skeletons'
 import schematics from '../globals/schematics'
+import items from '../globals/items'
 
 const NOOP = () => {}
 
@@ -24,14 +25,16 @@ export class Client extends Base {
     this.isClient = true
     this.rendering = false
     this.color = '#7da3be'
+    this.shadows = true
     this.hud = null
     this.game = null
     this.counter = new Counter()
     this.fps = new Fps(50)
     this.nextFrameFn = animationFrameFn // can be overwritten by clients
     this.render = this.render.bind(this)
-    this.initializeCollections()
+    this.initializeScene()
     this.initializeCamera()
+    this.initializeCollections()
     this.loadGlobals()
   }
 
@@ -46,6 +49,11 @@ export class Client extends Base {
     this.sounds = new ClientCollection(this, 'snd')
   }
 
+  initializeScene () {
+    // overwritten by subclasses
+    // scene needs to be set up before collections, so Injectors work properly
+  }
+
   loadGlobals () {
     for (var geometry of geometries) {
       this.geometries.add(geometry)
@@ -55,6 +63,9 @@ export class Client extends Base {
     }
     for (var schematic of schematics) {
       this.schematics.add(schematic)
+    }
+    for (var item of items) {
+      this.items.add(item)
     }
   }
 

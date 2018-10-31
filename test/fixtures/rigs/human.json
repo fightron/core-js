@@ -24,6 +24,8 @@
     { "id": "b0-leg-lower-right", "s": "LLR" },
     { "id": "b0-foot-left", "s": "FL" },
     { "id": "b0-foot-right", "s": "FR" },
+    { "id": "b0-toes-left", "s": "TL" },
+    { "id": "b0-toes-right", "s": "TR" },
 
     { "id": "b0-thumb-base-left", "s": "TBL" },
     { "id": "b0-thumb-mid-left", "s": "TML" },

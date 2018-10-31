@@ -22,7 +22,8 @@ export default {
       },
       p: {
         y: -HIP_HEIGHT / 2
-      }
+      },
+      c: 'lime'
     }
   ]
 }

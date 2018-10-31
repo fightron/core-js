@@ -20,6 +20,8 @@ import legLowerLeft from './leg-lower-left'
 import legLowerRight from './leg-lower-right'
 import footLeft from './foot-left'
 import footRight from './foot-right'
+import toesLeft from './toes-left'
+import toesRight from './toes-right'
 
 import thumbBaseLeft from './thumb-base-left'
 import thumbBaseRight from './thumb-base-right'
@@ -59,17 +61,20 @@ import pinkyTipRight from './pinky-tip-right'
 export default [
   head,
   neck,
-  shoulderLeft, shoulderRight,
-  armUpperLeft, armUpperRight,
-  armLowerLeft, armLowerRight,
-  palmLeft, palmRight,
   chest,
   stomach,
   abdomen,
   hip,
+
+  shoulderLeft, shoulderRight,
+  armUpperLeft, armUpperRight,
+  armLowerLeft, armLowerRight,
+  palmLeft, palmRight,
+
   legUpperLeft, legUpperRight,
   legLowerLeft, legLowerRight,
   footLeft, footRight,
+  toesLeft, toesRight,
 
   thumbBaseLeft, thumbMidLeft, thumbTipLeft,
   thumbBaseRight, thumbMidRight, thumbTipRight,

@@ -22,7 +22,8 @@ export default {
       },
       p: {
         y: ABDOMEN_HEIGHT / 2
-      }
+      },
+      c: 'cyan'
     }
   ]
 }

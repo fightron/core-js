@@ -22,7 +22,8 @@ export default {
       },
       p: {
         y: CHEST_HEIGHT / 2
-      }
+      },
+      c: 'magenta'
     }
   ]
 }

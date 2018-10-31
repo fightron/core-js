@@ -22,7 +22,8 @@ export default {
       },
       p: {
         y: -THUMB_TIP_HEIGHT / 2
-      }
+      },
+      c: 'yellow'
     }
   ]
 }
