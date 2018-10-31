@@ -1,6 +1,5 @@
 'use strict'
 
-import { expect } from 'chai'
 import { behaves } from './namespace'
 
 import triangleGeometry from '../fixtures/geometries/triangle'
@@ -9,6 +8,10 @@ import oneTriangleSchematic from '../fixtures/schematics/one-triangle'
 import threeTrianglesItem from '../fixtures/items/three-triangles'
 import oneTriangleItem from '../fixtures/items/one-triangle'
 import triangleHumanRig from '../fixtures/rigs/triangle-human'
+
+// cannot import chai directly otherwise dirtyChai is lost in other projects
+import chai from '../../config/chai'
+const expect = chai.expect
 
 behaves.like.a.Client = function (client) {
   describe('instance', function () {
