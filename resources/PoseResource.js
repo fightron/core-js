@@ -10,6 +10,19 @@ export class PoseResource extends BaseResource {
     this.rotations = new BoneRotationCollection(this)
   }
 
+  patch (data, client) {
+    if (!data) return
+    var skeleton = client.skeletons.find(data.sl)
+    if (!skeleton) {
+      throw new Error('E-PR-SL', data)
+    }
+    super.patch(data)
+    this.skeleton = skeleton
+    for (var rotation of data.r) {
+      this.rotations.add(rotation)
+    }
+  }
+
   free () {
     this.skeleton = null
     this.rotations.free()

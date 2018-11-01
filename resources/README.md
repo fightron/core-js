@@ -381,7 +381,8 @@ Properties:
 * `rotations` (`r`) - a collection of `BoneRotation` objects:
   * `id` - Bone ID to rotate.
   * `x`/`y`/`z` - Euler rotation values in radians. Defaults to zero.
-  * `q` - array of quaternion values. If present, will be used to generate Euler rotations. This exists to allow Bones to change their rotation order if needed.
+  * `quaternion` (`q`) - array of quaternion values (x, y, z, w). If present, will be used to generate Euler rotations. This exists to allow Bones to change their rotation order if needed.
+  * `position` (`p`) - `true` if coordinates represent position, not rotation.
 
 ## ProfileResource (`Pf`)
 
@@ -396,12 +397,11 @@ Properties:
 * `character` (`ch`)
 * `shortName` (`sN`) - Character's nickname. This is the name that appears on the HUD (Health bar).
 * `fightingStyle` (`fs`) - the Fighting Style chosen upon Character creation.
-* `permalink` (`p`) - a unique handle that is shown in URLs when viewing character information. Only applicable to NPCs.
 * `firstName` (`fN`) - Character's first name.
 * `middleNames` (`mN`) - Character's middle names.
 * `lastName` (`lN`) - Character's last name.
 * `gender` (`g`) - `"m"` (male), `"f"` (female), or `"u"` (unknown)
-* `age` (`a`) - Character's age.
+* `date` (`dt`) - Date of Profile. Determines character age. Used for flashback profiles, etc.
 * `country` (`c`) - code of the Character'country of origin.
 * `description` (`d`) - long text with brief character story.
 * `pose` (`po`) - Pose to use in Fighter Select.
@@ -429,7 +429,6 @@ Many `CharacterResource`s can share a single `SkeletonResource`. However, Skelet
 
 Properties:
 
-* `name` (`n`) - Skeleton name. (E.g., `"human"`)
 * `bones` (`b`) - a collection of `Bone` objects:
   * `id` - Bone ID.
   * `parent` (`par`) - Parent Bone.

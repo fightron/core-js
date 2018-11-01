@@ -17,7 +17,7 @@ export class ItemResource extends BaseResource {
     if (!data) return
     var schematic = client.schematics.find(data.sch)
     if (!schematic) {
-      throw new Error('ITEM_RESOURCE_PATCH_SCHEMATIC_NOT_FOUND')
+      throw new Error('E-IR-SCH', data)
     }
     super.patch(data)
     this.schematic = schematic

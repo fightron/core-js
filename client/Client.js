@@ -10,6 +10,7 @@ import { SchematicResource } from '../resources/SchematicResource'
 import { ItemResource } from '../resources/ItemResource'
 import { SkeletonResource } from '../resources/SkeletonResource'
 import { RigResource } from '../resources/RigResource'
+import { PoseResource } from '../resources/PoseResource'
 
 // Global collections are always loaded with every client instance.
 import geometries from '../globals/geometries'
@@ -44,7 +45,7 @@ export class Client extends Base {
     this.items = new ItemCollection(this, 'i', ItemResource)
     this.skeletons = new ClientCollection(this, 'sl', SkeletonResource)
     this.rigs = new ClientCollection(this, 'r', RigResource)
-    this.poses = new ClientCollection(this, 'po')
+    this.poses = new ClientCollection(this, 'po', PoseResource)
     this.animations = new ClientCollection(this, 'am')
     this.sounds = new ClientCollection(this, 'snd')
   }
@@ -122,8 +123,11 @@ export class Client extends Base {
   command (command, ...rest) {
     // ifs are faster than hash lookups due to command priority.
     // Below are the most important item commands.
+    if (command === 'po') {
+      this.rigCommand(command, ...rest)
+      return
+    }
     if (command === 'p' ||
-        command === 'po' ||
         command === 'p+' ||
         command === 'r' ||
         command === 'r+' ||
@@ -148,7 +152,7 @@ export class Client extends Base {
       this.itemCommand(command, ...rest)
       return
     }
-    console.warn('UNKNOWN_COMMAND', command, ...rest)
+    console.warn('E-CL-CM', command, ...rest)
   }
 
   cameraCommand (command, ...rest) {
@@ -168,7 +172,7 @@ export class Client extends Base {
       this.setCameraParent(...rest)
       return
     }
-    console.warn('UNKNOWN_CAM_COMMAND', command)
+    console.warn('E-CL-CAM', command)
   }
 
   itemCommand (command, itemId, ...rest) {
@@ -192,10 +196,29 @@ export class Client extends Base {
       return
     }
     if (command === 'po') {
-      this.setItemPose(item, ...rest)
+      this.setRigPose(item, ...rest)
       return
     }
-    console.warn('itemCommand: invalid command', command, itemId, rest)
+    console.warn('E-CL-IM', command, itemId, rest)
+  }
+
+  rigCommand (command, rigId, ...rest) {
+    var rig = this.rigs.get(rigId)
+    if (!rig) {
+      console.warn('E-CL-RG-404', rigId) // rig not found
+      return
+    }
+    var renderable = rig.renderable
+    if (!renderable) {
+      console.warn('E-CL-RG-RD', rigId) // renderable not found
+      return
+    }
+    // Commands ordered by priority.
+    if (command === 'po') {
+      this.setRigPose(rig, renderable, rest[0])
+      return
+    }
+    console.warn('E-CL-RG-CM', command, rigId, rest)
   }
 
   collectionCommand (command, ...rest) {
@@ -216,21 +239,25 @@ export class Client extends Base {
       collection.remove(data.id)
       return
     }
-    console.warn('collectionCommand: invalid command', command)
+    console.warn('E-CL-COL', command)
   }
 
-  setItemPose (item, renderable, poseId) {
-    var skeleton = item.skeleton
+  setRigPose (rig, renderable, poseId) {
+    var skeleton = rig.skeleton
     if (!skeleton) {
-      console.warn('setItemPose: not poseable', item.id)
+      console.warn('E-CL-PO-400', rig.id) // not poseable
       return
     }
     var pose = this.poses.get(poseId)
     if (!pose) {
-      console.warn('setItemPose: not found', poseId)
+      console.warn('E-CL-PO-404', poseId) // pose not found
       return
     }
-    this.setRenderablePose(renderable, pose)
+    if (!pose.compatibleWithRig(rig)) {
+      console.warn('E-CL-PO-SL', rig.id, pose.id) // pose not compatible
+      return
+    }
+    this.setRenderablePose(rig, renderable, pose)
   }
 
   setFrameNumber (frameNumber) {
@@ -253,7 +280,7 @@ export class Client extends Base {
     // defined in subclasses
   }
 
-  setRenderablePose (renderable, pose) {
+  setRenderablePose (rig, renderable, pose) {
     // defined in subclasses
   }
 

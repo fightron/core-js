@@ -9,57 +9,57 @@ const ONE_HEAD = EIGHT_HEADS / 8
 
 // Main blocks
 
-export const HEAD_HEIGHT = ONE_HEAD
+export const HEAD_HEIGHT = ONE_HEAD * 1.08
 export const HEAD_WIDTH = ONE_HEAD * 0.8
 export const HEAD_DEPTH = ONE_HEAD * 0.8
 
 export const NECK_HEIGHT = ONE_HEAD / 2
 export const NECK_WIDTH = 12
-export const NECK_DEPTH = 12
+export const NECK_DEPTH = 10
 
 export const CHEST_HEIGHT = ONE_HEAD / 2
 export const CHEST_WIDTH = ONE_HEAD * 1.6
-export const CHEST_DEPTH = ONE_HEAD * 0.8
+export const CHEST_DEPTH = ONE_HEAD * 0.6
 
 export const STOMACH_HEIGHT = ONE_HEAD / 2
-export const STOMACH_WIDTH = ONE_HEAD * 1.5
-export const STOMACH_DEPTH = ONE_HEAD * 0.8
+export const STOMACH_WIDTH = CHEST_WIDTH * 0.95
+export const STOMACH_DEPTH = CHEST_DEPTH * 0.9
 
 export const ABDOMEN_HEIGHT = ONE_HEAD / 2
 export const ABDOMEN_WIDTH = ONE_HEAD * 0.8
-export const ABDOMEN_DEPTH = ONE_HEAD * 0.5
+export const ABDOMEN_DEPTH = STOMACH_DEPTH * 0.7
 
 export const HIP_HEIGHT = ONE_HEAD / 2
 export const HIP_WIDTH = ONE_HEAD * 1.4
-export const HIP_DEPTH = ONE_HEAD * 0.8
+export const HIP_DEPTH = ONE_HEAD * 0.5
 
 // Arms
 
 export const SHOULDER_DEPTH = CHEST_DEPTH * 0.8
 export const SHOULDER_HEIGHT = CHEST_HEIGHT
-export const SHOULDER_WIDTH = SHOULDER_HEIGHT
+export const SHOULDER_WIDTH = SHOULDER_DEPTH
 export const SHOULDER_OFFSET_X = CHEST_WIDTH / 2
 export const SHOULDER_OFFSET_Y = CHEST_HEIGHT - (SHOULDER_HEIGHT / 2)
 
-export const ARM_UPPER_HEIGHT = ONE_HEAD * 0.88
+export const ARM_UPPER_HEIGHT = ONE_HEAD * 0.8
 export const ARM_UPPER_WIDTH = SHOULDER_WIDTH * 0.9
 export const ARM_UPPER_DEPTH = SHOULDER_DEPTH * 0.9
 export const ARM_UPPER_OFFSET_X = SHOULDER_WIDTH / 2
 export const ARM_UPPER_OFFSET_Y = SHOULDER_HEIGHT / 2
 
-export const ARM_LOWER_HEIGHT = ARM_UPPER_HEIGHT
+export const ARM_LOWER_HEIGHT = ARM_UPPER_HEIGHT + (SHOULDER_HEIGHT * 0.5)
 export const ARM_LOWER_WIDTH = ARM_UPPER_WIDTH
 export const ARM_LOWER_DEPTH = ARM_UPPER_DEPTH
 
 // Legs
 
 export const LEG_UPPER_HEIGHT = ONE_HEAD * 2 // till bottom of knee
-export const LEG_UPPER_WIDTH = ONE_HEAD / 1.6
-export const LEG_UPPER_DEPTH = ONE_HEAD / 1.4
+export const LEG_UPPER_WIDTH = ONE_HEAD / 1.8
+export const LEG_UPPER_DEPTH = HIP_DEPTH
 
-export const LEG_LOWER_HEIGHT = ONE_HEAD * 1.8
-export const LEG_LOWER_WIDTH = ONE_HEAD / 2
-export const LEG_LOWER_DEPTH = ONE_HEAD / 1.5
+export const LEG_LOWER_HEIGHT = LEG_UPPER_HEIGHT
+export const LEG_LOWER_WIDTH = LEG_UPPER_WIDTH
+export const LEG_LOWER_DEPTH = LEG_UPPER_DEPTH
 
 export const LEG_OFFSET = ONE_HEAD / 2.5
 
