@@ -43,7 +43,8 @@
       "globals",
       "inputs",
       "lib",
-      "resources"
+      "resources",
+      "workers"
     ],
     "reporter": [
       "lcov",

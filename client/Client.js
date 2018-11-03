@@ -12,12 +12,6 @@ import { SkeletonResource } from '../resources/SkeletonResource'
 import { RigResource } from '../resources/RigResource'
 import { PoseResource } from '../resources/PoseResource'
 
-// Global collections are always loaded with every client instance.
-import geometries from '../globals/geometries'
-import skeletons from '../globals/skeletons'
-import schematics from '../globals/schematics'
-import items from '../globals/items'
-
 const NOOP = () => {}
 
 export class Client extends Base {
@@ -28,7 +22,7 @@ export class Client extends Base {
     this.color = '#7da3be'
     this.shadows = true
     this.hud = null
-    this.game = null
+    this.worker = null
     this.counter = new Counter()
     this.fps = new Fps(50)
     this.nextFrameFn = animationFrameFn // can be overwritten by clients
@@ -36,7 +30,6 @@ export class Client extends Base {
     this.initializeScene()
     this.initializeCamera()
     this.initializeCollections()
-    this.loadGlobals()
   }
 
   initializeCollections () {
@@ -53,21 +46,6 @@ export class Client extends Base {
   initializeScene () {
     // overwritten by subclasses
     // scene needs to be set up before collections, so Injectors work properly
-  }
-
-  loadGlobals () {
-    for (var geometry of geometries) {
-      this.geometries.add(geometry)
-    }
-    for (var skeleton of skeletons) {
-      this.skeletons.add(skeleton)
-    }
-    for (var schematic of schematics) {
-      this.schematics.add(schematic)
-    }
-    for (var item of items) {
-      this.items.add(item)
-    }
   }
 
   initializeCamera () {
@@ -95,28 +73,45 @@ export class Client extends Base {
     return this._rendering
   }
 
-  set game (game) {
-    if (this._game) {
-      this._game.onmessage = NOOP
-      this._game = null
+  set worker (worker) {
+    if (this._worker) {
+      this.send(['cl', 'dc'])
+      this._worker.onmessage = NOOP
+      this._worker = null
     }
-    if (game) {
-      this._game = game
-      this._game.onmessage = this.receive.bind(this)
+    if (worker) {
+      this._worker = worker
+      this._worker.onmessage = this.receive.bind(this)
+      this.send(['cl', 'cn'])
     } else {
-      this._game = null
+      this._worker = null
     }
   }
 
-  get game () {
-    return this._game
+  get worker () {
+    return this._worker
   }
 
-  // This probably should go in the Game class.
+  // Sends a message to the game worker.
+  send (message) {
+    if (!this.worker) {
+      console.warn('E-CL-WRK')
+      return
+    }
+    console.log('Sending message', Date.now())
+    this.worker.postMessage(JSON.stringify(message))
+  }
+
+  // Receives a message from the game worker or other external sources.
   receive (/* Worker Event */ event) {
     // event.data is a JSON string. See:
     // -- https://nolanlawson.com/2016/02/29/high-performance-web-worker-messages/
-    var [command, ...rest] = JSON.parse(event.data)
+    try {
+      var [command, ...rest] = JSON.parse(event.data) // TODO: optimize
+    } catch (e) {
+      console.warn('E-CL-REC', event)
+      return
+    }
     this.command(command, ...rest)
   }
 
@@ -178,12 +173,12 @@ export class Client extends Base {
   itemCommand (command, itemId, ...rest) {
     var item = this.items.get(itemId)
     if (!item) {
-      console.warn('itemCommand: not found', itemId)
+      console.warn('E-CL-IC-404', itemId)
       return
     }
     var renderable = item.renderable
     if (!renderable) {
-      console.warn('itemCommand: renderable not set', itemId)
+      console.warn('E-CL-IC-RND', itemId)
       return
     }
     // Commands ordered by priority.
@@ -222,9 +217,9 @@ export class Client extends Base {
   }
 
   collectionCommand (command, ...rest) {
-    var [collectionId, data] = rest
+    var [collectionId, data] = rest // TODO: optimize
     if (!collectionId || !data || !data.id) {
-      console.warn('collectionCommand: invalid parameters', command, ...rest)
+      console.warn('E-CL-CC-PAR', command, ...rest)
       return
     }
     var collection = this[collectionId]
@@ -305,13 +300,17 @@ export class Client extends Base {
   }
 
   dispose () {
+    this.rendering = false
+    if (this.worker) {
+      this.worker.terminate()
+      this.worker = null
+    }
     this.disposeCollections()
     this.counter.free()
     this.fps.free()
     this.nextFrameFn = null
     this.camera = null
     this.render = null
-    this.game = null
     super.free()
   }
 

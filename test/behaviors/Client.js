@@ -2,6 +2,7 @@
 
 import { behaves } from './namespace'
 
+import humanSkeleton from '../../globals/skeletons/human'
 import triangleGeometry from '../fixtures/geometries/triangle'
 import threeTrianglesSchematic from '../fixtures/schematics/three-triangles'
 import oneTriangleSchematic from '../fixtures/schematics/one-triangle'
@@ -74,7 +75,7 @@ behaves.like.a.Client = function (client) {
 
           context('sl', function () {
             before(function () {
-              // Already loaded globally
+              this.client.command('+', 'sl', humanSkeleton)
               this.skeleton = this.client.skeletons.find('h')
             })
 
