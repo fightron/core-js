@@ -22,6 +22,7 @@ export class Client extends Base {
     this.color = '#7da3be'
     this.shadows = true
     this.hud = null
+    this.inputs = []
     this.worker = null
     this.counter = new Counter()
     this.fps = new Fps(50)
@@ -30,6 +31,7 @@ export class Client extends Base {
     this.initializeScene()
     this.initializeCamera()
     this.initializeCollections()
+    this.initializeInputs()
   }
 
   initializeCollections () {
@@ -52,6 +54,10 @@ export class Client extends Base {
     this.camera = null
   }
 
+  initializeInputs () {
+    // overwritten by subclasses
+  }
+
   render () {
     if (!this._rendering) {
       return
@@ -60,6 +66,10 @@ export class Client extends Base {
     this.fps.start()
     this.renderFrame()
     this.fps.end()
+  }
+
+  renderFrame () {
+    // defined in subclasses
   }
 
   set rendering (v) {
@@ -75,14 +85,21 @@ export class Client extends Base {
 
   set worker (worker) {
     if (this._worker) {
-      this.send(['cl', 'dc'])
+      this.send('cl', 'dc')
       this._worker.onmessage = NOOP
       this._worker = null
     }
     if (worker) {
       this._worker = worker
       this._worker.onmessage = this.receive.bind(this)
-      this.send(['cl', 'cn'])
+
+      // Client connected
+      this.send('cl', 'cn')
+
+      // Register inputs
+      for (var input of this.inputs) {
+        this.send('cl', 'in', input.id)
+      }
     } else {
       this._worker = null
     }
@@ -93,13 +110,12 @@ export class Client extends Base {
   }
 
   // Sends a message to the game worker.
-  send (message) {
-    if (!this.worker) {
-      console.warn('E-CL-WRK')
+  send (...message) {
+    if (!this._worker) {
+      console.warn('E-CL-WRK', message)
       return
     }
-    console.log('Sending message', Date.now())
-    this.worker.postMessage(JSON.stringify(message))
+    this._worker.postMessage(JSON.stringify(message))
   }
 
   // Receives a message from the game worker or other external sources.
@@ -299,9 +315,18 @@ export class Client extends Base {
     // defined in subclasses
   }
 
+  onInput (handler, event) {
+    if (!this._worker) {
+      return
+    }
+    this.send('i', handler.id, event)
+  }
+
   dispose () {
     this.rendering = false
+    this.disposeInputs()
     if (this.worker) {
+      this.send('cl', 'dc')
       this.worker.terminate()
       this.worker = null
     }
@@ -312,6 +337,10 @@ export class Client extends Base {
     this.camera = null
     this.render = null
     super.free()
+  }
+
+  disposeInputs () {
+    //
   }
 
   disposeCollections () {
