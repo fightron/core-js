@@ -11,6 +11,7 @@ export class VertexCollection extends ArrayCollection {
     if (n) {
       vertex.normal = new Vector3(n.x, n.y, n.z)
     }
+    vertex.skinning = data.sl
     this.push(vertex)
     this.dictionary.set(vertex.id, vertex)
     var mirror = this.mirrorize(data.mi, vertex)
@@ -33,6 +34,9 @@ export class VertexCollection extends ArrayCollection {
     if (vertex.normal) {
       mirror.normal = vertex.normal.clone()
       mirror.normal.x = -mirror.normal.x
+    }
+    if (vertex.skinning) {
+      mirror.skinning = JSON.parse(JSON.stringify(vertex.skinning))
     }
     return mirror
   }

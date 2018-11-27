@@ -1,5 +1,5 @@
 export default [
-  { id: 'Cn', y: 109, p: true },
+  { id: 'Cn', y: 99.7, p: true },
   { id: 'A', y: -0.7 },
   { id: 'W', y: -0.7 },
   { id: 'LUL', y: 0.5, z: 0.3 },

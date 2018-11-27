@@ -17,6 +17,7 @@ describe('resources/RigResource', function () {
   describe('#patch', function () {
     before(function () {
       this.client = new Client()
+      this.client.initialize()
       this.client.command('+', 'g', triangleGeometry)
       this.client.command('+', 's', oneTriangleSchematic)
       this.client.command('+', 'i', oneTriangleItem)

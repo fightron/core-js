@@ -102,10 +102,19 @@ Properties:
 
 * `name` (`n`)
 * `skeleton` (`sl`) - Skeleton ID the Animation is compatible with.
-* `keyframes` (`k`) - a collection of `AnimationKeyframe` objects, which contain references to Poses.
-* `onHitId` (`h`) - (optional) ID of the Animation to play when this Animation is associated with an Active Skill, and that Skill hits the enemy.
-* `onBlockId` (`b`) - (optional) ID of the Animation to play when this Animation is associated with an Active Skill, and that Skill is blocked by the enemy.
-* `skillId` (`sk`) - (optional) Parent Skill ID this Animation is compatible with. This is what determines which "Skill Skins" are available to different Skills.
+* `counter` (`c`) - a frame counter instance. Can reuse the Game/Client counter, or be its own instance.
+* `length` (`l`) - the total lenght of the animation in frames.
+* `keyframes` (`k`) - a collection of `AnimationKeyframe` objects:
+  * `frame` (`f`) - frame number.
+  * `poses` (`p`) - an array of poses that should be activated on that keyframe.
+  * `pose` (runtime only) - a computed pose resulted of merging all poses involved in the keyframe. Used for performance.
+  * `reset` (`r`) - a boolean indicating if the skeleton pose should be reset before applying the pose. Used for performance.
+
+Runtime Properties:
+
+* `start` - the frame number the Animation has been asked to start from. Called from `play()`.
+* `current` - the current frame the Animation is at. Set from `update()`
+
 
 ## CharacterResource (`Ch`)
 
@@ -243,6 +252,8 @@ Properties:
 * `faces` (`f`) - an array of `Face` objects.
 * `regions` (`r`) - an array of `Region` objects.
 * `morphs` (`m`) - an array of `Morph` objects.
+* `skeleton` (`sl`) - an instance of `Skeleton`, for skinned geometries.
+* `bones` (`m`) - an array of `Bone` objects that the geometry uses for skinning.
 
 ## SchematicResource (`Sch`)
 
@@ -451,3 +462,13 @@ Properties:
 * `fightingStyleIds` (`fs`) - an array of Fighting Style IDs that Characters need to belong to, to be able to use this Skill.
 * `keyframes` (`k`) - a collection of `SkillKeyframe` objects with information about hitboxes, positioning, and other details.
 * `flags` (`fl`) - an array of allowed Skill Flags and their penalties for this particular Skill.
+
+## SkillSkin (`Ss`)
+
+A Skill Skin links a single skill to several animations that can be used to represent that Skill in-game.
+
+Properties:
+
+* `skillId` (`sk`)
+* `animationId` (`am`)
+* `fightingStyles` (`fs`) - an array of Fighting Styles that are able to use this animation.

@@ -20,9 +20,9 @@
 // "lptX": -1.6,
 
 export default [
-  { id: 'TBL', y: -0.5 },
-  { id: 'TML', x: -1.4, z: 0.4 },
-  { id: 'TTL', x: -1.4 },
+  { id: 'TBL', x: -0.1 },
+  { id: 'TML', x: -0.5 },
+  { id: 'TTL', x: -0.5 },
 
   { id: 'IBL', x: -1.6 },
   { id: 'IML', x: -1.6 },

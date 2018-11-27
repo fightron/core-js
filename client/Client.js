@@ -28,8 +28,9 @@ export class Client extends Base {
     this.fps = new Fps(50)
     this.nextFrameFn = animationFrameFn // can be overwritten by clients
     this.render = this.render.bind(this)
-    this.initializeScene()
-    this.initializeCamera()
+  }
+
+  initialize () {
     this.initializeCollections()
     this.initializeInputs()
   }
@@ -43,15 +44,6 @@ export class Client extends Base {
     this.poses = new ClientCollection(this, 'po', PoseResource)
     this.animations = new ClientCollection(this, 'am')
     this.sounds = new ClientCollection(this, 'snd')
-  }
-
-  initializeScene () {
-    // overwritten by subclasses
-    // scene needs to be set up before collections, so Injectors work properly
-  }
-
-  initializeCamera () {
-    this.camera = null
   }
 
   initializeInputs () {

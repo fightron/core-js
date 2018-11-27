@@ -14,6 +14,7 @@ describe('resources/ItemResource', function () {
   describe('#patch', function () {
     before(function () {
       this.client = new Client()
+      this.client.initialize()
       this.client.command('+', 'g', triangleGeometry)
       this.client.command('+', 's', triangleSchematic)
     })

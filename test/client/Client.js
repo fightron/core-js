@@ -7,6 +7,7 @@ import { MockInjector } from '../mocks/MockInjector'
 
 describe('client/Client', function () {
   var client = new Client()
+  client.initialize()
   client.geometries.injector = MockInjector
 
   behaves.like.a.Client(client)

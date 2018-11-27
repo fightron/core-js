@@ -1,8 +1,7 @@
 import {
   LEG_LOWER_HEIGHT,
   LEG_LOWER_WIDTH,
-  LEG_LOWER_DEPTH,
-  FOOT_HEIGHT
+  LEG_LOWER_DEPTH
 } from '../../skeletons/human-constants'
 
 export default {
@@ -18,7 +17,7 @@ export default {
       o: true,
       s: {
         x: LEG_LOWER_WIDTH / 2,
-        y: (LEG_LOWER_HEIGHT / 2) + ((FOOT_HEIGHT / 2) * 0.8),
+        y: LEG_LOWER_HEIGHT / 2,
         z: LEG_LOWER_DEPTH / 2
       },
       p: {

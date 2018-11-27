@@ -12,11 +12,13 @@ export class Bone extends Base {
     this.parent = null
     this.position = new Vector3()
     this.rotationOrder = 'XYZ'
+    this.sub = null
     this.isBone = true
   }
 
   patch (data) {
     this.id = data.id
+    this.sub = data.sub
     var parentId = data.par
     if (parentId) {
       var parent = this.skeleton.bones.find(parentId)

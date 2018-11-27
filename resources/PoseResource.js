@@ -12,15 +12,17 @@ export class PoseResource extends BaseResource {
 
   patch (data, client) {
     if (!data) return
+    this.patchSkeleton(data, client)
+    super.patch(data)
+    this.rotations.patch(data.r)
+  }
+
+  patchSkeleton (data, client) {
     var skeleton = client.skeletons.find(data.sl)
     if (!skeleton) {
       throw new Error('E-PR-SL', data)
     }
-    super.patch(data)
     this.skeleton = skeleton
-    for (var rotation of data.r) {
-      this.rotations.add(rotation)
-    }
   }
 
   free () {

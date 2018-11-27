@@ -29,6 +29,6 @@ export default [
   { id: 'SR', x: -0.4, y: 0.1, z: -0.2 },
   { id: 'ALL', x: -1.8, y: -2 },
   { id: 'ALR', x: -1.8, y: 2 },
-  { id: 'PL', x: 0.2, z: 0.2 },
+  { id: 'PL', x: 0.2, z: 0 },
   { id: 'PR', x: 0.2, z: -0.2 }
 ]
