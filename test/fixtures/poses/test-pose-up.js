@@ -1,13 +1,13 @@
 import armsPulledBack from './partials/arms-pulled-back'
 import upperBoxing from './partials/upper-boxing'
-import lowerNormal from './partials/lower-normal'
+import lowerNormalU0 from './partials/lower-normal-u-0'
 import handsRested from './partials/hands-rested'
 
 export default {
-  id: 'test-3',
+  id: 'test-pose-up',
   sl: 'h',
   r: [
-    ...lowerNormal,
+    ...lowerNormalU0,
     ...armsPulledBack,
     ...handsRested,
     ...upperBoxing

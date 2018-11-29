@@ -4,7 +4,7 @@ import { AnimationKeyframeCollection } from '../collections/AnimationKeyframeCol
 export class AnimationResource extends BaseResource {
   constructor () {
     super()
-    this._type = 'Ani'
+    this._type = 'Am'
     this.name = null
     this.isAnimationResource = true // internal optimization
     this.skeleton = null
@@ -13,11 +13,11 @@ export class AnimationResource extends BaseResource {
     this.keyframes = new AnimationKeyframeCollection(this)
   }
 
-  patch (data, _client) {
+  patch (data, client) {
     if (!data) return
     super.patch(data)
     this.name = data.n
-    this.keyframes.load(data.k)
+    this.keyframes.patch(data.k, client)
   }
 
   free () {

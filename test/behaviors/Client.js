@@ -9,9 +9,13 @@ import oneTriangleSchematic from '../fixtures/schematics/one-triangle'
 import threeTrianglesItem from '../fixtures/items/three-triangles'
 import oneTriangleItem from '../fixtures/items/one-triangle'
 import triangleHumanRig from '../fixtures/rigs/triangle-human'
+import testAnimation from '../fixtures/animations/test'
 
 // cannot import chai directly otherwise dirtyChai is lost in other projects
 import chai from '../../config/chai'
+import testPose from '../fixtures/poses/test-pose'
+import testPoseLow from '../fixtures/poses/test-pose-low'
+import testPoseUp from '../fixtures/poses/test-pose-up'
 const expect = chai.expect
 
 behaves.like.a.Client = function (client) {
@@ -101,6 +105,39 @@ behaves.like.a.Client = function (client) {
               expect(this.rig.skeleton).to.equal(this.client.skeletons.find('h'))
               expect(this.rig.items[0].item).to.equal(this.client.items.find('one-triangle'))
               expect(this.rig.items[0].slot).to.equal('H')
+            })
+          })
+
+          context('po', function () {
+            before(function () {
+              this.client.command('+', 'po', testPose)
+              this.client.command('+', 'po', testPoseLow)
+              this.client.command('+', 'po', testPoseUp)
+              this.pose = this.client.poses.find('test-pose')
+            })
+
+            it('adds PoseResources to client.poses', function () {
+              expect(this.pose).to.exist()
+              expect(this.pose.isPoseResource).to.equal(true)
+              expect(this.pose.rotations).to.have.length.above(1)
+              expect(this.client.poses.size).to.equal(3)
+            })
+          })
+
+          context('am', function () {
+            before(function () {
+              this.client.command('+', 'am', testAnimation)
+              this.animation = this.client.animations.find('test-animation')
+            })
+
+            it('adds an AnimationResource to client.animations', function () {
+              expect(this.animation).to.exist()
+              expect(this.animation.isAnimationResource).to.equal(true)
+            })
+
+            it('parses Animation correctly', function () {
+              expect(this.animation.keyframes.size).to.equal(4)
+              expect(this.animation.keyframes.get(1).pose.isPoseResource).to.equal(true) // merged pose
             })
           })
 

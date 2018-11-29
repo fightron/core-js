@@ -11,6 +11,7 @@ import { ItemResource } from '../resources/ItemResource'
 import { SkeletonResource } from '../resources/SkeletonResource'
 import { RigResource } from '../resources/RigResource'
 import { PoseResource } from '../resources/PoseResource'
+import { AnimationResource } from '../resources/AnimationResource'
 
 const NOOP = () => {}
 
@@ -42,7 +43,7 @@ export class Client extends Base {
     this.skeletons = new ClientCollection(this, 'sl', SkeletonResource)
     this.rigs = new ClientCollection(this, 'r', RigResource)
     this.poses = new ClientCollection(this, 'po', PoseResource)
-    this.animations = new ClientCollection(this, 'am')
+    this.animations = new ClientCollection(this, 'am', AnimationResource)
     this.sounds = new ClientCollection(this, 'snd')
   }
 
@@ -126,6 +127,10 @@ export class Client extends Base {
   command (command, ...rest) {
     // ifs are faster than hash lookups due to command priority.
     // Below are the most important item commands.
+    if (command === 'f') {
+      this.setFrameNumber(rest[0])
+      return
+    }
     if (command === 'po') {
       this.rigCommand(command, ...rest)
       return
@@ -136,10 +141,6 @@ export class Client extends Base {
         command === 'r+' ||
         command === 'v') {
       this.itemCommand(command, ...rest)
-      return
-    }
-    if (command === 'f') {
-      this.setFrameNumber(rest)
       return
     }
     if (command === 'cam') {
@@ -264,6 +265,7 @@ export class Client extends Base {
   }
 
   setFrameNumber (frameNumber) {
+    // console.log('Set frame number', frameNumber)
     this.counter.set(frameNumber)
   }
 

@@ -1,5 +1,6 @@
 import { BaseResource } from './BaseResource'
 import { BoneRotationCollection } from '../collections/BoneRotationCollection'
+import { BoneRotation } from '../3d/BoneRotation'
 
 export class PoseResource extends BaseResource {
   constructor () {
@@ -23,6 +24,37 @@ export class PoseResource extends BaseResource {
       throw new Error('E-PR-SL', data)
     }
     this.skeleton = skeleton
+  }
+
+  // Updates this pose with another pose's rotations
+  merge (anotherPose) {
+    var aRotation, sRotation, found
+    for (aRotation of anotherPose.rotations) {
+      found = false
+      for (sRotation of this.rotations) {
+        if (sRotation.id === aRotation.id) {
+          found = true
+          break
+        }
+      }
+      if (!found) {
+        // Creates a new copy
+        sRotation = new BoneRotation(this)
+        sRotation.id = aRotation.id
+        this.rotations.add(sRotation)
+      }
+      sRotation.x = aRotation.x
+      sRotation.y = aRotation.y
+      sRotation.z = aRotation.z
+      sRotation.position = aRotation.position
+    }
+  }
+
+  clear () {
+    var rotations = this.rotations
+    while (rotations.length > 0) {
+      rotations.shift()
+    }
   }
 
   free () {
