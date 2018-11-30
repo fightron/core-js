@@ -26,7 +26,7 @@ export class Client extends Base {
     this.inputs = []
     this.worker = null
     this.counter = new Counter()
-    this.fps = new Fps(50)
+    this.fps = new Fps(60)
     this.nextFrameFn = animationFrameFn // can be overwritten by clients
     this.render = this.render.bind(this)
   }
