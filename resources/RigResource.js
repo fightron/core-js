@@ -11,7 +11,6 @@ export class RigResource extends BaseResource {
     this.skeleton = null
     this.items = new ArrayCollection(this)
     this.bones = new Map() // renderable bones, mapped by ID
-    this.subSkeletons = new Map() // renderable sub-skeletons
   }
 
   patch (data, client) {

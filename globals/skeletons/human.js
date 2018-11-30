@@ -64,8 +64,8 @@ export default {
     { id: 'LLR', par: 'LUR', p: { y: -LEG_UPPER_HEIGHT } },
 
     /* Feet */
-    { id: 'FL', par: 'LLL', rO: 'XZY', p: { y: -LEG_LOWER_HEIGHT }, sub: 'FL' },
-    { id: 'FR', par: 'LLR', rO: 'XZY', p: { y: -LEG_LOWER_HEIGHT }, sub: 'FR' },
+    { id: 'FL', par: 'LLL', rO: 'XZY', p: { y: -LEG_LOWER_HEIGHT } },
+    { id: 'FR', par: 'LLR', rO: 'XZY', p: { y: -LEG_LOWER_HEIGHT } },
 
     /* Toes */
     { id: 'TL', par: 'FL', p: { y: -FOOT_HEIGHT, z: FOOT_DEPTH } },
@@ -99,7 +99,7 @@ export default {
     { id: 'ALR', par: 'AUR', p: { y: -ARM_UPPER_HEIGHT } },
 
     /* Palm Left */
-    { id: 'PL', par: 'ALL', p: { y: -ARM_LOWER_HEIGHT }, sub: 'PL' },
+    { id: 'PL', par: 'ALL', p: { y: -ARM_LOWER_HEIGHT } },
 
     { id: 'TBL' /* Thumb Left */, par: 'PL', p: { x: THUMB_OFFSET_X } },
     { id: 'TML', par: 'TBL', p: { x: THUMB_WIDTH / 2, y: -THUMB_BASE_HEIGHT } },
