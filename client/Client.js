@@ -126,12 +126,14 @@ export class Client extends Base {
 
   command (command, ...rest) {
     // ifs are faster than hash lookups due to command priority.
-    // Below are the most important item commands.
+    // The most often-issued commands come first.
     if (command === 'f') {
       this.setFrameNumber(rest[0])
+      // TODO: frame subcommands
+      this.updateAnimations()
       return
     }
-    if (command === 'po') {
+    if (command === 'am' || command === 'po') {
       this.rigCommand(command, ...rest)
       return
     }
@@ -218,6 +220,10 @@ export class Client extends Base {
       return
     }
     // Commands ordered by priority.
+    if (command === 'am') {
+      this.setRigAnimation(rig, renderable, rest[0])
+      return
+    }
     if (command === 'po') {
       this.setRigPose(rig, renderable, rest[0])
       return
@@ -246,6 +252,16 @@ export class Client extends Base {
     console.warn('E-CL-COL', command)
   }
 
+  setRigAnimation (rig, renderable, animationId) {
+    var animation = this.animations.get(animationId)
+    if (!animation) {
+      console.warn('E-CL-AM-404', animationId) // animation not found
+      return
+    }
+    rig.animation = animation
+    rig.animationStart = this.counter.current
+  }
+
   setRigPose (rig, renderable, poseId) {
     var skeleton = rig.skeleton
     if (!skeleton) {
@@ -265,7 +281,6 @@ export class Client extends Base {
   }
 
   setFrameNumber (frameNumber) {
-    // console.log('Set frame number', frameNumber)
     this.counter.set(frameNumber)
   }
 
@@ -307,6 +322,33 @@ export class Client extends Base {
 
   setCameraParent () {
     // defined in subclasses
+  }
+
+  updateAnimations () {
+    for (var rig of this.rigs) {
+      this.updateAnimation(rig[1]) // rigs is a Map, not Array
+    }
+  }
+
+  updateAnimation (rig) {
+    var animation = rig.animation
+    if (!animation) {
+      return
+    }
+    var renderable = rig.renderable
+    if (!renderable) {
+      return
+    }
+    var keyframe = animation.keyframes.findByGlobalFrames(rig.animationStart, this.counter.current)
+    if (!keyframe) {
+      return
+    }
+    var pose = keyframe.pose
+    if (!pose) {
+      console.warn('E-CL-UA-AMKF', animation.id, keyframe.frame)
+      return
+    }
+    this.setRenderablePose(rig, renderable, pose)
   }
 
   onInput (handler, event) {

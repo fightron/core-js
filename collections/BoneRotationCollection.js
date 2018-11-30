@@ -15,6 +15,10 @@ export class BoneRotationCollection extends ArrayCollection {
     super.add(rotation)
   }
 
+  addObject (rotation) {
+    super.add(rotation)
+  }
+
   update (/* one BoneRotation */ data) {
     var current
     for (var item of this) {

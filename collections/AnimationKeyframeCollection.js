@@ -14,4 +14,19 @@ export class AnimationKeyframeCollection extends MapCollection {
       this.add(k, client)
     }
   }
+
+  findByGlobalFrames (startFrame, currentFrame) {
+    var animation = this.owner
+    var duration = animation.length
+    var delta = currentFrame - startFrame
+    if (!animation.loop && delta > duration) {
+      return null // animation has ended
+    }
+    var frame = (delta % duration) + 1
+    return this.get(frame)
+  }
+
+  interpolate () {
+    // creates interpolating poses for a smooth animation
+  }
 }

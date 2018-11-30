@@ -1,10 +1,10 @@
 export default {
   id: 'test-animation',
-  l: 240,
+  l: 40,
   k: [
     { f: 1, p: ['test-pose'] },
-    { f: 60, p: ['test-pose-low'] },
-    { f: 120, p: ['test-pose'] },
-    { f: 180, p: ['test-pose-up'] }
+    { f: 10, p: ['test-pose-low'] },
+    { f: 20, p: ['test-pose'] },
+    { f: 30, p: ['test-pose-up'] }
   ]
 }

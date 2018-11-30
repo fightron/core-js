@@ -10,6 +10,7 @@ export class AnimationResource extends BaseResource {
     this.skeleton = null
     this.counter = null
     this.length = null
+    this.loop = true // TODO: default false
     this.keyframes = new AnimationKeyframeCollection(this)
   }
 
@@ -17,6 +18,7 @@ export class AnimationResource extends BaseResource {
     if (!data) return
     super.patch(data)
     this.name = data.n
+    this.length = data.l
     this.keyframes.patch(data.k, client)
   }
 

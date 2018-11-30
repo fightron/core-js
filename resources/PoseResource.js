@@ -41,7 +41,7 @@ export class PoseResource extends BaseResource {
         // Creates a new copy
         sRotation = new BoneRotation(this)
         sRotation.id = aRotation.id
-        this.rotations.add(sRotation)
+        this.rotations.addObject(sRotation)
       }
       sRotation.x = aRotation.x
       sRotation.y = aRotation.y

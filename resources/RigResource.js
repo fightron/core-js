@@ -11,6 +11,8 @@ export class RigResource extends BaseResource {
     this.skeleton = null
     this.items = new ArrayCollection(this)
     this.bones = new Map() // renderable bones, mapped by ID
+    this.animation = null // current animation
+    this.animationStart = null // animation start frame (allows one animation to be reused by multiple rigs)
   }
 
   patch (data, client) {
