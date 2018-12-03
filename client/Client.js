@@ -260,6 +260,7 @@ export class Client extends Base {
     }
     rig.animation = animation
     rig.animationStart = this.counter.current
+    this.updateAnimation(rig)
   }
 
   setRigPose (rig, renderable, poseId) {

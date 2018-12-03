@@ -1,16 +1,16 @@
-import armsPulledBack from './partials/arms-pulled-back'
-import upperBoxing from './partials/upper-boxing'
-import lowerNormalL0 from './partials/lower-normal-l-0'
+// import armsPulledBack from './partials/arms-pulled-back'
+// import upperBoxing from './partials/upper-boxing'
+// import lowerNormalL0 from './partials/lower-normal-l-0'
 // import lowerNormalU0 from './partials/lower-normal-u-0'
-import handsRested from './partials/hands-rested'
+// import handsRested from './partials/hands-rested'
 
 export default {
   id: 'test-pose-low',
   sl: 'h',
   r: [
-    ...lowerNormalL0,
-    ...armsPulledBack,
-    ...handsRested,
-    ...upperBoxing
+    //    ...lowerNormalL0,
+    // ...armsPulledBack,
+    // ...handsRested,
+    // ...upperBoxing
   ]
 }
