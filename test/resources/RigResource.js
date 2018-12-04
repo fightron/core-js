@@ -6,7 +6,7 @@ import triangleGeometry from '../fixtures/geometries/triangle'
 import oneTriangleSchematic from '../fixtures/schematics/one-triangle'
 import oneTriangleItem from '../fixtures/items/one-triangle'
 import triangleHumanRig from '../fixtures/rigs/triangle-human'
-import humanSkeleton from '../../globals/skeletons/human'
+import humanSkeleton from '../../data/skeletons/human'
 
 describe('resources/RigResource', function () {
   it('initializes with default properties', function () {

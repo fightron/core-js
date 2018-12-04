@@ -29,196 +29,6 @@ The `patch(data)` method only accepts object literals with shortened column name
 
 In the list of Resources that follows below, shortened names are shown inside brackets after the Resource name (e.g., `ch` would be the "table name" for `CharacterResource`) and properties (e.g., `ch` would represent the "column name" for a `characterId` property in different Resources).
 
-## AiResource (`Ai`)
-
-This Resource holds a complete A.I. build needed for the CPU to control a Character.
-
-Properties:
-
-* `profileId` (`pf`) - ID of the Profile this build belongs to.
-* `name` (`n`) - name of the build.
-* `memory` (`m`) - list of `AiMemoryResource` objects containing memorized Skills and their timeouts.
-* `actions` (`a`) - list of `AiActionResource` objects containing the flow of the A.I. build.
-* `attributes` (`att`) - list of `AiAttribute` objects with the A.I. Attribute values for this build:
-  * `memory` (`m`)
-  * `execution` (`e`)
-  * `reaction` (`r`)
-  * `confirms` (`c`)
-  * `mindfulness` (`p`)
-
-## AiActionResource (`AiA`)
-
-This Resource holds a single A.I. Action for a Character.
-
-Properties:
-
-* `aiId` (`ai`) - ID of the A.I. this action belongs to.
-* `priority` (`p`) - an arbitrary integer. Higher value means higher precedence. If two actions have the same priority, the one created first will take precedence. Defaults to zero.
-* `idle` (`i`) - when `true`, this action is cancellable into reactions (other actions with `skillId`). Mutually exclusive with `skillId`.
-* `chance` (`c`) - chance of activation as a float between 0 and 1, where 1 means 100% chance.
-* `minDistance` (`miD`) - minimum enemy distance for the action to activate, in centimeters. Defaults to zero.
-* `maxDistance` (`maD`) - maximum enemy distance for the action to activate, in centimeters. Defaults to full screen distance (value TBD).
-* `airborne` (`air`) - set to `true` to make this action only executable while the Character is in the air.
-* `aiMemoryId` (`aim`) - (optional) ID of the Memory with the Skill the enemy will execute that triggers this action. When present, the action will be flagged as "reaction". The Memory must be valid (not forgotten) for this reaction to be executable.
-* `inputSequenceId` (`in`) - input sequence to enter if action rolls successfully. Can be a single button/directional press or a complete sequence. The accuracy and speed of the entered sequence depends on the __Execution__ A.I. Attribute.
-* `nextActionId` (`n`) - instead of entering an input sequence, the successful activation of this action can reroute to another action. Mutually exclusive with `inputSequenceId`.
-
-## AiMemoryResource (`AiM`)
-
-This Resource holds a single memorized Skill that was used against a Character.
-
-Properties:
-
-* `aiId` (`ai`) - ID of the A.I. build this Memory belongs to.
-* `skillId` (`sk`) - ID of the memorized Skill.
-* `date` (`dt`) - the date the Memory has been last updated.
-* `days` (`d`) - an integer that represents how many days it will take to forget the Skill.
-* `practice` (`p`) - an integer that represents how many times the Skill has been used against the Character within `date`.
-
-To determine if a skill has been forgotten, the `days` and `practice` properties must both be zero.
-
-A "Memory Refresh" occurs before the memory is used in a match, where the following operations take place:
-
-* calculates `delta`, which is the difference in days between the value of `date` property and the current date;
-  * if `delta` is zero, steps below won't execute.
-* `date` property is set to the current date;
-* `days` property is decreased by `delta`, and cannot go below zero;
-* `days` property is incremented by the value of `practice` property; and
-* `practice` property is then set to zero.
-
-The maximum allowed value of the `practice` property depends on the __Memory__ A.I. Attribute, as follows (tentative values and formulae):
-
-* It has a base value of 2.
-* It's then incremented by the integer result of: `MemoryAttribute / 5`.
-* It means the maximum value of this property is 12 (at __50 Memory__: `2 + (50/5)`).
-
-So, the higher the __Memory__ Attribute, the more days it can take for the Skill to be forgotten.
-
-## AnimationResource (`Ani`)
-
-An Animation contains a list of Poses that are applied to a Character's Skeleton within a timeframe.
-
-Properties:
-
-* `name` (`n`)
-* `skeleton` (`sl`) - Skeleton ID the Animation is compatible with.
-* `counter` (`c`) - a frame counter instance. Can reuse the Game/Client counter, or be its own instance.
-* `length` (`l`) - the total lenght of the animation in frames.
-* `keyframes` (`k`) - a collection of `AnimationKeyframe` objects:
-  * `frame` (`f`) - frame number.
-  * `poses` (`p`) - an array of poses that should be activated on that keyframe.
-  * `pose` (runtime only) - a computed pose resulted of merging all poses involved in the keyframe. Used for performance.
-  * `reset` (`r`) - a boolean indicating if the skeleton pose should be reset before applying the pose. Used for performance.
-
-Runtime Properties:
-
-* `start` - the frame number the Animation has been asked to start from. Called from `play()`.
-* `current` - the current frame the Animation is at. Set from `update()`
-
-
-## CharacterResource (`Ch`)
-
-A `CharacterResource` can be either a Character created by a Player, or a NPC (Non-Player Character).
-
-This resource only holds information about a Character in regards of gameplay. Character profile data is held by `ProfileResource`.
-
-Properties:
-
-* `playerId` (`pl`) - ID of the Player who created the Character. For NPCs, this property is equal to `"npc"`.
-* `skeleton` (`sl`) - Character's Skeleton ID (e.g., `"human"`)
-* `profileId` (`pf`) - default Profile ID. See `ProfileResource` for details.
-
-Runtime Properties:
-
-* `enemies` - used during a match. It's an array of `CharacterResource`'s that are enemies.
-
-Methods:
-
-* `compute()` - update `CharacterSkillResource` with their computed values based on Attributes and Enhancements currently active on the Character.
-
-## PlayerEnhancementResource (`ChE`)
-
-This Resource holds one Enhancement in possession of the Character.
-
-Properties:
-
-* `playerId` (`pl`)
-* `enhancementId` (`en`)
-* `characterId` (`ch`) - will be present if Enhancement is bound to a specific character (cannot be used on a different character). Some character-oriented rewards (story missions, A.I. leagues, etc) will have this property set.
-* `bound` (`b`) - `true` if bound to player (cannot be traded). Some player-oriented rewards will have this property set.
-
-## CharacterGameResource (`ChG`)
-
-This Resource holds the progression of a Character in different games.
-
-It allows one Character to be used in multiple Games. See the `GameResource` for more details about the different Games being offered and future possibilities.
-
-Properties:
-
-* `characterId` (`ch`)
-* `gameId` (`g`) - the Game ID the Character belongs to.
-* `level` (`l`) - current level. Defaults to 1.
-
-## CharacterFightingStyleResource (`ChF`)
-
-This Resource holds a single Fighting Style that a Character has unlocked.
-
-Properties:
-
-* `characterId` (`ch`)
-* `fightingStyleId` (`fs`)
-
-## CharacterSkillResource (`ChS`)
-
-This Resource holds a single Skill that a Character has earned.
-
-Properties:
-
-* `characterId` (`ch`)
-* `skillId` (`sk`)
-* `level` (`l`)
-* `animationId` (`ani`) - Animation to override default, a.k.a. Skill "Skin".
-* `enhancements` (`en`) - an array of Character Enhancement IDs that are slotted into this Skill.
-* `flags` (`fl`) - an array of Skill Flags currently active for this Skill.
-
-## CinematicResource (`Cnm`)
-
-A Cinematic is a fixed sequence of Animations involving two Characters, camera angles, and additional effects.
-
-Properties:
-
-* (TBD)
-
-## CurrencyResource (`Cr`)
-
-This Resource holds information about a Currency.
-
-Properties:
-
-* `name` (`n`)
-
-## EnhancementResource (`En`)
-
-Enhancements are items that can be slotted into Skills to improve them.
-
-Properties:
-
-* `name` (`n`)
-* `bonuses` (`b`) - array of bonuses applied by the Enhancement:
-  * `target` (`t`) - `"a"` for Attribute (Active or Passive)
-  * `id` (`i`) - ID of the target (e.g., `"STR"` for enhancing the Strength Attribute).
-  * `amount` (`v`) - bonus amount.
-
-## FightingStyleResource (`Fs`)
-
-This Resource contains information about Fighting Styles.
-
-Properties:
-
-* `name` (`n`)
-* `country` (`c`) - code of country of origin.
-* `bonuses` (`b`) - a collection of Attribute bonuses applied to Characters that choose this Fighting Style.
-
 ## GameResource (`Game`)
 
 A "Game" is used to isolate certain aspects of gameplay (like progression) in their own "universes".
@@ -230,14 +40,9 @@ Properties:
 * `currencyId` (`cr`) - ID of the Currency that represents experience to reach next level in this game.
 * `progression` (`tb`) - progression table. It's an array of levels and their requirements:
   * `level` (`l`) - Level number.
-  * `amount` (`v`) - amount of XP required to reach this Level.
+  * `amount` (`v`) - amount of XP required to reach this Level from the previous one.
 
-There will be two "Games" in the first release of this project:
-
-* `fg` - the fighting game, except A.I. mode.
-* `fgA` - the fighting game, A.I. mode only.
-
-This Resource will be used when a new "Game" is released under this project (e.g., a dancing game, a racing game, etc). One Character will be able to be used in multiple games, keeping their cosmetic details, but having independent progression. See the `CharacterGameResource` for more details.
+For now, the only record available will be the main fighting game, but it will hold other games in the future.
 
 ## GeometryResource (`Geo`)
 
@@ -313,6 +118,118 @@ Properties:
   * `color` (`c`) - light color, or geometry default color. Not applicable to points.
   * `intensity` (`i`) - light intensity. Not applicable to geometries or points.
 
+## PoseResource (`Po`)
+
+This Resource holds the bone rotations of a given Skeleton.
+
+Properties:
+
+* `name` (`n`) - name of the Pose.
+* `skeleton` (`sl`) - Skeleton ID the Pose is compatible with (e.g., `"human"`).
+* `rotations` (`r`) - a collection of `BoneRotation` objects:
+  * `id` - Bone ID to rotate.
+  * `x`/`y`/`z` - Euler rotation values in radians. Defaults to zero.
+  * `quaternion` (`q`) - array of quaternion values (x, y, z, w). If present, will be used to generate Euler rotations. This exists to allow Bones to change their rotation order if needed.
+  * `position` (`p`) - `true` if coordinates represent position, not rotation.
+
+## AnimationResource (`Ani`)
+
+An Animation contains a list of Poses that are applied to a Character's Skeleton within a timeframe.
+
+Properties:
+
+* `name` (`n`)
+* `skeleton` (`sl`) - Skeleton ID the Animation is compatible with.
+* `length` (`l`) - the total lenght of the animation in frames.
+* `keyframes` (`k`) - a collection of `AnimationKeyframe` objects:
+  * `frame` (`f`) - frame number.
+  * `poses` (`p`) - an array of poses that should be activated on that keyframe.
+  * `pose` (runtime only) - a computed pose resulted of merging all poses involved in the keyframe. Used for performance.
+  * `reset` (`r`) - a boolean indicating if the skeleton pose should be reset before applying the pose. Used for performance.
+
+## CharacterResource (`Ch`)
+
+A `CharacterResource` can be either a Character created by a Player, or a NPC (Non-Player Character).
+
+This resource only holds information about a Character in regards of gameplay. Character profile data is held by `ProfileResource`.
+
+Properties:
+
+* `playerId` (`pl`) - ID of the Player who created the Character. For NPCs, this property is equal to `"npc"`.
+* `skeleton` (`sl`) - Character's Skeleton ID (e.g., `"human"`)
+* `build` (`bd`) - default Build. See `CharacterBuildResource` for details.
+
+## PlayerEnhancementResource (`ChE`)
+
+This Resource holds one Enhancement in possession of the Character.
+
+Properties:
+
+* `playerId` (`pl`)
+* `enhancementId` (`en`)
+* `characterId` (`ch`) - will be present if Enhancement is bound to a specific character (cannot be used on a different character). Some character-oriented rewards (story missions, A.I. leagues, etc) will have this property set.
+* `bound` (`b`) - `true` if bound to player (cannot be traded). Some player-oriented rewards will have this property set.
+
+## CharacterFightingStyleResource (`ChF`)
+
+This Resource holds a single Fighting Style that a Character has unlocked.
+
+Properties:
+
+* `characterId` (`ch`)
+* `fightingStyleId` (`fs`)
+
+## CharacterSkillResource (`ChS`)
+
+This Resource holds a single Skill that a Character has earned.
+
+Properties:
+
+* `characterId` (`ch`)
+* `skillId` (`sk`)
+* `level` (`l`)
+* `animationId` (`ani`) - Animation to override default, a.k.a. Skill "Skin".
+* `enhancements` (`en`) - an array of Character Enhancement IDs that are slotted into this Skill.
+* `flags` (`fl`) - an array of Skill Flags currently active for this Skill.
+
+## CinematicResource (`Cnm`)
+
+A Cinematic is a fixed sequence of Animations involving two Characters, camera angles, and additional effects.
+
+Properties:
+
+* (TBD)
+
+## CurrencyResource (`Cr`)
+
+This Resource holds information about a Currency.
+
+Properties:
+
+* `name` (`n`)
+
+## EnhancementResource (`En`)
+
+Enhancements are items that can be slotted into Skills to improve them.
+
+Properties:
+
+* `name` (`n`)
+* `bonuses` (`b`) - array of bonuses applied by the Enhancement:
+  * `target` (`t`) - `"a"` for Attribute (Active or Passive)
+  * `id` (`i`) - ID of the target (e.g., `"STR"` for enhancing the Strength Attribute).
+  * `amount` (`v`) - bonus amount.
+
+## FightingStyleResource (`Fs`)
+
+This Resource contains information about Fighting Styles.
+
+Properties:
+
+* `name` (`n`)
+* `country` (`c`) - code of country of origin.
+* `bonuses` (`b`) - a collection of Attribute bonuses applied to Characters that choose this Fighting Style.
+
 ## MatchResource (`Mt`)
 
 This Resource holds informations about a match between Characters.
@@ -381,42 +298,29 @@ Properties:
 * `characters` (`ch`) - a collection of `CharacterResource`s that belong to the Player.
 * `currencies` (`cr`) - a collection of `PlayerCurrencyResource` objects.
 
-## PoseResource (`Po`)
+## CharacterBuildResource (`Bd`)
 
-This Resource holds the bone rotations of a given Skeleton.
+A Character Build holds personal information about a Character in a given time and universe (like a snapshot).
 
-Properties:
+A Character can have more than one Build (alternate personas, younger versions, builds for different games, etc).
 
-* `name` (`n`) - name of the Pose.
-* `skeleton` (`sl`) - Skeleton ID the Pose is compatible with (e.g., `"human"`).
-* `rotations` (`r`) - a collection of `BoneRotation` objects:
-  * `id` - Bone ID to rotate.
-  * `x`/`y`/`z` - Euler rotation values in radians. Defaults to zero.
-  * `quaternion` (`q`) - array of quaternion values (x, y, z, w). If present, will be used to generate Euler rotations. This exists to allow Bones to change their rotation order if needed.
-  * `position` (`p`) - `true` if coordinates represent position, not rotation.
-
-## ProfileResource (`Pf`)
-
-A Profile holds personal information about a Character in a given time and universe.
-
-A Character can have more than one Profile (alternate personas, younger versions, etc).
-
-Everything that's related to gameplay is tied to a Profile rather than a Character, so that different Profiles can have completely different gameplay styles.
+Everything that's related to gameplay is tied to a Build rather than a Character, so that different Builds can have completely different gameplay styles.
 
 Properties:
 
 * `character` (`ch`)
+* `game` - `GameResource` this Build belongs to.
+* `level`
 * `shortName` (`sN`) - Character's nickname. This is the name that appears on the HUD (Health bar).
 * `fightingStyle` (`fs`) - the Fighting Style chosen upon Character creation.
 * `firstName` (`fN`) - Character's first name.
 * `middleNames` (`mN`) - Character's middle names.
 * `lastName` (`lN`) - Character's last name.
-* `gender` (`g`) - `"m"` (male), `"f"` (female), or `"u"` (unknown)
-* `date` (`dt`) - Date of Profile. Determines character age. Used for flashback profiles, etc.
-* `country` (`c`) - code of the Character'country of origin.
-* `description` (`d`) - long text with brief character story.
-* `pose` (`po`) - Pose to use in Fighter Select.
-* `version` (`v`) - Character's current version fingerprint, which is generated based on the Character's equipped Items, Skills, Mechanics, etc.
+* `gender` (`g`) - `"m"` (male), `"f"` (female), or `"n"` (not given)
+* `country` (`c`) - code of the Character'country of origin. May differ between Character Builds for alternate realities, etc.
+* `bio` (`b`) - long text with brief character biography.
+* `date` (`dt`) - Date of bio. Determines character age. Used for flashback profiles, etc.
+* `pose` (`po`) - Pose to use in Fighter Select and other screens or pages.
 
 ## RigResource (`Rig`)
 
@@ -426,7 +330,7 @@ It's used for costumes and stage items.
 
 Properties:
 
-* `profile` (`pf`) - Profile this Rig belongs to. Can be null (stage items).
+* `characterBuild` (`bd`) - Character Build this Rig belongs to. Will be null for stage items.
 * `skeleton` (`sl`)
 * `items` (`i`) - array of `RigItem` objects:
   * `id` - Item ID.
@@ -454,13 +358,11 @@ Properties:
 
 * `alias` (`as`) - normalized ID of the Skill. Used in Daily Practice, A.I., and other mechanics.
 * `name` (`n`) - name of the Skill.
-* `parent` (`p`) - ID of the parent Skill.
+* `parent` (`par`) - ID of the parent Skill.
 * `minimumLevel` (`min`) - minimum level this Skill is usable. Usually 1 for Active Skills and 0 for Core Skills.
 * `maximumLevel` (`max`) - maximum level of the Skill. Defaults to 10.
-* `performance` (`p`) - performance bonus per Level. Usually 1 for Active Skills and 0 for Core Skills.
-* `animationId` (`ani`) - ID of the default animation of this Skill.
 * `fightingStyleIds` (`fs`) - an array of Fighting Style IDs that Characters need to belong to, to be able to use this Skill.
-* `keyframes` (`k`) - a collection of `SkillKeyframe` objects with information about hitboxes, positioning, and other details.
+* `keyframes` (`k`) - a collection of `SkillKeyframe` objects with information about animations, hitboxes, positioning, and other details.
 * `flags` (`fl`) - an array of allowed Skill Flags and their penalties for this particular Skill.
 
 ## SkillSkin (`Ss`)
@@ -472,3 +374,68 @@ Properties:
 * `skillId` (`sk`)
 * `animationId` (`am`)
 * `fightingStyles` (`fs`) - an array of Fighting Styles that are able to use this animation.
+
+## AiResource (`Ai`)
+
+This Resource holds a complete A.I. build needed for the CPU to control a Character.
+
+Properties:
+
+* `profileId` (`pf`) - ID of the Profile this build belongs to.
+* `name` (`n`) - name of the build.
+* `memory` (`m`) - list of `AiMemoryResource` objects containing memorized Skills and their timeouts.
+* `actions` (`a`) - list of `AiActionResource` objects containing the flow of the A.I. build.
+* `attributes` (`att`) - list of `AiAttribute` objects with the A.I. Attribute values for this build:
+  * `memory` (`m`)
+  * `execution` (`e`)
+  * `reaction` (`r`)
+  * `confirms` (`c`)
+  * `mindfulness` (`p`)
+
+## AiActionResource (`AiA`)
+
+This Resource holds a single A.I. Action for a Character.
+
+Properties:
+
+* `aiId` (`ai`) - ID of the A.I. this action belongs to.
+* `priority` (`p`) - an arbitrary integer. Higher value means higher precedence. If two actions have the same priority, the one created first will take precedence. Defaults to zero.
+* `idle` (`i`) - when `true`, this action is cancellable into reactions (other actions with `skillId`). Mutually exclusive with `skillId`.
+* `chance` (`c`) - chance of activation as a float between 0 and 1, where 1 means 100% chance.
+* `minDistance` (`miD`) - minimum enemy distance for the action to activate, in centimeters. Defaults to zero.
+* `maxDistance` (`maD`) - maximum enemy distance for the action to activate, in centimeters. Defaults to full screen distance (value TBD).
+* `airborne` (`air`) - set to `true` to make this action only executable while the Character is in the air.
+* `aiMemoryId` (`aim`) - (optional) ID of the Memory with the Skill the enemy will execute that triggers this action. When present, the action will be flagged as "reaction". The Memory must be valid (not forgotten) for this reaction to be executable.
+* `inputSequenceId` (`in`) - input sequence to enter if action rolls successfully. Can be a single button/directional press or a complete sequence. The accuracy and speed of the entered sequence depends on the __Execution__ A.I. Attribute.
+* `nextActionId` (`n`) - instead of entering an input sequence, the successful activation of this action can reroute to another action. Mutually exclusive with `inputSequenceId`.
+
+## AiMemoryResource (`AiM`)
+
+This Resource holds a single memorized Skill that was used against a Character.
+
+Properties:
+
+* `aiId` (`ai`) - ID of the A.I. build this Memory belongs to.
+* `skillId` (`sk`) - ID of the memorized Skill.
+* `date` (`dt`) - the date the Memory has been last updated.
+* `days` (`d`) - an integer that represents how many days it will take to forget the Skill.
+* `practice` (`p`) - an integer that represents how many times the Skill has been used against the Character within `date`.
+
+To determine if a skill has been forgotten, the `days` and `practice` properties must both be zero.
+
+A "Memory Refresh" occurs before the memory is used in a match, where the following operations take place:
+
+* calculates `delta`, which is the difference in days between the value of `date` property and the current date;
+  * if `delta` is zero, steps below won't execute.
+* `date` property is set to the current date;
+* `days` property is decreased by `delta`, and cannot go below zero;
+* `days` property is incremented by the value of `practice` property; and
+* `practice` property is then set to zero.
+
+The maximum allowed value of the `practice` property depends on the __Memory__ A.I. Attribute, as follows (tentative values and formulae):
+
+* It has a base value of 2.
+* It's then incremented by the integer result of: `MemoryAttribute / 5`.
+* It means the maximum value of this property is 12 (at __50 Memory__: `2 + (50/5)`).
+
+So, the higher the __Memory__ Attribute, the more days it can take for the Skill to be forgotten.

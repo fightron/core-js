@@ -2,7 +2,7 @@
 
 import { behaves } from './namespace'
 
-import humanSkeleton from '../../globals/skeletons/human'
+import humanSkeleton from '../../data/skeletons/human'
 import triangleGeometry from '../fixtures/geometries/triangle'
 import threeTrianglesSchematic from '../fixtures/schematics/three-triangles'
 import oneTriangleSchematic from '../fixtures/schematics/one-triangle'

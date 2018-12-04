@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import { SkeletonResource } from '../../resources/SkeletonResource'
 
-import humanSkeleton from '../../globals/skeletons/human'
+import humanSkeleton from '../../data/skeletons/human'
 
 describe('resources/SkeletonResource', function () {
   describe('constructor', function () {

@@ -1,9 +1,9 @@
 import { expect } from 'chai'
 import { SkeletonResource } from '../../../resources/SkeletonResource'
 
-import humanSkeleton from '../../../globals/skeletons/human'
+import humanSkeleton from '../../../data/skeletons/human'
 
-describe('globals/skeletons/human', function () {
+describe('data/skeletons/human', function () {
   before(function () {
     this.resource = new SkeletonResource()
     this.resource.patch(humanSkeleton)
