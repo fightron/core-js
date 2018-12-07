@@ -1,8 +1,8 @@
 /* eslint-env worker */
 
-import { Game } from '../lib/Game'
+import { DemoGame } from '../demo/game'
 
-var game = new Game(self)
+var game = new DemoGame(self)
 
 self.addEventListener('message', game.onMessage.bind(game))
 
