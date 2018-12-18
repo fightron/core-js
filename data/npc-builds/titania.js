@@ -4,5 +4,6 @@ export default {
   game: 'ft',
   lv: 100,
   sN: 'Titania',
-  fs: 'sh'
+  fs: 'sh',
+  el: 'fr'
 }

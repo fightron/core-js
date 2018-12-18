@@ -4,5 +4,6 @@ export default {
   game: 'ft',
   lv: 100,
   sN: 'Hammer',
-  fs: 'wr'
+  fs: 'wr',
+  el: 'ea'
 }

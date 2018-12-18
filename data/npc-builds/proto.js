@@ -4,5 +4,6 @@ export default {
   game: 'ft',
   lv: 100,
   sN: 'Proto',
-  fs: 'sv'
+  fs: 'sv',
+  el: 'ln'
 }

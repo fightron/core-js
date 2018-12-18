@@ -4,5 +4,6 @@ export default {
   game: 'ft',
   lv: 100,
   sN: 'Blackout',
-  fs: 'km'
+  fs: 'km',
+  el: 'sd'
 }

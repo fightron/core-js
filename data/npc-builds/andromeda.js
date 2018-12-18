@@ -4,5 +4,6 @@ export default {
   game: 'ft',
   lv: 100,
   sN: 'Andromeda',
-  fs: 'ns'
+  fs: 'ns',
+  el: 'lt'
 }

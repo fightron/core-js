@@ -4,5 +4,6 @@ export default {
   game: 'ft',
   lv: 100,
   sN: 'Jet',
-  fs: 'mt'
+  fs: 'mt',
+  el: 'fr'
 }

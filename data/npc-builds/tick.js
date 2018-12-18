@@ -4,5 +4,6 @@ export default {
   game: 'ft',
   lv: 100,
   sN: 'Tick',
-  fs: 'ak'
+  fs: 'ak',
+  el: 'tm'
 }

@@ -4,5 +4,6 @@ export default {
   game: 'ft',
   lv: 100,
   sN: 'Amp',
-  fs: 'bx'
+  fs: 'bx',
+  el: 'sn'
 }

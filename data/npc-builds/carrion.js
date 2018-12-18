@@ -4,5 +4,6 @@ export default {
   game: 'ft',
   lv: 100,
   sN: 'Carrion',
-  fs: 'kf'
+  fs: 'kf',
+  el: 'fc'
 }

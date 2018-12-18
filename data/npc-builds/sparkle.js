@@ -4,5 +4,6 @@ export default {
   game: 'ft',
   lv: 100,
   sN: 'Sparkle',
-  fs: 'cp'
+  fs: 'cp',
+  el: 'md'
 }

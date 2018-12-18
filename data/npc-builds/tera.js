@@ -4,5 +4,6 @@ export default {
   game: 'ft',
   lv: 100,
   sN: 'Tera',
-  fs: 'kt'
+  fs: 'kt',
+  el: 'wt'
 }

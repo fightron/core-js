@@ -4,5 +4,6 @@ export default {
   game: 'ft',
   lv: 100,
   sN: 'Triton',
-  fs: 'wz'
+  fs: 'wz',
+  el: 'wt'
 }

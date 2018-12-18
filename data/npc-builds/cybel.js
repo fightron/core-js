@@ -4,5 +4,6 @@ export default {
   game: 'ft',
   lv: 100,
   sN: 'Cybel',
-  fs: 'hp'
+  fs: 'hp',
+  el: 'wd'
 }

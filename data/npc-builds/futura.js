@@ -4,5 +4,6 @@ export default {
   game: 'ft',
   lv: 100,
   sN: 'Futura',
-  fs: 'ff'
+  fs: 'ff',
+  el: 'md'
 }
