@@ -5,5 +5,6 @@ export default {
   lv: 100,
   sN: 'Carrion',
   fs: 'kf',
-  el: 'fc'
+  el: 'fc',
+  f: 'a'
 }

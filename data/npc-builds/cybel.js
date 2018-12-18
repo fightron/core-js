@@ -5,5 +5,6 @@ export default {
   lv: 100,
   sN: 'Cybel',
   fs: 'hp',
-  el: 'wd'
+  el: 'wd',
+  f: 'e'
 }

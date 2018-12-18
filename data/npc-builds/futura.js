@@ -5,5 +5,6 @@ export default {
   lv: 100,
   sN: 'Futura',
   fs: 'ff',
-  el: 'md'
+  el: 'md',
+  f: 'r'
 }

@@ -5,5 +5,6 @@ export default {
   lv: 100,
   sN: 'Proto',
   fs: 'sv',
-  el: 'ln'
+  el: 'ln',
+  f: 'e'
 }

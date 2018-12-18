@@ -5,5 +5,6 @@ export default {
   lv: 100,
   sN: 'Titania',
   fs: 'sh',
-  el: 'fr'
+  el: 'fr',
+  f: 'e'
 }

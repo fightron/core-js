@@ -5,5 +5,6 @@ export default {
   lv: 100,
   sN: 'Andromeda',
   fs: 'ns',
-  el: 'lt'
+  el: 'lt',
+  f: 'a'
 }

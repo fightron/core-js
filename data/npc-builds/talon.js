@@ -5,5 +5,6 @@ export default {
   lv: 100,
   sN: 'Talon',
   fs: 'sb',
-  el: 'nt'
+  el: 'nt',
+  f: 'e'
 }

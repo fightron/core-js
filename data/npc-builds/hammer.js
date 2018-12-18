@@ -5,5 +5,6 @@ export default {
   lv: 100,
   sN: 'Hammer',
   fs: 'wr',
-  el: 'ea'
+  el: 'ea',
+  f: 'e'
 }

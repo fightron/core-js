@@ -5,5 +5,6 @@ export default {
   lv: 100,
   sN: 'Tera',
   fs: 'kt',
-  el: 'wt'
+  el: 'wt',
+  f: 'a'
 }

@@ -5,5 +5,6 @@ export default {
   lv: 100,
   sN: 'Amp',
   fs: 'bx',
-  el: 'sn'
+  el: 'sn',
+  f: 'r'
 }

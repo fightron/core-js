@@ -5,5 +5,6 @@ export default {
   lv: 100,
   sN: 'Tick',
   fs: 'ak',
-  el: 'tm'
+  el: 'tm',
+  f: 'a'
 }

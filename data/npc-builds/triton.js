@@ -5,5 +5,6 @@ export default {
   lv: 100,
   sN: 'Triton',
   fs: 'wz',
-  el: 'wt'
+  el: 'wt',
+  f: 'a'
 }

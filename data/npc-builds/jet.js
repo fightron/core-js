@@ -5,5 +5,6 @@ export default {
   lv: 100,
   sN: 'Jet',
   fs: 'mt',
-  el: 'fr'
+  el: 'fr',
+  f: 'r'
 }

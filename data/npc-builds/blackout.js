@@ -5,5 +5,6 @@ export default {
   lv: 100,
   sN: 'Blackout',
   fs: 'km',
-  el: 'sd'
+  el: 'sd',
+  f: 'r'
 }

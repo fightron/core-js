@@ -5,5 +5,6 @@ export default {
   lv: 100,
   sN: 'Sparkle',
   fs: 'cp',
-  el: 'md'
+  el: 'md',
+  f: 'r'
 }
