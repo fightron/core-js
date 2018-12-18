@@ -26,7 +26,8 @@ export class Client extends Base {
     this.inputs = []
     this.worker = null
     this.counter = new Counter()
-    this.fps = new Fps(60)
+    this.fps = new Fps(120)
+    this.commandFps = new Fps(120)
     this.nextFrameFn = animationFrameFn // can be overwritten by clients
     this.render = this.render.bind(this)
   }
@@ -115,6 +116,7 @@ export class Client extends Base {
   receive (/* Worker Event */ event) {
     // event.data is a JSON string. See:
     // -- https://nolanlawson.com/2016/02/29/high-performance-web-worker-messages/
+    this.commandFps.start()
     try {
       var [command, ...rest] = JSON.parse(event.data) // TODO: optimize
     } catch (e) {
@@ -122,6 +124,7 @@ export class Client extends Base {
       return
     }
     this.command(command, ...rest)
+    this.commandFps.end()
   }
 
   command (command, ...rest) {
@@ -249,7 +252,7 @@ export class Client extends Base {
       collection.remove(data.id)
       return
     }
-    console.warn('E-CL-COL', command)
+    console.warn('E-CL-COL', command, rest)
   }
 
   setRigAnimation (rig, renderable, animationId) {
