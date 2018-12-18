@@ -1,5 +1,8 @@
 export default {
   id: 'fighter',
   usr: 'npc',
-  sl: 'h'
+  sl: 'h',
+  fN: 'Gannon',
+  lN: 'Cai',
+  g: 'm'
 }

@@ -1,5 +1,8 @@
 export default {
   id: 'chief',
   usr: 'npc',
-  sl: 'h'
+  sl: 'h',
+  fN: 'Tanya',
+  lN: 'Wolff',
+  g: 'f'
 }

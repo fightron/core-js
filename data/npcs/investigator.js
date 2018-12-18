@@ -1,5 +1,8 @@
 export default {
   id: 'investigator',
   usr: 'npc',
-  sl: 'h'
+  sl: 'h',
+  fN: 'Kelly',
+  lN: 'Palmer',
+  g: 'f'
 }

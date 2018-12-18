@@ -1,5 +1,8 @@
 export default {
   id: 'student',
   usr: 'npc',
-  sl: 'h'
+  sl: 'h',
+  fN: 'Keiko',
+  lN: 'Nagasawa',
+  g: 'f'
 }
