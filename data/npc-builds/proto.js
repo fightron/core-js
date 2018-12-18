@@ -3,5 +3,6 @@ export default {
   ch: 'officer',
   game: 'ft',
   lv: 100,
-  sN: 'Proto'
+  sN: 'Proto',
+  fs: 'sv'
 }

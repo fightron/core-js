@@ -3,5 +3,6 @@ export default {
   ch: 'medic',
   game: 'ft',
   lv: 100,
-  sN: 'Cybel'
+  sN: 'Cybel',
+  fs: 'hp'
 }

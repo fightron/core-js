@@ -3,5 +3,6 @@ export default {
   ch: 'bountyhunter',
   game: 'ft',
   lv: 100,
-  sN: 'Amp'
+  sN: 'Amp',
+  fs: 'bx'
 }

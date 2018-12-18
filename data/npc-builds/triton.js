@@ -3,5 +3,6 @@ export default {
   ch: 'master',
   game: 'ft',
   lv: 100,
-  sN: 'Triton'
+  sN: 'Triton',
+  fs: 'wz'
 }

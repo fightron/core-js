@@ -3,5 +3,6 @@ export default {
   ch: 'firefighter',
   game: 'ft',
   lv: 100,
-  sN: 'Hammer'
+  sN: 'Hammer',
+  fs: 'wr'
 }

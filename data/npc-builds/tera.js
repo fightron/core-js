@@ -3,5 +3,6 @@ export default {
   ch: 'student',
   game: 'ft',
   lv: 100,
-  sN: 'Tera'
+  sN: 'Tera',
+  fs: 'kt'
 }

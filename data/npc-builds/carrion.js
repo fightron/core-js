@@ -3,5 +3,6 @@ export default {
   ch: 'housewife',
   game: 'ft',
   lv: 100,
-  sN: 'Carrion'
+  sN: 'Carrion',
+  fs: 'kf'
 }

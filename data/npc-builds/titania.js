@@ -3,5 +3,6 @@ export default {
   ch: 'chief',
   game: 'ft',
   lv: 100,
-  sN: 'Titania'
+  sN: 'Titania',
+  fs: 'sh'
 }

@@ -3,5 +3,6 @@ export default {
   ch: 'merchant',
   game: 'ft',
   lv: 100,
-  sN: 'Tick'
+  sN: 'Tick',
+  fs: 'ak'
 }

@@ -3,5 +3,6 @@ export default {
   ch: 'fighter',
   game: 'ft',
   lv: 100,
-  sN: 'Jet'
+  sN: 'Jet',
+  fs: 'mt'
 }

@@ -3,5 +3,6 @@ export default {
   ch: 'queen',
   game: 'ft',
   lv: 100,
-  sN: 'Futura'
+  sN: 'Futura',
+  fs: 'ff'
 }

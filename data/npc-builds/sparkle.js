@@ -3,5 +3,6 @@ export default {
   ch: 'dancer',
   game: 'ft',
   lv: 100,
-  sN: 'Sparkle'
+  sN: 'Sparkle',
+  fs: 'cp'
 }

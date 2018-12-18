@@ -3,5 +3,6 @@ export default {
   ch: 'acolyte',
   game: 'ft',
   lv: 100,
-  sN: 'Andromeda'
+  sN: 'Andromeda',
+  fs: 'ns'
 }

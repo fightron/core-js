@@ -3,5 +3,6 @@ export default {
   ch: 'bodyguard',
   game: 'ft',
   lv: 100,
-  sN: 'Blackout'
+  sN: 'Blackout',
+  fs: 'km'
 }
