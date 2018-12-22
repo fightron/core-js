@@ -1,5 +1,4 @@
 import { BaseResource } from './BaseResource'
-import { ItemColorCollection } from '../collections/ItemColorCollection'
 import { ItemPartCollection } from '../collections/ItemPartCollection'
 
 export class ItemResource extends BaseResource {
@@ -8,7 +7,7 @@ export class ItemResource extends BaseResource {
     this._type = 'Itm'
     this.schematic = null // SchematicResource
     this.character = null // CharacterResource
-    this.colors = new ItemColorCollection(this)
+    this.color = null // default color for all parts
     this.parts = new ItemPartCollection(this)
     this.isItemResource = true
   }
@@ -21,6 +20,7 @@ export class ItemResource extends BaseResource {
     }
     super.patch(data)
     this.schematic = schematic
+    this.color = data.c
     for (var part of schematic.parts) {
       this.parts.addSchematicPart(part, data.p)
     }
@@ -29,9 +29,8 @@ export class ItemResource extends BaseResource {
 
   free () {
     this.parts.free()
-    this.colors.free()
     this.parts = null
-    this.colors = null
+    this.color = null
     super.free()
   }
 }

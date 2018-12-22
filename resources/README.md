@@ -107,6 +107,7 @@ Properties:
 * `schematic` (`sch`) - Schematic ID.
 * `ownerType` (`oT`) - owner type. Possible values: `"c"` (Character), `"s"` (Stage).
 * `ownerId` (`oI`) - owner ID.
+* `color` (`c`) - default color for all parts.
 * `regions` (`r`) - an optional collection of `ItemRegion` objects:
   * `id` - SchematicRegion ID that should be painted.
   * `color` (`c`) - color ID. Can be a fixed color (by X11 name) or a character color code (`c0` to `c9`, `e0` or `e1`, `l0` or `l1`).
@@ -151,23 +152,28 @@ Properties:
 
 A `CharacterResource` can be either a Character created by a Player, or a NPC (Non-Player Character).
 
-This resource only holds information about a Character in regards of gameplay. Character profile data is held by `ProfileResource`.
+This resource only holds information about a Character in regards of gameplay. Character profile data is held by `CharacterBuildResource`.
 
 Properties:
 
-* `playerId` (`pl`) - ID of the Player who created the Character. For NPCs, this property is equal to `"npc"`.
+* `user` (`usr`) - ID of the User who created the Character. For NPCs, this property is equal to `"npc"`.
 * `skeleton` (`sl`) - Character's Skeleton ID (e.g., `"human"`)
 * `build` (`bd`) - default Build. See `CharacterBuildResource` for details.
+* `firstName` (`fN`) - Character's first name.
+* `middleNames` (`mN`) - Character's middle names.
+* `lastName` (`lN`) - Character's last name.
+* `gender` (`g`) - `"m"` (male), `"f"` (female), or `"n"` (not given)
+* `country` (`c`) - code of the Character's country of representation (not necessarily origin).
 
-## PlayerEnhancementResource (`ChE`)
+## EnhancementInventoryResource (`EInv`)
 
-This Resource holds one Enhancement in possession of the Character.
+This Resource holds one Enhancement in possession of the Player.
 
 Properties:
 
-* `playerId` (`pl`)
+* `userId` (`usr`)
 * `enhancementId` (`en`)
-* `characterId` (`ch`) - will be present if Enhancement is bound to a specific character (cannot be used on a different character). Some character-oriented rewards (story missions, A.I. leagues, etc) will have this property set.
+* `characterId` (`ch`) - will be present if Enhancement is bound to a specific character (cannot be used on a different character). Some character-oriented rewards (story missions, AI leagues, etc) will have this property set.
 * `bound` (`b`) - `true` if bound to player (cannot be traded). Some player-oriented rewards will have this property set.
 
 ## CharacterFightingStyleResource (`ChF`)
@@ -232,47 +238,60 @@ Properties:
 
 ## MatchResource (`Mt`)
 
-This Resource holds informations about a match between Characters.
-
-Initially, Matches will only support two single Characters, but this Resource is being built with Teams in mind for future support.
+This Resource holds informations about a match between multiple Characters.
 
 Properties:
 
+* `type` (`tp`) - Match type:
+  * `"v"` - solo 1v1 (default).
+  * `"t"` - team, one fighter from a team active at a time, one after another (no switching).
+  * `"g"` - tag, same as team, but with active switching.
+  * `"r"` - battle royale, all fighters active at the same time.
 * `teams` (`tm`) - an array of `Team` objects:
-  * `id` - Team ID. Usually starts from `1` up to how many Teams are currently playing.
+  * `index` (`i`) - Team index. Usually starts from `0` up to how many Teams are currently playing. Teams of one fighter each are created for solo matches.
   * `side` (`s`) - screen side this Team will be placed. `"l"` for left, `"r"` for right.
-  * `color` (`c`) - team color, in HEX format. Defaults to blue/green for left teams, red/orange for right teams.
-  * `multiplier` (`m`) - Passive Atribute multiplier for each Character in this team. Used when the number of Characters between teams are different. Teams with less Characters have higher multipliers. Defaults to 1.
-* `ft` (`f`) - first Team to reach this number of rounds won wins the match. Defaults to 2. In Team matches, defaults to 1.
+  * `color` (`c`) - team color, in HEX format. Defaults to blue/green for left-side teams, red/orange for right-side teams.
+  * `fighters` (`f`) - map of `Fighter` instances that belong to this team:
+    * `build` - `CharacterBuildResource` instance. The Build ID is used as the Fighter's map key.
+    * `ai` - `AiResource` instance that controls this Fighter. Will be `null` for input-controlled fighters.
+    * `rig` - `RigResource` used to render this Fighter on the client.
+    * `character` - `CharacterResource` instance. Used to give rewards.
+    * `active` (runtime only) - Fighter is currently active in a round.
+    * `attributes` - a map of computed Attributes from the build.
+    * `skills` - a map of computed Skills from the build.
+      * `skill` - `SkillResource` instance.
+      * `slot` - Skill Slot. This is used as the map key. Slots are usually named after input sequences, such as `"idle"`, `"walkF"`, `"236L"`, etc. Values for those slots are the computed skills themselves.
+      * `keyframes` - array of computed Skill Keyframes.
+    * `inputs` (runtime only) - an array of ordered `InputSequence` instances that the `Fighter` instance will listen to while receiving inputs. If a sequence is completed, it will fire the skill assigned to that sequence's slot.
+* `ft` - "first to". First Team to reach this number of round victories wins the match. May have different defaults depending on match type.
 * `time` (`t`) - time limit per round in seconds. Defaults to 99.
 * `rounds` (`r`) - an array of rounds:
-  * `number` (`n`) - the round number.
-  * `characterIds` (`ch`) - array of two Character IDs that started the round.
-  * `loser` (`l`) - Character ID that lost the round.
-  * `time` (`t`) - remaining time in seconds after the end of the round.
-* `winner` (`w`) - Team ID that won the match.
-* `ragequit` (`q`) - array of Character indexes that rage-quit'd the match. If all Characters in a Team ragequit or disconnect, the opposing Team is declared the winner.
-* `saved` (`s`) - `true` if replay information has been saved for this match and uploaded to the cloud.
+  * `number` (`n`) - the round number. Starts with 1.
+  * `time` (`t`) - remaining time in seconds.
+  * `started` (`s`) - UTC time the round started.
+  * `finished` (`f`) - `true` if the round has ended.
+  * `events` (`e`) - an array of client messages belonging to the round.
+* `active` (`a`) - `true` if the match is listening to player inputs.
+* `winner` (`w`) - Team index that won the match.
+* `ragequit` (`q`) - array of Fighter IDs that rage-quit'd the match. If all Characters in a Team ragequit or disconnect, the opposing Team is declared the winner.
+* `saved` (`s`) - `true` if replay information has been saved for this match and uploaded to the API.
 * `rewards` (`cr`) - an array of rewards given to each Character, including losers, after each round ends:
   * `round` (`r`) - Round number. Will be `null` for Match-wide rewards.
   * `characterId` (`ch`)
   * `currencyId` (`cr`)
   * `amount` (`v`) - amount can be negative (damage costs, etc).
-
-Runtime Properties:
-
-* `replay` - a large array of messages sent to the client over the course of the match. This data is used to save replay files in the cloud.
+* `training` - `true` if this is a training match. Training matches never end, and may be reused and altered while it's running.
 
 ## MechanicResource (`Mc`)
 
-This Resource refers to a single fighting game Mechanic, which can be unlocked by leveling up Core Skills.
+This Resource refers to a single fighting game Mechanic, which can be unlocked by leveling up Masteries.
 
 Properties:
 
 * `name` (`n`)
 * `description` (`d`)
-* `skillId` (`sk`) - ID of the Core Skill that unlocks the Mechanic.
-* `level` (`l`) - Skill Level required to unlock the Mechanic.
+* `skillId` (`sk`) - ID of the Mastery that unlocks this Mechanic.
+* `level` (`l`) - Mastery level required to unlock this Mechanic.
 
 ## PaletteResource (`Pal`)
 
@@ -288,15 +307,13 @@ Properties:
 
 Eyes and lighting effects can be changed by Skills. It works like this: if a Skill changes a character's eye colors (or lighting on their costumes), it will switch from `eye0` to `eye1`, and `light0` to `light1` So if you don't want the color to change, set the same color to both.
 
-## PlayerResource (`Pl`)
+## UserResource (`Usr`)
 
-This Resource represents a human Player. Commonly called "user".
+This Resource represents a human Player.
 
 Properties:
 
 * `handle` (`h`) - Player's username. It can only accept lowercase letters, numbers, and hyphen (only in the middle of the string). Cannot start with a number.
-* `characters` (`ch`) - a collection of `CharacterResource`s that belong to the Player.
-* `currencies` (`cr`) - a collection of `PlayerCurrencyResource` objects.
 
 ## CharacterBuildResource (`Bd`)
 
@@ -304,23 +321,25 @@ A Character Build holds personal information about a Character in a given time a
 
 A Character can have more than one Build (alternate personas, younger versions, builds for different games, etc).
 
-Everything that's related to gameplay is tied to a Build rather than a Character, so that different Builds can have completely different gameplay styles.
+Everything that's related to gameplay is tied to a Build rather than a Character, so that different Builds can have completely different gameplay styles while referring to the same Character.
 
 Properties:
 
 * `character` (`ch`)
 * `game` - `GameResource` this Build belongs to.
-* `level`
+* `level` (`lv`)
 * `shortName` (`sN`) - Character's nickname. This is the name that appears on the HUD (Health bar).
 * `fightingStyle` (`fs`) - the Fighting Style chosen upon Character creation.
-* `firstName` (`fN`) - Character's first name.
-* `middleNames` (`mN`) - Character's middle names.
-* `lastName` (`lN`) - Character's last name.
-* `gender` (`g`) - `"m"` (male), `"f"` (female), or `"n"` (not given)
-* `country` (`c`) - code of the Character'country of origin. May differ between Character Builds for alternate realities, etc.
+* `firstName` (`fN`) - Character's first name. `[1]`
+* `middleNames` (`mN`) - Character's middle names. `[1]`
+* `lastName` (`lN`) - Character's last name. `[1]`
+* `gender` (`g`) - `"m"` (male), `"f"` (female), or `"n"` (not given) `[1]`
+* `country` (`c`) - code of the Character's country of origin. May differ between Character Builds for alternate realities, etc. `[1]`
 * `bio` (`b`) - long text with brief character biography.
 * `date` (`dt`) - Date of bio. Determines character age. Used for flashback profiles, etc.
 * `pose` (`po`) - Pose to use in Fighter Select and other screens or pages.
+
+`[1]` these fields are optional, and may be filled if the build has a different name/gender from the Character itself.
 
 ## RigResource (`Rig`)
 
@@ -356,7 +375,7 @@ A Skill represents a fighting game move or technique.
 
 Properties:
 
-* `alias` (`as`) - normalized ID of the Skill. Used in Daily Practice, A.I., and other mechanics.
+* `alias` (`as`) - normalized ID of the Skill. Used in Daily Practice, AI, and other mechanics.
 * `name` (`n`) - name of the Skill.
 * `parent` (`par`) - ID of the parent Skill.
 * `minimumLevel` (`min`) - minimum level this Skill is usable. Usually 1 for Active Skills and 0 for Core Skills.
@@ -377,15 +396,15 @@ Properties:
 
 ## AiResource (`Ai`)
 
-This Resource holds a complete A.I. build needed for the CPU to control a Character.
+This Resource holds a complete AI build needed for the CPU to control a Character.
 
 Properties:
 
-* `profileId` (`pf`) - ID of the Profile this build belongs to.
+* `characterBuild` (`bd`) - CharacterBuild this AI build belongs to.
 * `name` (`n`) - name of the build.
 * `memory` (`m`) - list of `AiMemoryResource` objects containing memorized Skills and their timeouts.
-* `actions` (`a`) - list of `AiActionResource` objects containing the flow of the A.I. build.
-* `attributes` (`att`) - list of `AiAttribute` objects with the A.I. Attribute values for this build:
+* `actions` (`a`) - list of `AiActionResource` objects containing the flow of the AI build.
+* `attributes` (`att`) - list of `AiAttribute` objects with the AI Attribute values for this build:
   * `memory` (`m`)
   * `execution` (`e`)
   * `reaction` (`r`)
@@ -394,11 +413,11 @@ Properties:
 
 ## AiActionResource (`AiA`)
 
-This Resource holds a single A.I. Action for a Character.
+This Resource holds a single AI Action for a Character.
 
 Properties:
 
-* `aiId` (`ai`) - ID of the A.I. this action belongs to.
+* `aiId` (`ai`) - ID of the AI this action belongs to.
 * `priority` (`p`) - an arbitrary integer. Higher value means higher precedence. If two actions have the same priority, the one created first will take precedence. Defaults to zero.
 * `idle` (`i`) - when `true`, this action is cancellable into reactions (other actions with `skillId`). Mutually exclusive with `skillId`.
 * `chance` (`c`) - chance of activation as a float between 0 and 1, where 1 means 100% chance.
@@ -406,7 +425,7 @@ Properties:
 * `maxDistance` (`maD`) - maximum enemy distance for the action to activate, in centimeters. Defaults to full screen distance (value TBD).
 * `airborne` (`air`) - set to `true` to make this action only executable while the Character is in the air.
 * `aiMemoryId` (`aim`) - (optional) ID of the Memory with the Skill the enemy will execute that triggers this action. When present, the action will be flagged as "reaction". The Memory must be valid (not forgotten) for this reaction to be executable.
-* `inputSequenceId` (`in`) - input sequence to enter if action rolls successfully. Can be a single button/directional press or a complete sequence. The accuracy and speed of the entered sequence depends on the __Execution__ A.I. Attribute.
+* `inputSequenceId` (`in`) - input sequence to enter if action rolls successfully. Can be a single button/directional press or a complete sequence. The accuracy and speed of the entered sequence depends on the __Execution__ AI Attribute.
 * `nextActionId` (`n`) - instead of entering an input sequence, the successful activation of this action can reroute to another action. Mutually exclusive with `inputSequenceId`.
 
 ## AiMemoryResource (`AiM`)
@@ -415,7 +434,7 @@ This Resource holds a single memorized Skill that was used against a Character.
 
 Properties:
 
-* `aiId` (`ai`) - ID of the A.I. build this Memory belongs to.
+* `aiId` (`ai`) - ID of the AI build this Memory belongs to.
 * `skillId` (`sk`) - ID of the memorized Skill.
 * `date` (`dt`) - the date the Memory has been last updated.
 * `days` (`d`) - an integer that represents how many days it will take to forget the Skill.
@@ -432,7 +451,7 @@ A "Memory Refresh" occurs before the memory is used in a match, where the follow
 * `days` property is incremented by the value of `practice` property; and
 * `practice` property is then set to zero.
 
-The maximum allowed value of the `practice` property depends on the __Memory__ A.I. Attribute, as follows (tentative values and formulae):
+The maximum allowed value of the `practice` property depends on the __Memory__ AI Attribute, as follows (tentative values and formulae):
 
 * It has a base value of 2.
 * It's then incremented by the integer result of: `MemoryAttribute / 5`.

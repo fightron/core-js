@@ -1,4 +1,4 @@
-import { Game } from '../lib/Game'
+import { FightingGame } from '../games/FightingGame'
 
 // Demo scene imports (temporary)
 import items from '../data/items'
@@ -18,7 +18,7 @@ import handsRestedRight from '../data/poses/hands/rested-right'
 // Animations
 import testAnimation from '../test/fixtures/animations/test'
 
-export class DemoGame extends Game {
+export class DemoGame extends FightingGame {
   loadGlobals () {
     super.loadGlobals()
     for (var item of items) {

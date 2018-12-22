@@ -6,7 +6,8 @@ export class RigResource extends BaseResource {
   constructor () {
     super()
     this._type = 'Rig'
-    this.profileId = null
+    this.build = null
+    this.characterBuildId = null
     this.isRigResource = true // internal optimization
     this.skeleton = null
     this.items = new ArrayCollection(this)
@@ -18,7 +19,7 @@ export class RigResource extends BaseResource {
   patch (data, client) {
     if (!data) return
     super.patch(data)
-    this.profileId = data.pf
+    this.characterBuildId = data.bd
     var skeletonId = data.sl
     if (skeletonId) {
       this.skeleton = client.skeletons.find(skeletonId)
@@ -37,7 +38,7 @@ export class RigResource extends BaseResource {
   }
 
   free () {
-    this.profile = null
+    this.build = null
     this.skeleton = null
     this.items.free()
     this.items = null

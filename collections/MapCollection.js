@@ -6,12 +6,19 @@ export class MapCollection extends Map {
     this._free = false
   }
 
-  add (object, id) {
+  add (object, id, _source) {
     this.set(id || object.id, object)
   }
 
   find (id) {
     return this.get(id)
+  }
+
+  patch (/* array of record data */ data, clientOrGame) {
+    if (!data) return
+    for (var item of data) {
+      this.add(item, null, clientOrGame)
+    }
   }
 
   free () {

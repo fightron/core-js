@@ -1,19 +1,18 @@
-import { Base } from './Base'
-import { Counter } from './Counter'
+import { Base } from '../lib/Base'
+import { Counter } from '../lib/Counter'
 
-// Global collections are always loaded with every client instance.
+// Global collections are always loaded with every game instance.
 import skeletons from '../data/skeletons'
 import geometries from '../data/geometries'
 import schematics from '../data/schematics'
 
-export class Game extends Base {
+export class BaseGame extends Base {
   constructor (worker) {
     super()
     this.worker = worker
     this.counter = new Counter()
     this.counter.onChange = this.onFrame.bind(this)
-    this.user = null
-    this.match = null // current match
+    this.users = new Map() // users mapped by input ID
   }
 
   // Receives a message from the worker.

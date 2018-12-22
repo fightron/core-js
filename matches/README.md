@@ -124,9 +124,9 @@ Amount of rounds the team has won in the match.
 
 ## Class: `Fighter`
 
-### `fighter.profile`
+### `fighter.build`
 
-`ProfileResource` this fighter belongs to.
+`CharacterBuildResource` this fighter belongs to.
 
 ### `fighter.rig`
 

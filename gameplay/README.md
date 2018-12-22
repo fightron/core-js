@@ -2,18 +2,19 @@
 
 This namespace holds classes directly related to gameplay.
 
-## Match
+## Fighter
 
-A Match assembles two Teams of Characters to fight each other in a number of Rounds.
+`Fighter` is a runtime class for a `CharacterBuildResource`. It compiles meter and attribute values based on other attributes and enhancements.
 
-```javascript
-var character1 = new CharacterResource(/* ... */)
-var character2 = new CharacterResource(/* ... */)
+When a match is running, one `Fighter` instance is used for each participating character.
 
-var match = new Match(character1, character2)
+## Round
 
-match.rounds.next() // start next round
-```
+(TODO)
+
+## Team
+
+(TODO)
 
 ## Meter
 

@@ -356,9 +356,6 @@ export class Client extends Base {
   }
 
   onInput (handler, event) {
-    if (!this._worker) {
-      return
-    }
     this.send('i', handler.id, event)
   }
 
@@ -373,6 +370,7 @@ export class Client extends Base {
     this.disposeCollections()
     this.counter.free()
     this.fps.free()
+    this.commandFps.free()
     this.nextFrameFn = null
     this.camera = null
     this.render = null

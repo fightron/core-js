@@ -82,7 +82,7 @@ describe('resources/ItemResource', function () {
       var resource = new ItemResource()
       resource.free()
       expect(resource.parts).to.equal(null)
-      expect(resource.colors).to.equal(null)
+      expect(resource.color).to.equal(null)
     })
   })
 })
