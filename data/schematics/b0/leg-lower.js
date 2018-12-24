@@ -7,6 +7,7 @@ import {
 export default {
   id: 'b0-leg-lower',
   name: 'B0 - Leg (Lower)',
+  c: 'cyan',
   p: [
     {
       id: '0',
@@ -22,8 +23,7 @@ export default {
       },
       p: {
         y: -LEG_LOWER_HEIGHT / 2
-      },
-      c: 'cyan'
+      }
     }
   ]
 }

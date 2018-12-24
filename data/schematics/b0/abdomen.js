@@ -7,6 +7,7 @@ import {
 export default {
   id: 'b0-abdomen',
   name: 'B0 - Abdomen',
+  c: 'cyan',
   p: [
     {
       id: '0',
@@ -22,8 +23,7 @@ export default {
       },
       p: {
         y: ABDOMEN_HEIGHT / 2
-      },
-      c: 'cyan'
+      }
     }
   ]
 }

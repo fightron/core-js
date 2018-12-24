@@ -1,6 +1,7 @@
 export default {
   id: 'b1-hand-right',
   name: 'B1 - Hand (Right)',
+  c: 'yellow',
   p: [
     {
       id: '0',
@@ -8,8 +9,7 @@ export default {
       rI: 'b1-hand-right',
       cs: true,
       rs: true,
-      o: true,
-      c: 'yellow'
+      o: true
     }
   ]
 }

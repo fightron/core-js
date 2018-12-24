@@ -7,6 +7,7 @@ import {
 export default {
   id: 'b0-neck',
   name: 'B0 - Neck',
+  c: 'cyan',
   p: [
     {
       id: '0',
@@ -22,8 +23,7 @@ export default {
       },
       p: {
         y: NECK_HEIGHT / 2
-      },
-      c: 'cyan'
+      }
     }
   ]
 }

@@ -7,6 +7,7 @@ import {
 export default {
   id: 'b0-foot',
   name: 'B0 - Foot',
+  c: 'yellow',
   p: [
     {
       id: '0',
@@ -23,8 +24,7 @@ export default {
       p: {
         y: (-FOOT_HEIGHT) + (FOOT_HEIGHT / 4),
         z: (FOOT_DEPTH / 4)
-      },
-      c: 'yellow'
+      }
     }
   ]
 }

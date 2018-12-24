@@ -2,8 +2,7 @@ import { FightingGame } from '../games/FightingGame'
 
 // Demo scene imports (temporary)
 import items from '../data/items'
-import humanRig from '../test/fixtures/rigs/human'
-import b0items from '../test/fixtures/items/b0'
+import rigs from '../data/rigs'
 
 // Demo poses
 import lowerA from '../data/poses/lower/A'
@@ -24,25 +23,9 @@ export class DemoGame extends FightingGame {
     for (var item of items) {
       this.sendToClient('+', 'i', item)
     }
-    this.demo()
-  }
-
-  demo () {
-    createCharacter('1-2', this, 'red')
-    createCharacter('1-1', this, '#3366ff')
-
-    createCharacter('2-1', this, 'cyan')
-    createCharacter('2-2', this, '#ffcc00')
-
-    createCharacter('3-1', this, 'lime')
-    createCharacter('3-2', this, '#cc99ff')
-
-    createCharacter('4-1', this, 'yellow')
-    createCharacter('4-2', this, '#66ccff')
-
-    createCharacter('5-1', this, '#ffcc99')
-    createCharacter('5-2', this, '#ff00ff')
-
+    for (var rig of rigs) {
+      this.sendToClient('+', 'r', rig)
+    }
     this.sendToClient('+', 'po', lowerA)
     this.sendToClient('+', 'po', lowerAU1)
     this.sendToClient('+', 'po', lowerAD2)
@@ -53,71 +36,12 @@ export class DemoGame extends FightingGame {
     this.sendToClient('+', 'po', handsRestedRight)
 
     this.sendToClient('+', 'am', testAnimation)
+    this.sendToClient('p', 'proto-1', -120, 0, 0)
+    this.sendToClient('r', 'proto-1', null, Math.PI / 2)
+    this.sendToClient('p', 'jet-1', 120, 0, 0)
+    this.sendToClient('r', 'jet-1', null, -Math.PI / 2)
 
-    setTimeout(() => { this.sendToClient('am', '1-1', 'test-animation') }, 1000)
-    setTimeout(() => { this.sendToClient('am', '2-1', 'test-animation') }, 1200)
-    setTimeout(() => { this.sendToClient('am', '3-1', 'test-animation') }, 1400)
-    setTimeout(() => { this.sendToClient('am', '4-1', 'test-animation') }, 1600)
-    setTimeout(() => { this.sendToClient('am', '5-1', 'test-animation') }, 1800)
-
-    setTimeout(() => { this.sendToClient('am', '1-2', 'test-animation') }, 2000)
-    setTimeout(() => { this.sendToClient('am', '2-2', 'test-animation') }, 2200)
-    setTimeout(() => { this.sendToClient('am', '3-2', 'test-animation') }, 2400)
-    setTimeout(() => { this.sendToClient('am', '4-2', 'test-animation') }, 2600)
-    setTimeout(() => { this.sendToClient('am', '5-2', 'test-animation') }, 2800)
-
-    var pos = 80
-    var distance = 55
-
-    this.sendToClient('p', '1-1', -pos /* - distance */, 0, 0)
-    this.sendToClient('r', '1-1', null, Math.PI / 2)
-    this.sendToClient('p', '2-1', -pos - distance)
-    this.sendToClient('r', '2-1', null, Math.PI / 2)
-    this.sendToClient('p', '3-1', -pos - (distance * 2))
-    this.sendToClient('r', '3-1', null, Math.PI / 2)
-    this.sendToClient('p', '4-1', -pos - (distance * 3))
-    this.sendToClient('r', '4-1', null, Math.PI / 2)
-    this.sendToClient('p', '5-1', -pos - (distance * 4))
-    this.sendToClient('r', '5-1', null, Math.PI / 2)
-
-    this.sendToClient('p', '1-2', pos /* + distance */, 0, 0)
-    this.sendToClient('r', '1-2', null, -Math.PI / 2)
-
-    // this.sendToClient('p', '1-1', pos + distance, 0, 0)
-    // this.sendToClient('r', '1-1', null, -Math.PI / 2)
-
-    this.sendToClient('p', '2-2', pos + distance)
-    this.sendToClient('r', '2-2', null, -Math.PI / 2)
-    this.sendToClient('p', '3-2', pos + (distance * 2))
-    this.sendToClient('r', '3-2', null, -Math.PI / 2)
-    this.sendToClient('p', '4-2', pos + (distance * 3))
-    this.sendToClient('r', '4-2', null, -Math.PI / 2)
-    this.sendToClient('p', '5-2', pos + (distance * 4))
-    this.sendToClient('r', '5-2', null, -Math.PI / 2)
+    setTimeout(() => { this.sendToClient('am', 'proto-1', 'test-animation') }, 1000)
+    setTimeout(() => { this.sendToClient('am', 'jet-1', 'test-animation') }, 1000)
   }
-}
-
-function createCharacter (id, game, color) {
-  var item, rig, part
-  for (var b0item of b0items) {
-    item = JSON.parse(JSON.stringify(b0item)) // deep clone
-    item.id = `${id}-${item.id}`
-    if (color) {
-      if (item.p) {
-        for (part of item.p) {
-          part.c = color
-        }
-      } else {
-        item.p = [{ id: '0', c: color }]
-      }
-    }
-    game.sendToClient('+', 'i', item)
-  }
-
-  rig = JSON.parse(JSON.stringify(humanRig))
-  rig.id = id
-  for (var rigItem of rig.i) {
-    rigItem.id = `${id}-${rigItem.id}`
-  }
-  game.sendToClient('+', 'r', rig)
 }

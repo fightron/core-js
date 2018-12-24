@@ -7,6 +7,7 @@ import {
 export default {
   id: 'b0-leg-upper',
   name: 'B0 - Leg (Upper)',
+  c: 'blue',
   p: [
     {
       id: '0',
@@ -22,8 +23,7 @@ export default {
       },
       p: {
         y: -LEG_UPPER_HEIGHT / 2
-      },
-      c: 'blue'
+      }
     }
   ]
 }

@@ -1,6 +1,7 @@
 export default {
   id: 'b1-foot-right',
   name: 'B1 - Foot (Right)',
+  c: 'yellow',
   p: [
     {
       id: '0',
@@ -8,8 +9,7 @@ export default {
       rI: 'b1-foot-right',
       cs: true,
       rs: true,
-      o: true,
-      c: 'yellow'
+      o: true
     }
   ]
 }

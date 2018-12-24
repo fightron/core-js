@@ -7,6 +7,7 @@ import {
 export default {
   id: 'b0-chest',
   name: 'B0 - Chest',
+  c: 'magenta',
   p: [
     {
       id: '0',
@@ -22,8 +23,7 @@ export default {
       },
       p: {
         y: CHEST_HEIGHT / 2
-      },
-      c: 'magenta'
+      }
     }
   ]
 }

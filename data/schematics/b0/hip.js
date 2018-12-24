@@ -7,6 +7,7 @@ import {
 export default {
   id: 'b0-hip',
   name: 'B0 - Hip',
+  c: 'lime',
   p: [
     {
       id: '0',
@@ -22,8 +23,7 @@ export default {
       },
       p: {
         y: -HIP_HEIGHT / 2
-      },
-      c: 'lime'
+      }
     }
   ]
 }

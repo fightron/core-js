@@ -7,6 +7,7 @@ import {
 export default {
   id: 'b0-head',
   name: 'B0 - Head',
+  c: 'magenta',
   p: [
     {
       id: '0',
@@ -23,8 +24,7 @@ export default {
       p: {
         y: (HEAD_HEIGHT / 2) - 2,
         z: HEAD_DEPTH / 8
-      },
-      c: 'magenta'
+      }
     }
   ]
 }

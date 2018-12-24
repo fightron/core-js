@@ -7,6 +7,7 @@ import {
 export default {
   id: 'b0-arm-upper',
   name: 'B0 - Arm (Upper)',
+  c: 'blue',
   p: [
     {
       id: '0',
@@ -22,8 +23,7 @@ export default {
       },
       p: {
         y: -ARM_UPPER_HEIGHT / 2
-      },
-      c: 'blue'
+      }
     }
   ]
 }

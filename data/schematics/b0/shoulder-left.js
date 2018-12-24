@@ -7,6 +7,7 @@ import {
 export default {
   id: 'b0-shoulder-left',
   name: 'B0 - Shoulder (Left)',
+  c: 'cyan',
   p: [
     {
       id: '0',
@@ -22,8 +23,7 @@ export default {
       },
       p: {
         x: SHOULDER_WIDTH / 2
-      },
-      c: 'cyan'
+      }
     }
   ]
 }
