@@ -1,9 +1,9 @@
 import lights from './lights'
 import stages from './stages'
+import costumes from './costumes'
 
-var result = []
-
-result.push(...lights)
-result.push(...stages)
-
-export default result
+export default [
+  ...lights,
+  ...stages,
+  ...costumes
+]

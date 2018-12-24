@@ -1,0 +1,29 @@
+{
+  "id": "proto-1",
+  "sl": "h",
+  "i": [
+    { "id": "proto-1-head", "s": "H" },
+    { "id": "proto-1-neck", "s": "N" },
+    { "id": "proto-1-chest", "s": "C" },
+    { "id": "proto-1-stomach", "s": "S" },
+    { "id": "proto-1-abdomen", "s": "A" },
+    { "id": "proto-1-hip", "s": "W" },
+
+    { "id": "proto-1-shoulder-left", "s": "SL" },
+    { "id": "proto-1-shoulder-right", "s": "SR" },
+    { "id": "proto-1-arm-upper-left", "s": "AUL" },
+    { "id": "proto-1-arm-upper-right", "s": "AUR" },
+    { "id": "proto-1-arm-lower-left", "s": "ALL" },
+    { "id": "proto-1-arm-lower-right", "s": "ALR" },
+
+    { "id": "proto-1-hand-left", "s": "PL" },
+    { "id": "proto-1-hand-right", "s": "PR" },
+
+    { "id": "proto-1-leg-upper-left", "s": "LUL" },
+    { "id": "proto-1-leg-upper-right", "s": "LUR" },
+    { "id": "proto-1-leg-lower-left", "s": "LLL" },
+    { "id": "proto-1-leg-lower-right", "s": "LLR" },
+    { "id": "proto-1-foot-left", "s": "FL" },
+    { "id": "proto-1-foot-right", "s": "FR" }
+  ]
+}
