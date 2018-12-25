@@ -1,5 +1,5 @@
 export default {
-  id: 'hands-rested-left',
+  id: 'h-hands-rested-left',
   sl: 'h',
   r: [
     { id: 'TBL', y: -0.5 },

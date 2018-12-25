@@ -13,9 +13,8 @@ import testAnimation from '../fixtures/animations/test'
 
 // cannot import chai directly otherwise dirtyChai is lost in other projects
 import chai from '../../config/chai'
-import poseA from '../../data/poses/lower/A'
-import poseALow from '../../data/poses/lower/A-down-2'
-import poseAUp from '../../data/poses/lower/A-up-1'
+import poses from '../../data/poses'
+
 const expect = chai.expect
 
 behaves.like.a.Client = function (client) {
@@ -110,17 +109,16 @@ behaves.like.a.Client = function (client) {
 
           context('po', function () {
             before(function () {
-              this.client.command('+', 'po', poseA)
-              this.client.command('+', 'po', poseALow)
-              this.client.command('+', 'po', poseAUp)
-              this.pose = this.client.poses.find('lower-A')
+              for (var pose of poses) {
+                this.client.command('+', 'po', pose)
+              }
+              this.pose = this.client.poses.find('h-lower-A')
             })
 
             it('adds PoseResources to client.poses', function () {
               expect(this.pose).to.exist()
               expect(this.pose.isPoseResource).to.equal(true)
               expect(this.pose.rotations).to.have.length.above(1)
-              expect(this.client.poses.size).to.equal(3)
             })
           })
 

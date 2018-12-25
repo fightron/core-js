@@ -236,8 +236,12 @@ export class Client extends Base {
 
   collectionCommand (command, ...rest) {
     var [collectionId, data] = rest // TODO: optimize
-    if (!collectionId || !data || !data.id) {
-      console.warn('E-CL-CC-PAR', command, ...rest)
+    if (!collectionId) {
+      console.warn('E-CL-CC-ID', command, ...rest)
+      return
+    }
+    if (!data || !data.id) {
+      console.warn('E-CL-CC-DT', command, ...rest)
       return
     }
     var collection = this[collectionId]
