@@ -2,7 +2,7 @@ export default {
   id: 'h-lower-A',
   sl: 'h',
   r: [
-    { id: 'Cn', y: 99.5, p: true },
+    { id: 'Cn', y: 0.995, p: true },
     { id: 'A', y: -0.4 },
     { id: 'W', x: -0.2, y: -0.4, z: 0.01 },
     { id: 'LUL', x: -0.08, z: 0.2 },

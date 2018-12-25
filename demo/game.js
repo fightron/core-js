@@ -22,9 +22,9 @@ export class DemoGame extends FightingGame {
     }
     this.sendToClient('+', 'am', testAnimation)
 
-    this.sendToClient('p', 'proto-1', -120, 0, 0)
+    this.sendToClient('p', 'proto-1', -1.2, 0, 0)
     this.sendToClient('r', 'proto-1', null, Math.PI / 2)
-    this.sendToClient('p', 'jet-1', 120, 0, 0)
+    this.sendToClient('p', 'jet-1', 1.2, 0, 0)
     this.sendToClient('r', 'jet-1', null, -Math.PI / 2)
 
     setTimeout(() => { this.sendToClient('am', 'proto-1', 'test-animation') }, 1000)

@@ -3,7 +3,7 @@
 // - left +x, right -x
 // - front +z, back -z
 
-const EIGHT_HEADS = 180 // cm
+const EIGHT_HEADS = 1.80 // m
 
 const ONE_HEAD = EIGHT_HEADS / 8
 
@@ -14,8 +14,8 @@ export const HEAD_WIDTH = ONE_HEAD * 0.8
 export const HEAD_DEPTH = ONE_HEAD * 0.8
 
 export const NECK_HEIGHT = ONE_HEAD / 2
-export const NECK_WIDTH = 12
-export const NECK_DEPTH = 10
+export const NECK_WIDTH = 0.12
+export const NECK_DEPTH = 0.10
 
 export const CHEST_HEIGHT = ONE_HEAD / 2
 export const CHEST_WIDTH = ONE_HEAD * 1.6

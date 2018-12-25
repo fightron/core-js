@@ -6,8 +6,8 @@ var building = {
   cs: true,
   rs: true,
   o: true,
-  s: { x: 28, y: 240, z: 28 },
-  p: { x: -400, y: 295.7, z: -600 },
+  s: { x: 0.28, y: 2.40, z: 0.28 },
+  p: { x: -4, y: 2.95, z: -6 },
   r: { y: Math.PI / 4 },
   c: 'silver'
 }
@@ -29,20 +29,20 @@ export default {
       cs: false,
       rs: true,
       o: true,
-      s: { x: 1000, y: 10, z: 2000 },
-      p: { y: -20 },
+      s: { x: 10, y: 0.1, z: 20 },
+      p: { y: -0.20 },
       c: 'gray'
     },
-    Object.assign({}, building, { id: 'building05', p: { x: -500, y: 235.7, z: -600 } }),
-    Object.assign({}, building, { id: 'building10', p: { x: -400, y: 235.7, z: -600 } }),
-    Object.assign({}, building, { id: 'building15', p: { x: -300, y: 235.7, z: -600 } }),
-    Object.assign({}, building, { id: 'building20', p: { x: -200, y: 235.7, z: -600 } }),
-    Object.assign({}, building, { id: 'building25', p: { x: -100, y: 235.7, z: -600 } }),
-    Object.assign({}, building, { id: 'building30', p: { x: 0, y: 235.7, z: -600 } }),
-    Object.assign({}, building, { id: 'building35', p: { x: 100, y: 235.7, z: -600 } }),
-    Object.assign({}, building, { id: 'building40', p: { x: 200, y: 235.7, z: -600 } }),
-    Object.assign({}, building, { id: 'building45', p: { x: 300, y: 235.7, z: -600 } }),
-    Object.assign({}, building, { id: 'building50', p: { x: 400, y: 235.7, z: -600 } }),
-    Object.assign({}, building, { id: 'building55', p: { x: 500, y: 235.7, z: -600 } })
+    Object.assign({}, building, { id: 'building05', p: { x: -5, y: 2.357, z: -6 } }),
+    Object.assign({}, building, { id: 'building10', p: { x: -4, y: 2.357, z: -6 } }),
+    Object.assign({}, building, { id: 'building15', p: { x: -3, y: 2.357, z: -6 } }),
+    Object.assign({}, building, { id: 'building20', p: { x: -2, y: 2.357, z: -6 } }),
+    Object.assign({}, building, { id: 'building25', p: { x: -1, y: 2.357, z: -6 } }),
+    Object.assign({}, building, { id: 'building30', p: { x: 0, y: 2.357, z: -6 } }),
+    Object.assign({}, building, { id: 'building35', p: { x: 1, y: 2.357, z: -6 } }),
+    Object.assign({}, building, { id: 'building40', p: { x: 2, y: 2.357, z: -6 } }),
+    Object.assign({}, building, { id: 'building45', p: { x: 3, y: 2.357, z: -6 } }),
+    Object.assign({}, building, { id: 'building50', p: { x: 4, y: 2.357, z: -6 } }),
+    Object.assign({}, building, { id: 'building55', p: { x: 5, y: 2.357, z: -6 } })
   ]
 }

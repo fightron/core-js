@@ -22,7 +22,7 @@ export default {
         z: HEAD_DEPTH / 2
       },
       p: {
-        y: (HEAD_HEIGHT / 2) - 2,
+        y: (HEAD_HEIGHT / 2) - 0.02,
         z: HEAD_DEPTH / 8
       }
     }
