@@ -1,0 +1,29 @@
+{
+  "id": "tera-1",
+  "sl": "h",
+  "i": [
+    { "id": "tera-1-head", "s": "H" },
+    { "id": "tera-1-neck", "s": "N" },
+    { "id": "tera-1-chest", "s": "C" },
+    { "id": "tera-1-stomach", "s": "S" },
+    { "id": "tera-1-abdomen", "s": "A" },
+    { "id": "tera-1-hip", "s": "W" },
+
+    { "id": "tera-1-shoulder-left", "s": "SL" },
+    { "id": "tera-1-shoulder-right", "s": "SR" },
+    { "id": "tera-1-arm-upper-left", "s": "AUL" },
+    { "id": "tera-1-arm-upper-right", "s": "AUR" },
+    { "id": "tera-1-arm-lower-left", "s": "ALL" },
+    { "id": "tera-1-arm-lower-right", "s": "ALR" },
+
+    { "id": "tera-1-hand-left", "s": "PL" },
+    { "id": "tera-1-hand-right", "s": "PR" },
+
+    { "id": "tera-1-leg-upper-left", "s": "LUL" },
+    { "id": "tera-1-leg-upper-right", "s": "LUR" },
+    { "id": "tera-1-leg-lower-left", "s": "LLL" },
+    { "id": "tera-1-leg-lower-right", "s": "LLR" },
+    { "id": "tera-1-foot-left", "s": "FL" },
+    { "id": "tera-1-foot-right", "s": "FR" }
+  ]
+}

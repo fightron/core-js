@@ -1,0 +1,29 @@
+import {
+  ABDOMEN_HEIGHT,
+  ABDOMEN_WIDTH,
+  ABDOMEN_DEPTH
+} from '../../skeletons/human-constants'
+
+export default {
+  id: 'd0-abdomen',
+  name: 'D0 - Abdomen',
+  c: 'cyan',
+  p: [
+    {
+      id: '0',
+      rT: 'g',
+      rI: 'box',
+      cs: true,
+      rs: true,
+      o: true,
+      s: {
+        x: ABDOMEN_WIDTH / 2,
+        y: ABDOMEN_HEIGHT / 2,
+        z: ABDOMEN_DEPTH / 2
+      },
+      p: {
+        y: ABDOMEN_HEIGHT / 2
+      }
+    }
+  ]
+}

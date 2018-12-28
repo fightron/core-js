@@ -1,0 +1,9 @@
+{
+  "id": "tera-1-head",
+  "sch": "d0-head",
+  "c": "gold",
+  "p": [
+    {"id": "e1", "c": "white"},
+    {"id": "e2", "c": "white"}
+  ]
+}

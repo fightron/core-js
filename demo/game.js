@@ -1,4 +1,5 @@
 import { FightingGame } from '../games/FightingGame'
+import { DemoMatch } from './match'
 
 // Demo scene imports (temporary)
 import items from '../data/items'
@@ -9,6 +10,11 @@ import poses from '../data/poses'
 import testAnimation from '../test/fixtures/animations/test'
 
 export class DemoGame extends FightingGame {
+  constructor (worker) {
+    super(worker)
+    this.match = new DemoMatch(this)
+  }
+
   loadGlobals () {
     super.loadGlobals()
     for (var item of items) {
@@ -22,12 +28,15 @@ export class DemoGame extends FightingGame {
     }
     this.sendToClient('+', 'am', testAnimation)
 
-    this.sendToClient('p', 'proto-1', -1.2, 0, 0)
+    this.sendToClient('p', 'proto-1', -2.2, 0, 0)
     this.sendToClient('r', 'proto-1', null, Math.PI / 2)
-    this.sendToClient('p', 'jet-1', 1.2, 0, 0)
+    this.sendToClient('p', 'jet-1', 2.2, 0, 0)
     this.sendToClient('r', 'jet-1', null, -Math.PI / 2)
+
+    // this.sendToClient('r', 'tera-1', null, Math.PI / 2)
 
     setTimeout(() => { this.sendToClient('am', 'proto-1', 'test-animation') }, 1000)
     setTimeout(() => { this.sendToClient('am', 'jet-1', 'test-animation') }, 1000)
+    setTimeout(() => { this.sendToClient('am', 'tera-1', 'test-animation') }, 1000)
   }
 }
