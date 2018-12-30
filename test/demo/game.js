@@ -3,7 +3,8 @@ import { DemoGame } from '../../demo/game'
 
 describe('demo/game', function () {
   before(function () {
-    this.game = new DemoGame({})
+    this.game = new DemoGame({ postMessage: () => {} })
+    this.game.load()
   })
 
   it('exists', function () {

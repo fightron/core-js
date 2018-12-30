@@ -41,8 +41,21 @@ export class FightingMatch extends BaseMatch {
     return this._matchType
   }
 
+  compute () {
+    for (var fighter of this.fighters) {
+      fighter.compute()
+    }
+  }
+
+  sendToClient () {
+    for (var fighter of this.fighters) {
+      fighter.sendToClient()
+    }
+  }
+
   free () {
     this.freeCollections()
+    this.fighters = null
     super.free()
   }
 

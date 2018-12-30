@@ -19,6 +19,10 @@ export class BaseMatch extends Base {
     this.freeCounter()
     this.counter = new Counter()
 
+    // key = user ID, value = fighter/build ID
+    // used to capture inputs
+    this.users = new Map()
+
     // When the match is inactive, it is not accepting inputs.
     this.active = false
 

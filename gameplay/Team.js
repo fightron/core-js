@@ -8,6 +8,9 @@ export class Team extends Base {
       throw new Error('E-T-MT')
     }
     this.match = match
+    this.index = -1
+    this.color = 'white'
+    this.side = null
     this.fighters = new TeamFighterCollection(this)
   }
 }

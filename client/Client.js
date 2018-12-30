@@ -208,6 +208,10 @@ export class Client extends Base {
       this.setRigPose(item, ...rest)
       return
     }
+    if (command === 'v') {
+      this.setRenderableVisibility(renderable, ...rest)
+      return
+    }
     console.warn('E-CL-IM', command, itemId, rest)
   }
 
@@ -297,6 +301,10 @@ export class Client extends Base {
   }
 
   setRenderableRotation (renderable, x, y, z) {
+    // defined in subclasses
+  }
+
+  setRenderableVisibility (renderable, visible) {
     // defined in subclasses
   }
 
