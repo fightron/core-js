@@ -17,9 +17,9 @@ export default {
       rs: true,
       o: true,
       s: {
-        x: LEG_LOWER_WIDTH / 2.3,
+        x: LEG_LOWER_WIDTH / 1.9,
         y: LEG_LOWER_HEIGHT / 2,
-        z: LEG_LOWER_DEPTH / 2.3
+        z: LEG_LOWER_DEPTH / 1.9
       },
       p: {
         y: -LEG_LOWER_HEIGHT / 2

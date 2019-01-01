@@ -70,7 +70,7 @@ Properties:
 * `unlockable` (`u`) - `true` if this Schematic needs to be unlocked to be accessible by players in costume creation.
 * `parts` (`p`) - a collection of `SchematicPart` objects:
   * `id` - part ID.
-  * `resourceType` (`rT`) - possible values: `"g"` (geometry), `"p"` (point), `"l"` (light).
+  * `resourceType` (`rT`) - possible values: `"g"` (geometry), `"p"` (point), `"l"` (light), `"w"` (wire/line).
   * `resourceId` (`rI`) - part type ID. Example: when `type` is a geometry, this property holds the geometry ID.
   * `parent` (`par`) - parent part ID. First object is always "root". All other objects must have a parent.
   * `position` (`p`) - contains a `Vector3` object.
