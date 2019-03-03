@@ -1,7 +1,6 @@
 import {
   NECK_HEIGHT,
   CHEST_HEIGHT,
-  STOMACH_HEIGHT,
   ABDOMEN_HEIGHT,
   HIP_HEIGHT,
 
@@ -74,11 +73,8 @@ export default {
     /* Abdomen */
     { id: 'A', par: 'Cn' },
 
-    /* Stomach */
-    { id: 'S', par: 'A', p: { y: ABDOMEN_HEIGHT } },
-
     /* Chest */
-    { id: 'C', par: 'S', p: { y: STOMACH_HEIGHT } },
+    { id: 'C', par: 'A', p: { y: ABDOMEN_HEIGHT } },
 
     /* Neck */
     { id: 'N', par: 'C', p: { y: CHEST_HEIGHT } },

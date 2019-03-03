@@ -13,5 +13,6 @@ export class TeamFighterCollection extends MapCollection {
     fighter.positionX = 1.5 * fighter.orientation * -1 * (this.size + 1)
     super.add(fighter)
     team.match.fighters.push(fighter)
+    return fighter
   }
 }

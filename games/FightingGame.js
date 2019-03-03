@@ -15,6 +15,21 @@ export class FightingGame extends BaseGame {
     this.builds.patch(builds, this)
   }
 
+  inputCommand (inputId, event) {
+    var match = this.match
+    if (match) {
+      var user = this.users.get(inputId)
+      if (!user) {
+        console.log('Received Input without User', inputId, event)
+        return
+      }
+      match.input(user.id, event)
+    } else {
+      // No match registered
+      console.log('Input Command', inputId, event)
+    }
+  }
+
   free () {
     this.builds.free()
     this.characters.free()

@@ -5,7 +5,6 @@
     { "id": "proto-1-head", "s": "H" },
     { "id": "proto-1-neck", "s": "N" },
     { "id": "proto-1-chest", "s": "C" },
-    { "id": "proto-1-stomach", "s": "S" },
     { "id": "proto-1-abdomen", "s": "A" },
     { "id": "proto-1-hip", "s": "W" },
 

@@ -5,7 +5,6 @@
     { "id": "b0-head", "s": "H" },
     { "id": "b0-neck", "s": "N" },
     { "id": "b0-chest", "s": "C" },
-    { "id": "b0-stomach", "s": "S" },
     { "id": "b0-abdomen", "s": "A" },
     { "id": "b0-hip", "s": "W" },
 

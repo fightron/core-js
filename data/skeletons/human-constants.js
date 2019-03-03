@@ -17,17 +17,13 @@ export const NECK_HEIGHT = ONE_HEAD / 2
 export const NECK_WIDTH = 0.12
 export const NECK_DEPTH = 0.10
 
-export const CHEST_HEIGHT = ONE_HEAD / 2
+export const CHEST_HEIGHT = ONE_HEAD / 1
 export const CHEST_WIDTH = ONE_HEAD * 1.6
 export const CHEST_DEPTH = ONE_HEAD * 0.6
 
-export const STOMACH_HEIGHT = ONE_HEAD / 2
-export const STOMACH_WIDTH = CHEST_WIDTH * 0.95
-export const STOMACH_DEPTH = CHEST_DEPTH * 0.9
-
 export const ABDOMEN_HEIGHT = ONE_HEAD / 2
 export const ABDOMEN_WIDTH = ONE_HEAD * 0.8
-export const ABDOMEN_DEPTH = STOMACH_DEPTH * 0.7
+export const ABDOMEN_DEPTH = CHEST_DEPTH * 0.8
 
 export const HIP_HEIGHT = ONE_HEAD / 2
 export const HIP_WIDTH = ONE_HEAD * 1.4
@@ -36,7 +32,7 @@ export const HIP_DEPTH = ONE_HEAD * 0.5
 // Arms
 
 export const SHOULDER_DEPTH = CHEST_DEPTH * 0.8
-export const SHOULDER_HEIGHT = CHEST_HEIGHT
+export const SHOULDER_HEIGHT = CHEST_HEIGHT / 2
 export const SHOULDER_WIDTH = SHOULDER_DEPTH
 export const SHOULDER_OFFSET_X = CHEST_WIDTH / 2
 export const SHOULDER_OFFSET_Y = CHEST_HEIGHT - (SHOULDER_HEIGHT / 2)

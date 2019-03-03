@@ -15,6 +15,6 @@ describe('data/skeletons/human', function () {
   })
 
   it('has all bones', function () {
-    expect(this.resource.bones).to.have.length(54)
+    expect(this.resource.bones).to.have.length(53)
   })
 })

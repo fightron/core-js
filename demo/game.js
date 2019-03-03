@@ -10,6 +10,8 @@ import testAnimation from '../test/fixtures/animations/test'
 export class DemoGame extends FightingGame {
   constructor (worker) {
     super(worker)
+    this.users.set('K', { id: 'P1' })
+    this.users.set('N', { id: 'P2' })
     this.match = null
   }
 

@@ -1,7 +1,6 @@
 import head from './head'
 import neck from './neck'
 import chest from './chest'
-import stomach from './stomach'
 import abdomen from './abdomen'
 import hip from './hip'
 
@@ -18,7 +17,6 @@ export default [
   head,
   neck,
   chest,
-  stomach,
   abdomen,
   hip,
 

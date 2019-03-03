@@ -22,6 +22,10 @@ export class FightingMatch extends BaseMatch {
     this.fighters = []
   }
 
+  input (userId, event) {
+    console.log('[Match] Received input from', userId, event)
+  }
+
   set type (value) {
     if (value === 'v') {
       this._matchType = value
