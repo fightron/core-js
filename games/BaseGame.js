@@ -14,8 +14,10 @@ export class BaseGame extends Base {
     this.worker = worker
     this.counter = new Counter()
     this.counter.onChange = this.onFrame.bind(this)
-    this.users = new Map() // users mapped by input ID
-    this.characters = new MapCollection()
+    this.characters = new MapCollection(this)
+
+    // users mapped by input ID
+    this.users = new Map()
   }
 
   // Receives a message from the worker.

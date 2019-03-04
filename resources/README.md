@@ -378,11 +378,32 @@ Properties:
 * `alias` (`as`) - normalized ID of the Skill. Used in Daily Practice, AI, and other mechanics.
 * `name` (`n`) - name of the Skill.
 * `parent` (`par`) - ID of the parent Skill.
-* `minimumLevel` (`min`) - minimum level this Skill is usable. Usually 1 for Active Skills and 0 for Core Skills.
+* `minimumLevel` (`min`) - minimum level this Skill is usable. Usually 1 for Active Skills and 0 for Masteries.
 * `maximumLevel` (`max`) - maximum level of the Skill. Defaults to 10.
 * `fightingStyleIds` (`fs`) - an array of Fighting Style IDs that Characters need to belong to, to be able to use this Skill.
 * `keyframes` (`k`) - a collection of `SkillKeyframe` objects with information about animations, hitboxes, positioning, and other details.
-* `flags` (`fl`) - an array of allowed Skill Flags and their penalties for this particular Skill.
+  * `frame` (`f`) - frame number where this keyframe becomes active. First frame is 1, not 0.
+  * `animation` (`am`) - Animation to execute at this keyframe.
+  * `flagAdd` (`flA`) - array of flags to add to `skill.flags`.
+  * `flagRemove` (`flR`) - array of flags to remove from `skill.flags`.
+  * `moveForward` (`mF`) - move Character forward by this amount when this keyframe is reached. Can be negative (move back).
+  * `moveUpward` (`mU`) - move Character upward by this amount when this keyframe is reached. Can be negative (move down).
+  * `boxes` (`b`) - array of collision box definitions to apply to the character:
+    * `id` - ID of the collision box:
+      * `o1/2/3` - hitbox (outgoing)
+      * `i1/2/3` - hurtbox (incoming)
+      * `s` - space box - for pass-thru mechanics
+      * `t` - throwable box
+      * `ap` - attack proximity box - causes the enemy to block if they're holding back
+    * `active` (`a`) - boolean to activate/deactivate the collision box.
+    * `x`/`y` - collision box position.
+    * `width`/`height` (`w`/`h`) - collision box size.
+    * `onHit` - Skill ID to execute on hit. Can be null.
+    * `onBlock` - Skill ID to execute on block. Can be null.
+* `loop` (`l`) - when `false`, will try to `idle` when this Skill finishes. Otherwise it will keep looping until an external condition cancels it.
+* `cancelOnGround` (`cG`) - when `true` and Character reaches the ground (positionY = 0), this Skill will be cancelled and whatever Skill is slotted as "landed" will be executed. Used for things like diving attacks.
+* `flags` (`fl`) - an array of initial flags for this Skill.
+* `one` - one frame mode. Skill has only one frame. If `loop` is true, the first frame will not be reapplied.
 
 ## SkillSkin (`Ss`)
 

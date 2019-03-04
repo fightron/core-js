@@ -13,4 +13,11 @@ export class Team extends Base {
     this.side = null
     this.fighters = new TeamFighterCollection(this)
   }
+
+  compute () {
+    // TODO: optimize
+    for (var fighter of this.fighters.values()) {
+      fighter.compute()
+    }
+  }
 }

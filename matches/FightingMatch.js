@@ -19,11 +19,18 @@ export class FightingMatch extends BaseMatch {
     // g = team tag
     // r = royale
     this.type = 'v'
-    this.fighters = []
+
+    // Fighters mapped by UserID.
+    this.fightersByUserID = new Map()
   }
 
   input (userId, event) {
-    console.log('[Match] Received input from', userId, event)
+    var fighter = this.fightersByUserID.get(userId)
+    if (fighter) {
+      fighter.input(event)
+      return
+    }
+    console.warn('[Match] Received input without Fighter from', userId, event)
   }
 
   set type (value) {
@@ -46,14 +53,26 @@ export class FightingMatch extends BaseMatch {
   }
 
   compute () {
-    for (var fighter of this.fighters) {
-      fighter.compute()
+    for (var team of this.teams) {
+      team.compute()
     }
   }
 
   sendToClient () {
-    for (var fighter of this.fighters) {
-      fighter.sendToClient()
+    var game = this.game
+    var team
+    var fighter
+    var rig
+    for (team of this.teams) {
+      for (fighter of team.fighters.values()) {
+        rig = fighter.rigData
+        game.sendToClient('+', 'r', rig)
+        game.sendToClient('v', rig.id, false)
+        game.sendToClient('p', rig.id, fighter.x, fighter.y)
+        game.sendToClient('r', rig.id, null, (fighter.orientation === 1) ? Math.PI / 2 : -Math.PI / 2)
+        game.sendToClient('am', rig.id, 'test-animation')
+        game.sendToClient('v', rig.id, true)
+      }
     }
   }
 

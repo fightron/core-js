@@ -47,6 +47,10 @@ export class BaseMatch extends Base {
     // Load from _resource
   }
 
+  input (_userId, _event) {
+    // overwrite in subclasses
+  }
+
   free () {
     this.game = null
     this.resource = null

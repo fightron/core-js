@@ -12,14 +12,14 @@ import jetRig from '../data/rigs/npcs/jet-1'
 
 export class DemoMatch extends FightingMatch {
   load () {
+    var userK = this.game.users.get('K') // keyboard user
+    var userN = this.game.users.get('N') // numpad user
     var teams = this.teams
     var teamL = teams.create()
     var teamR = teams.create()
-    var proto = teamL.fighters.create(protoBuild, protoRig)
-    var jet = teamR.fighters.create(jetBuild, jetRig)
+    teamL.fighters.create(protoBuild, protoRig, userK)
+    teamR.fighters.create(jetBuild, jetRig, userN)
     // teamL.fighters.create(teraBuild, teraRig)
-    proto.user = this.game.users.get('K')
-    jet.user = this.game.users.get('N')
     this.compute()
     this.sendToClient()
   }
