@@ -1,4 +1,4 @@
-import { Base } from '../lib/Base'
+import { Base } from '@fightron/utils/Base'
 import { TeamFighterCollection } from '../collections/TeamFighterCollection'
 
 export class Team extends Base {

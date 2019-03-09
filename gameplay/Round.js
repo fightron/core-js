@@ -1,4 +1,4 @@
-import { Base } from '../lib/Base'
+import { Base } from '@fightron/utils/Base'
 
 export class Round extends Base {
   constructor (match) {

@@ -1,5 +1,5 @@
-import { Base } from '../lib/Base'
-import { Counter } from '../lib/Counter'
+import { Base } from '@fightron/utils/Base'
+import { Counter } from '@fightron/utils/Counter'
 
 // This is a runtime representation of a MatchResource.
 export class BaseMatch extends Base {

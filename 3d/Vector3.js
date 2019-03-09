@@ -1,4 +1,4 @@
-import { Base } from '../lib/Base'
+import { Base } from '@fightron/utils/Base'
 
 export class Vector3 extends Base {
   constructor (x, y, z) {

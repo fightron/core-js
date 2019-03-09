@@ -1,7 +1,7 @@
 'use strict'
 
-import { Base } from '../lib/Base'
-import { Counter } from '../lib/Counter'
+import { Base } from '@fightron/utils/Base'
+import { Counter } from '@fightron/utils/Counter'
 import { Fps } from '../lib/Fps'
 import { ClientCollection } from '../collections/ClientCollection'
 import { ItemCollection } from '../collections/ItemCollection'

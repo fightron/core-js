@@ -1,5 +1,5 @@
 import sha256 from 'crypto-js/sha256'
-import { Base } from '../lib/Base'
+import { Base } from '@fightron/utils/Base'
 
 export class BaseResource extends Base {
   constructor () {

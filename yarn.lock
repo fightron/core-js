@@ -90,6 +90,10 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
+"@fightron/utils@github:pauloddr/fightron-utils":
+  version "0.1.0"
+  resolved "https://codeload.github.com/pauloddr/fightron-utils/tar.gz/410f66816fe1de36c455c23828bf614f8bac42b5"
+
 "aa-rectangle-javascript@github:pauloddr/aa-rectangle-javascript":
   version "0.1.1"
   resolved "https://codeload.github.com/pauloddr/aa-rectangle-javascript/tar.gz/6d37fa81e56880f0f80d0cbcfc4088a37146778a"

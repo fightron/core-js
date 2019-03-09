@@ -1,4 +1,4 @@
-import { Base } from '../lib/Base'
+import { Base } from '@fightron/utils/Base'
 import { FighterMeterCollection } from '../collections/FighterMeterCollection'
 import { CharacterBuildResource } from '../resources/CharacterBuildResource'
 import { FighterCollision } from './FighterCollision'

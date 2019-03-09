@@ -1,5 +1,5 @@
-import { Base } from '../lib/Base'
-import { Counter } from '../lib/Counter'
+import { Base } from '@fightron/utils/Base'
+import { Counter } from '@fightron/utils/Counter'
 import { MapCollection } from '../collections/MapCollection'
 
 // Global collections are always loaded with every game instance.
