@@ -7,4 +7,4 @@ export default {
   fs: 'km',
   el: 'sd',
   f: 'r'
-}
+};

@@ -1,5 +1,5 @@
-import human from './human'
+import human from './human';
 
 export default [
   ...human
-]
+];

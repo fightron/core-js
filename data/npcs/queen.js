@@ -6,4 +6,4 @@ export default {
   fN: 'Miranda',
   lN: 'Cai',
   g: 'f'
-}
+};

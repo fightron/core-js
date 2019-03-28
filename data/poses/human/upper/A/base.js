@@ -12,4 +12,4 @@ export default {
     { id: 'PL', x: 0.1, z: 0 },
     { id: 'PR', x: 0.1, z: -0.2 }
   ]
-}
+};

@@ -4,4 +4,4 @@ export default {
   sl: 'h',
   fN: 'Shui',
   g: 'm'
-}
+};

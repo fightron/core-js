@@ -2,7 +2,7 @@ import {
   HEAD_HEIGHT,
   HEAD_WIDTH,
   HEAD_DEPTH
-} from '../../skeletons/human-constants'
+} from '../../skeletons/human-constants';
 
 export default {
   id: 'b0-head',
@@ -27,4 +27,4 @@ export default {
       }
     }
   ]
-}
+};

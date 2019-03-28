@@ -1,9 +1,9 @@
 /* eslint-env worker */
 
-import { DemoGame } from '../demo/game'
+import { DemoGame } from '../demo/game';
 
-var game = new DemoGame(self)
+var game = new DemoGame(self);
 
-self.addEventListener('message', game.onMessage.bind(game))
+self.addEventListener('message', game.onMessage.bind(game));
 
 // TODO: onTerminate?

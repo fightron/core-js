@@ -7,4 +7,4 @@ export default {
   fs: 'ns',
   el: 'lt',
   f: 'a'
-}
+};

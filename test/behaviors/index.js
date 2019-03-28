@@ -1,4 +1,4 @@
-var behaves = require('./namespace')
-module.exports = behaves
+var behaves = require('./namespace');
+module.exports = behaves;
 
-require('./Client')
+require('./Client');

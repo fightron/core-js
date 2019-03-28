@@ -1,11 +1,11 @@
-var WIDTH = 15
-var HEIGHT = 5
-var DEPTH = 6
-var GUTTER = 2
-var ZERO = 0.01 // above ground level
-var D90 = Math.PI / 2 // 90 degrees
-var C1 = '#AAAAAA'
-var C2 = '#666666'
+var WIDTH = 15;
+var HEIGHT = 5;
+var DEPTH = 6;
+var GUTTER = 2;
+var ZERO = 0.01; // above ground level
+var D90 = Math.PI / 2; // 90 degrees
+var C1 = '#AAAAAA';
+var C2 = '#666666';
 
 var trainingCube = {
   id: 'training-cube',
@@ -53,25 +53,25 @@ var trainingCube = {
     { id: 'b7', par: 'r', rT: 'w', s: { x: HEIGHT }, p: { y: HEIGHT, z: DEPTH - ZERO, x: WIDTH - ZERO }, r: { y: D90, x: D90 }, c: 'white' }
 
   ]
-}
+};
 
 // ground grid
-var i
+var i;
 for (i = 1; i < HEIGHT - 1; ++i) {
   trainingCube.p.push({
     id: `g${i}`, par: 'r', rT: 'w', s: { x: WIDTH - GUTTER }, p: { y: ZERO / 2, z: i }, c: C2
-  })
+  });
   trainingCube.p.push({
     id: `g${i}`, par: 'r', rT: 'w', s: { x: WIDTH - GUTTER }, p: { y: ZERO / 2, z: -i }, c: C2
-  })
+  });
 }
 for (i = 1; i < WIDTH - GUTTER; ++i) {
   trainingCube.p.push({
     id: `g${i}`, par: 'r', rT: 'w', s: { x: DEPTH - GUTTER }, p: { y: ZERO / 2, x: i }, r: { y: D90 }, c: C2
-  })
+  });
   trainingCube.p.push({
     id: `g${i}`, par: 'r', rT: 'w', s: { x: DEPTH - GUTTER }, p: { y: ZERO / 2, x: -i }, r: { y: D90 }, c: C2
-  })
+  });
 }
 
-export default trainingCube
+export default trainingCube;

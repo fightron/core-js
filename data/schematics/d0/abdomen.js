@@ -2,7 +2,7 @@ import {
   ABDOMEN_HEIGHT,
   ABDOMEN_WIDTH,
   ABDOMEN_DEPTH
-} from '../../skeletons/human-constants'
+} from '../../skeletons/human-constants';
 
 export default {
   id: 'd0-abdomen',
@@ -26,4 +26,4 @@ export default {
       }
     }
   ]
-}
+};

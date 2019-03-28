@@ -2,7 +2,7 @@ import {
   FOOT_HEIGHT,
   FOOT_WIDTH,
   FOOT_DEPTH
-} from '../../skeletons/human-constants'
+} from '../../skeletons/human-constants';
 
 export default {
   id: 'd0-foot',
@@ -27,4 +27,4 @@ export default {
       }
     }
   ]
-}
+};

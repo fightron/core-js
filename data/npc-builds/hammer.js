@@ -7,4 +7,4 @@ export default {
   fs: 'wr',
   el: 'ea',
   f: 'e'
-}
+};

@@ -7,4 +7,4 @@ export default {
   fs: 'mt',
   el: 'fr',
   f: 'r'
-}
+};

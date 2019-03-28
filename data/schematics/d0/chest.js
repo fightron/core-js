@@ -2,7 +2,7 @@ import {
   CHEST_HEIGHT,
   CHEST_WIDTH,
   CHEST_DEPTH
-} from '../../skeletons/human-constants'
+} from '../../skeletons/human-constants';
 
 export default {
   id: 'd0-chest',
@@ -29,4 +29,4 @@ export default {
       }
     }
   ]
-}
+};

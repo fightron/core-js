@@ -38,7 +38,7 @@ import {
   PINKY_OFFSET_X,
   PINKY_BASE_HEIGHT,
   PINKY_MID_HEIGHT
-} from './human-constants'
+} from './human-constants';
 
 export default {
   id: 'h',
@@ -139,4 +139,4 @@ export default {
     { id: 'PMR', par: 'PBR', p: { y: -PINKY_BASE_HEIGHT } },
     { id: 'PTR', par: 'PMR', p: { y: -PINKY_MID_HEIGHT } }
   ]
-}
+};

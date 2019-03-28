@@ -1,17 +1,17 @@
-import { BaseResource } from './BaseResource'
+import { BaseResource } from './BaseResource';
 
 export class CharacterResource extends BaseResource {
   constructor () {
-    super()
-    this._type = 'Ch'
-    this.isCharacterResource = true // internal optimization
-    this.skeleton = null
+    super();
+    this._type = 'Ch';
+    this.isCharacterResource = true; // internal optimization
+    this.skeleton = null;
   }
 
   free () {
     // this.freeMeters()
     // this.freeAttributes()
-    this.skeleton = null
-    super.free()
+    this.skeleton = null;
+    super.free();
   }
 }

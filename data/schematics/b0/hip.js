@@ -2,7 +2,7 @@ import {
   HIP_HEIGHT,
   HIP_WIDTH,
   HIP_DEPTH
-} from '../../skeletons/human-constants'
+} from '../../skeletons/human-constants';
 
 export default {
   id: 'b0-hip',
@@ -26,4 +26,4 @@ export default {
       }
     }
   ]
-}
+};

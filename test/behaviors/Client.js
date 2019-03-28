@@ -1,143 +1,143 @@
-'use strict'
+'use strict';
 
-import { behaves } from './namespace'
+import { behaves } from './namespace';
 
-import humanSkeleton from '../../data/skeletons/human'
-import triangleGeometry from '../fixtures/geometries/triangle'
-import threeTrianglesSchematic from '../fixtures/schematics/three-triangles'
-import oneTriangleSchematic from '../fixtures/schematics/one-triangle'
-import threeTrianglesItem from '../fixtures/items/three-triangles'
-import oneTriangleItem from '../fixtures/items/one-triangle'
-import triangleHumanRig from '../fixtures/rigs/triangle-human'
-import testAnimation from '../fixtures/animations/test'
+import humanSkeleton from '../../data/skeletons/human';
+import triangleGeometry from '../fixtures/geometries/triangle';
+import threeTrianglesSchematic from '../fixtures/schematics/three-triangles';
+import oneTriangleSchematic from '../fixtures/schematics/one-triangle';
+import threeTrianglesItem from '../fixtures/items/three-triangles';
+import oneTriangleItem from '../fixtures/items/one-triangle';
+import triangleHumanRig from '../fixtures/rigs/triangle-human';
+import testAnimation from '../fixtures/animations/test';
 
 // cannot import chai directly otherwise dirtyChai is lost in other projects
-import chai from '../../config/chai'
-import poses from '../../data/poses'
+import chai from '../../config/chai';
+import poses from '../../data/poses';
 
-const expect = chai.expect
+const expect = chai.expect;
 
 behaves.like.a.Client = function (client) {
   describe('instance', function () {
     before(function () {
-      this.client = client
-    })
+      this.client = client;
+    });
 
     it('is a Client', function () {
-      expect(this.client.isClient).to.equal(true)
-    })
+      expect(this.client.isClient).to.equal(true);
+    });
 
     it('has a counter', function () {
-      expect(this.client.counter).to.exist()
-    })
+      expect(this.client.counter).to.exist();
+    });
 
     describe('#receive', function () {
       context('collection command', function () {
         describe('+', function () {
           context('g', function () {
             before(function () {
-              this.client.command('+', 'g', triangleGeometry)
-              this.geometry = this.client.geometries.find('triangle')
-            })
+              this.client.command('+', 'g', triangleGeometry);
+              this.geometry = this.client.geometries.find('triangle');
+            });
 
             it('adds a GeometryResource to client.geometries', function () {
-              expect(this.geometry).to.exist()
-              expect(this.geometry.isGeometryResource).to.equal(true)
-              expect(this.geometry.vertices).to.have.length(4)
-              expect(this.geometry.faces).to.have.length(4)
-            })
-          })
+              expect(this.geometry).to.exist();
+              expect(this.geometry.isGeometryResource).to.equal(true);
+              expect(this.geometry.vertices).to.have.length(4);
+              expect(this.geometry.faces).to.have.length(4);
+            });
+          });
 
           context('s', function () {
             before(function () {
-              this.client.command('+', 's', threeTrianglesSchematic)
-              this.client.command('+', 's', oneTriangleSchematic)
-              this.schematic = this.client.schematics.find('three-triangles')
-            })
+              this.client.command('+', 's', threeTrianglesSchematic);
+              this.client.command('+', 's', oneTriangleSchematic);
+              this.schematic = this.client.schematics.find('three-triangles');
+            });
 
             it('adds a SchematicResource to client.schematics', function () {
-              expect(this.schematic).to.exist()
-              expect(this.schematic.isSchematicResource).to.equal(true)
-              expect(this.schematic.parts).to.have.length(5)
-            })
-          })
+              expect(this.schematic).to.exist();
+              expect(this.schematic.isSchematicResource).to.equal(true);
+              expect(this.schematic.parts).to.have.length(5);
+            });
+          });
 
           context('i', function () {
             before(function () {
-              this.client.command('+', 'i', threeTrianglesItem)
-              this.client.command('+', 'i', oneTriangleItem)
-              this.item = this.client.items.find('three-triangles')
-            })
+              this.client.command('+', 'i', threeTrianglesItem);
+              this.client.command('+', 'i', oneTriangleItem);
+              this.item = this.client.items.find('three-triangles');
+            });
 
             it('adds a ItemResource to client.items', function () {
-              expect(this.item).to.exist()
-              expect(this.item.isItemResource).to.equal(true)
-              expect(this.item.parts).to.have.length(5)
-            })
-          })
+              expect(this.item).to.exist();
+              expect(this.item.isItemResource).to.equal(true);
+              expect(this.item.parts).to.have.length(5);
+            });
+          });
 
           context('sl', function () {
             before(function () {
-              this.client.command('+', 'sl', humanSkeleton)
-              this.skeleton = this.client.skeletons.find('h')
-            })
+              this.client.command('+', 'sl', humanSkeleton);
+              this.skeleton = this.client.skeletons.find('h');
+            });
 
             it('adds a SkeletonResource to client.skeletons', function () {
-              expect(this.skeleton).to.exist()
-              expect(this.skeleton.id).to.equal('h')
-            })
-          })
+              expect(this.skeleton).to.exist();
+              expect(this.skeleton.id).to.equal('h');
+            });
+          });
 
           context('r', function () {
             before(function () {
-              this.client.command('+', 'r', triangleHumanRig)
-              this.rig = this.client.rigs.find('triangle-human')
-            })
+              this.client.command('+', 'r', triangleHumanRig);
+              this.rig = this.client.rigs.find('triangle-human');
+            });
 
             it('adds a RigResource to client.rigs', function () {
-              expect(this.rig).to.exist()
-              expect(this.rig.isRigResource).to.equal(true)
-              expect(this.rig.items).to.have.length(1)
-            })
+              expect(this.rig).to.exist();
+              expect(this.rig.isRigResource).to.equal(true);
+              expect(this.rig.items).to.have.length(1);
+            });
 
             it('assigns correct item references', function () {
-              expect(this.rig.skeleton).to.equal(this.client.skeletons.find('h'))
-              expect(this.rig.items[0].item).to.equal(this.client.items.find('one-triangle'))
-              expect(this.rig.items[0].slot).to.equal('H')
-            })
-          })
+              expect(this.rig.skeleton).to.equal(this.client.skeletons.find('h'));
+              expect(this.rig.items[0].item).to.equal(this.client.items.find('one-triangle'));
+              expect(this.rig.items[0].slot).to.equal('H');
+            });
+          });
 
           context('po', function () {
             before(function () {
               for (var pose of poses) {
-                this.client.command('+', 'po', pose)
+                this.client.command('+', 'po', pose);
               }
-              this.pose = this.client.poses.find('h-lower-A')
-            })
+              this.pose = this.client.poses.find('h-lower-A');
+            });
 
             it('adds PoseResources to client.poses', function () {
-              expect(this.pose).to.exist()
-              expect(this.pose.isPoseResource).to.equal(true)
-              expect(this.pose.rotations).to.have.length.above(1)
-            })
-          })
+              expect(this.pose).to.exist();
+              expect(this.pose.isPoseResource).to.equal(true);
+              expect(this.pose.rotations).to.have.length.above(1);
+            });
+          });
 
           context('am', function () {
             before(function () {
-              this.client.command('+', 'am', testAnimation)
-              this.animation = this.client.animations.find('test-animation')
-            })
+              this.client.command('+', 'am', testAnimation);
+              this.animation = this.client.animations.find('test-animation');
+            });
 
             it('adds an AnimationResource to client.animations', function () {
-              expect(this.animation).to.exist()
-              expect(this.animation.isAnimationResource).to.equal(true)
-            })
+              expect(this.animation).to.exist();
+              expect(this.animation.isAnimationResource).to.equal(true);
+            });
 
             it('parses Animation correctly', function () {
-              expect(this.animation.keyframes.size).to.equal(4)
-              expect(this.animation.keyframes.get(1).pose.isPoseResource).to.equal(true) // merged pose
-            })
-          })
+              expect(this.animation.keyframes.size).to.equal(4);
+              expect(this.animation.keyframes.get(1).pose.isPoseResource).to.equal(true); // merged pose
+            });
+          });
 
           // before(function () {
           //   this.client.command('+', 'i', threeTrianglesSchematic)
@@ -171,8 +171,8 @@ behaves.like.a.Client = function (client) {
           //     expect(this.item.parts['item-1-2'].children[0].name).to.equal('item-1-3')
           //   })
           // })
-        })
-      })
+        });
+      });
 
       // context('item-altering command', function () {
       //   describe('p', function () {
@@ -345,8 +345,8 @@ behaves.like.a.Client = function (client) {
       //     })
       //   })
       // })
-    })
-  })
-}
+    });
+  });
+};
 
-exports.behaves = behaves
+exports.behaves = behaves;

@@ -14,4 +14,4 @@ export default {
     { id: 'TL', x: 0.0 },
     { id: 'TR', x: -0.5 }
   ]
-}
+};

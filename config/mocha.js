@@ -1,1 +1,1 @@
-import './chai' // side effects
+import './chai'; // side effects

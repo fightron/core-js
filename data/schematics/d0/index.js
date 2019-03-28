@@ -1,16 +1,16 @@
-import head from './head'
-import neck from './neck'
-import chest from './chest'
-import abdomen from './abdomen'
-import hip from './hip'
+import head from './head';
+import neck from './neck';
+import chest from './chest';
+import abdomen from './abdomen';
+import hip from './hip';
 
-import shoulderLeft from './shoulder-left'
-import shoulderRight from './shoulder-right'
-import armUpper from './arm-upper'
-import armLower from './arm-lower'
+import shoulderLeft from './shoulder-left';
+import shoulderRight from './shoulder-right';
+import armUpper from './arm-upper';
+import armLower from './arm-lower';
 
-import legUpper from './leg-upper'
-import legLower from './leg-lower'
+import legUpper from './leg-upper';
+import legLower from './leg-lower';
 // import foot from './foot'
 
 export default [
@@ -24,4 +24,4 @@ export default [
   armUpper, armLower,
 
   legUpper, legLower
-]
+];

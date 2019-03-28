@@ -1,9 +1,9 @@
-import { flipGeometry } from '../../../3d/utils'
-import handLeft from './hand-left'
+import { flipGeometry } from '../../../3d/utils';
+import handLeft from './hand-left';
 
-var handRight = JSON.parse(JSON.stringify(handLeft))
+var handRight = JSON.parse(JSON.stringify(handLeft));
 
-handRight.id = 'b1-hand-right'
+handRight.id = 'b1-hand-right';
 handRight.b = [
   'PR',
   'TBR', 'TMR', 'TTR',
@@ -11,8 +11,8 @@ handRight.b = [
   'MBR', 'MMR', 'MTR',
   'RBR', 'RMR', 'RTR',
   'PBR', 'PMR', 'PTR'
-]
+];
 
-flipGeometry(handRight)
+flipGeometry(handRight);
 
-export default handRight
+export default handRight;

@@ -5,4 +5,4 @@ export default {
   fN: 'Keiko',
   lN: 'Nagasawa',
   g: 'f'
-}
+};

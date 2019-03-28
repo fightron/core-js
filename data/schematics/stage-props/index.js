@@ -1,5 +1,5 @@
-import trainingCube from './training-cube'
+import trainingCube from './training-cube';
 
 export default [
   trainingCube
-]
+];

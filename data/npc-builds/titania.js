@@ -7,4 +7,4 @@ export default {
   fs: 'sh',
   el: 'fr',
   f: 'e'
-}
+};

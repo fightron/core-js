@@ -2,7 +2,7 @@ import {
   LEG_LOWER_HEIGHT,
   LEG_LOWER_WIDTH,
   LEG_LOWER_DEPTH
-} from '../../skeletons/human-constants'
+} from '../../skeletons/human-constants';
 
 export default {
   id: 'd0-leg-lower',
@@ -29,4 +29,4 @@ export default {
       }
     }
   ]
-}
+};

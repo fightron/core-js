@@ -1,20 +1,20 @@
-import { expect } from 'chai'
-import { SkeletonResource } from '../../../resources/SkeletonResource'
+import { expect } from 'chai';
+import { SkeletonResource } from '../../../resources/SkeletonResource';
 
-import humanSkeleton from '../../../data/skeletons/human'
+import humanSkeleton from '../../../data/skeletons/human';
 
 describe('data/skeletons/human', function () {
   before(function () {
-    this.resource = new SkeletonResource()
-    this.resource.patch(humanSkeleton)
-  })
+    this.resource = new SkeletonResource();
+    this.resource.patch(humanSkeleton);
+  });
 
   it('has correct id and name', function () {
-    expect(this.resource.id).to.equal('h')
-    expect(this.resource.name).to.equal('Human')
-  })
+    expect(this.resource.id).to.equal('h');
+    expect(this.resource.name).to.equal('Human');
+  });
 
   it('has all bones', function () {
-    expect(this.resource.bones).to.have.length(53)
-  })
-})
+    expect(this.resource.bones).to.have.length(53);
+  });
+});

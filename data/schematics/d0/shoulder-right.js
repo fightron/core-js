@@ -2,7 +2,7 @@ import {
   SHOULDER_HEIGHT,
   SHOULDER_WIDTH,
   SHOULDER_DEPTH
-} from '../../skeletons/human-constants'
+} from '../../skeletons/human-constants';
 
 export default {
   id: 'd0-shoulder-right',
@@ -29,4 +29,4 @@ export default {
       }
     }
   ]
-}
+};

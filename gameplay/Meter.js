@@ -1,57 +1,57 @@
-import { Base } from '@fightron/utils/Base'
+import { Base } from '@fightron/utils/Base';
 
-const NOOP = function () {}
+const NOOP = function () {};
 
 export class Meter extends Base {
   constructor (min, max, current) {
-    super()
-    this.id = null
-    this.minimum = min || 0
-    this.maximum = max || 1
-    this.current = current || this.minimum
-    this.onChange = NOOP
-    this.onDepletion = NOOP
-    this.onCompletion = NOOP
+    super();
+    this.id = null;
+    this.minimum = min || 0;
+    this.maximum = max || 1;
+    this.current = current || this.minimum;
+    this.onChange = NOOP;
+    this.onDepletion = NOOP;
+    this.onCompletion = NOOP;
   }
 
   // Set to fixed value
   set (value) {
-    var v = value || 0
-    var previousAmount = this.current
+    var v = value || 0;
+    var previousAmount = this.current;
     if (v < this.minimum) {
-      v = this.minimum
+      v = this.minimum;
     }
     if (v > this.maximum) {
-      v = this.maximum
+      v = this.maximum;
     }
     if (v === previousAmount) {
-      return // no change
+      return; // no change
     }
-    this.current = v
-    this.afterUpdate()
+    this.current = v;
+    this.afterUpdate();
   }
 
   // Change amount incrementally
   change (amount) {
     if (!amount) { // zero == false
-      return
+      return;
     }
-    return this.set(this.current + amount)
+    return this.set(this.current + amount);
   }
 
   afterUpdate () {
-    this.onChange()
+    this.onChange();
     if (this.current === this.minimum) {
-      this.onDepletion()
+      this.onDepletion();
     } else if (this.current === this.maximum) {
-      this.onCompletion()
+      this.onCompletion();
     }
   }
 
   free () {
-    this.onChange = NOOP
-    this.onDepletion = NOOP
-    this.onCompletion = NOOP
-    super.free()
+    this.onChange = NOOP;
+    this.onDepletion = NOOP;
+    this.onCompletion = NOOP;
+    super.free();
   }
 }

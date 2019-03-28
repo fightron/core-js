@@ -1,29 +1,29 @@
-import { FightingGame } from '../games/FightingGame'
-import { DemoMatch } from './match'
+import { FightingGame } from '../games/FightingGame';
+import { DemoMatch } from './match';
 
 // Demo scene imports (temporary)
-import items from '../data/items'
+import items from '../data/items';
 
 // Animations
-import testAnimation from '../test/fixtures/animations/test'
+import testAnimation from '../test/fixtures/animations/test';
 
 export class DemoGame extends FightingGame {
   constructor (worker) {
-    super(worker)
-    this.users.set('K', { id: 'P1' })
-    this.users.set('N', { id: 'P2' })
-    this.match = null
+    super(worker);
+    this.users.set('K', { id: 'P1' });
+    this.users.set('N', { id: 'P2' });
+    this.match = null;
   }
 
   load () {
-    super.load()
+    super.load();
     for (var item of items) {
-      this.sendToClient('+', 'i', item)
+      this.sendToClient('+', 'i', item);
     }
 
-    this.sendToClient('+', 'am', testAnimation)
+    this.sendToClient('+', 'am', testAnimation);
 
-    this.match = new DemoMatch(this)
-    this.match.load()
+    this.match = new DemoMatch(this);
+    this.match.load();
   }
 }

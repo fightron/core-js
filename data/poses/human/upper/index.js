@@ -1,5 +1,5 @@
-import a from './A'
+import a from './A';
 
 export default [
   ...a
-]
+];

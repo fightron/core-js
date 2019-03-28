@@ -1,11 +1,11 @@
-import { Base } from '@fightron/utils/Base'
+import { Base } from '@fightron/utils/Base';
 
 export class Round extends Base {
   constructor (match) {
-    super()
+    super();
     if (!match) {
-      throw new Error('E-R-MT')
+      throw new Error('E-R-MT');
     }
-    this.match = match
+    this.match = match;
   }
 }

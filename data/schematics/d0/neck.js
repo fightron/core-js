@@ -2,7 +2,7 @@ import {
   NECK_HEIGHT,
   NECK_WIDTH,
   NECK_DEPTH
-} from '../../skeletons/human-constants'
+} from '../../skeletons/human-constants';
 
 export default {
   id: 'd0-neck',
@@ -29,4 +29,4 @@ export default {
       }
     }
   ]
-}
+};

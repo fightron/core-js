@@ -10,6 +10,6 @@ var stance = {
       f: 1
     }
   ]
-}
+};
 
-module.exports = stance
+module.exports = stance;

@@ -6,4 +6,4 @@ export default {
   fN: 'Yuliana',
   lN: 'Kovalenko',
   g: 'f'
-}
+};

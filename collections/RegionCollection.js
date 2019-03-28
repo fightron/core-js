@@ -1,17 +1,17 @@
-import { ArrayCollection } from './ArrayCollection'
+import { ArrayCollection } from './ArrayCollection';
 
 export class RegionCollection extends ArrayCollection {
   constructor () {
-    super(...arguments)
-    this.dictionary = new Map()
+    super(...arguments);
+    this.dictionary = new Map();
   }
 
   load (regions) {
     if (!regions) {
-      return
+      return;
     }
     for (var region of regions) {
-      this.add(region)
+      this.add(region);
     }
   }
 

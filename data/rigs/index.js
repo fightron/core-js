@@ -1,5 +1,5 @@
-import npcs from './npcs'
+import npcs from './npcs';
 
 export default [
   ...npcs
-]
+];

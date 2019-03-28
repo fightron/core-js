@@ -2,7 +2,7 @@ import {
   ARM_LOWER_HEIGHT,
   ARM_LOWER_WIDTH,
   ARM_LOWER_DEPTH
-} from '../../skeletons/human-constants'
+} from '../../skeletons/human-constants';
 
 export default {
   id: 'b0-arm-lower',
@@ -26,4 +26,4 @@ export default {
       }
     }
   ]
-}
+};

@@ -5,4 +5,4 @@ export default {
   fN: 'Diana',
   lN: 'Lin',
   g: 'f'
-}
+};

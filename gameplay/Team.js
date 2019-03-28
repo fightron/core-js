@@ -1,23 +1,23 @@
-import { Base } from '@fightron/utils/Base'
-import { TeamFighterCollection } from '../collections/TeamFighterCollection'
+import { Base } from '@fightron/utils/Base';
+import { TeamFighterCollection } from '../collections/TeamFighterCollection';
 
 export class Team extends Base {
   constructor (match) {
-    super()
+    super();
     if (!match) {
-      throw new Error('E-T-MT')
+      throw new Error('E-T-MT');
     }
-    this.match = match
-    this.index = -1
-    this.color = 'white'
-    this.side = null
-    this.fighters = new TeamFighterCollection(this)
+    this.match = match;
+    this.index = -1;
+    this.color = 'white';
+    this.side = null;
+    this.fighters = new TeamFighterCollection(this);
   }
 
   compute () {
     // TODO: optimize
     for (var fighter of this.fighters.values()) {
-      fighter.compute()
+      fighter.compute();
     }
   }
 }

@@ -1,69 +1,69 @@
-import { expect } from 'chai'
-import { Vector3 } from '../../3d/Vector3'
+import { expect } from 'chai';
+import { Vector3 } from '../../3d/Vector3';
 
 describe('3d/Vector3', function () {
   describe('constructor', function () {
     it('correctly sets coordinates', function () {
-      var vector = new Vector3(1, 2, 3)
-      expect(vector.x).to.equal(1)
-      expect(vector.y).to.equal(2)
-      expect(vector.z).to.equal(3)
-      expect(vector.isVector3).to.equal(true)
-    })
+      var vector = new Vector3(1, 2, 3);
+      expect(vector.x).to.equal(1);
+      expect(vector.y).to.equal(2);
+      expect(vector.z).to.equal(3);
+      expect(vector.isVector3).to.equal(true);
+    });
 
     it('defaults to zeros', function () {
-      var vector = new Vector3()
-      expect(vector.x).to.equal(0)
-      expect(vector.y).to.equal(0)
-      expect(vector.z).to.equal(0)
-    })
-  })
+      var vector = new Vector3();
+      expect(vector.x).to.equal(0);
+      expect(vector.y).to.equal(0);
+      expect(vector.z).to.equal(0);
+    });
+  });
 
   describe('increment', function () {
     it('increments coordinates', function () {
-      var vector = new Vector3(1, 2, 3)
-      vector.increment(1, 2, 3)
-      expect(vector.x).to.equal(2)
-      expect(vector.y).to.equal(4)
-      expect(vector.z).to.equal(6)
-    })
+      var vector = new Vector3(1, 2, 3);
+      vector.increment(1, 2, 3);
+      expect(vector.x).to.equal(2);
+      expect(vector.y).to.equal(4);
+      expect(vector.z).to.equal(6);
+    });
 
     it('defaults to zeros', function () {
-      var vector = new Vector3(1, 2, 3)
-      vector.increment(1, null, undefined)
-      expect(vector.x).to.equal(2)
-      expect(vector.y).to.equal(2)
-      expect(vector.z).to.equal(3)
-      vector.increment(null, 2, undefined)
-      expect(vector.x).to.equal(2)
-      expect(vector.y).to.equal(4)
-      expect(vector.z).to.equal(3)
-      vector.increment(null, null, 3)
-      expect(vector.x).to.equal(2)
-      expect(vector.y).to.equal(4)
-      expect(vector.z).to.equal(6)
-    })
-  })
+      var vector = new Vector3(1, 2, 3);
+      vector.increment(1, null, undefined);
+      expect(vector.x).to.equal(2);
+      expect(vector.y).to.equal(2);
+      expect(vector.z).to.equal(3);
+      vector.increment(null, 2, undefined);
+      expect(vector.x).to.equal(2);
+      expect(vector.y).to.equal(4);
+      expect(vector.z).to.equal(3);
+      vector.increment(null, null, 3);
+      expect(vector.x).to.equal(2);
+      expect(vector.y).to.equal(4);
+      expect(vector.z).to.equal(6);
+    });
+  });
 
   describe('clone', function () {
     before(function () {
-      this.vector = new Vector3(1, 2, 3)
-      this.clone = this.vector.clone()
-    })
+      this.vector = new Vector3(1, 2, 3);
+      this.clone = this.vector.clone();
+    });
 
     it('clones the instance', function () {
-      expect(this.clone.x).to.equal(1)
-      expect(this.clone.y).to.equal(2)
-      expect(this.clone.z).to.equal(3)
-    })
+      expect(this.clone.x).to.equal(1);
+      expect(this.clone.y).to.equal(2);
+      expect(this.clone.z).to.equal(3);
+    });
 
     it('does not update original instance on changes', function () {
-      this.clone.x = 4
-      this.clone.y = 5
-      this.clone.z = 6
-      expect(this.vector.x).to.equal(1)
-      expect(this.vector.y).to.equal(2)
-      expect(this.vector.z).to.equal(3)
-    })
-  })
-})
+      this.clone.x = 4;
+      this.clone.y = 5;
+      this.clone.z = 6;
+      expect(this.vector.x).to.equal(1);
+      expect(this.vector.y).to.equal(2);
+      expect(this.vector.z).to.equal(3);
+    });
+  });
+});

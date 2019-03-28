@@ -7,4 +7,4 @@ export default {
   fs: 'hp',
   el: 'wd',
   f: 'e'
-}
+};

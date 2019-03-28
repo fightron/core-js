@@ -5,7 +5,7 @@ import {
   TOES_HEIGHT,
   TOES_WIDTH,
   TOES_DEPTH
-} from '../../skeletons/human-constants'
+} from '../../skeletons/human-constants';
 
 export default {
   id: 'b1-foot-left',
@@ -112,4 +112,4 @@ export default {
     { id: 'sole-5', a: 'front-bottom-left', b: 'mid-front-bottom-left', c: 'mid-front-bottom-right', n: { a: { x: 0, y: -1, z: 0 }, b: { x: 0, y: -1, z: 0 }, c: { x: 0, y: -1, z: 0 } } },
     { id: 'sole-6', a: 'front-bottom-left', b: 'mid-front-bottom-right', c: 'front-bottom-right', n: { a: { x: 0, y: -1, z: 0 }, b: { x: 0, y: -1, z: 0 }, c: { x: 0, y: -1, z: 0 } } }
   ]
-}
+};

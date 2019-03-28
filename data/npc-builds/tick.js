@@ -7,4 +7,4 @@ export default {
   fs: 'ak',
   el: 'tm',
   f: 'a'
-}
+};

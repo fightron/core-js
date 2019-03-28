@@ -28,4 +28,4 @@ export default {
     { id: 'top', f: ['top-1', 'top-2'] },
     { id: 'bottom', f: ['bottom-1', 'bottom-2'] }
   ]
-}
+};

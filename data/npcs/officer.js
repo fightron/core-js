@@ -6,4 +6,4 @@ export default {
   mN: 'Wyatt',
   lN: 'Brisson',
   g: 'm'
-}
+};

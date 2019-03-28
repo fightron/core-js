@@ -19,7 +19,7 @@ import {
   PINKY_BASE_HEIGHT,
   PINKY_MID_HEIGHT,
   PINKY_TIP_HEIGHT
-} from '../../skeletons/human-constants'
+} from '../../skeletons/human-constants';
 
 /*
 
@@ -268,4 +268,4 @@ export default {
     { id: 'pinky-cap-1', a: 'pinky-front-tip-left', b: 'pinky-back-tip-left', c: 'pinky-back-tip-right' },
     { id: 'pinky-cap-2', a: 'pinky-front-tip-left', b: 'pinky-back-tip-right', c: 'pinky-front-tip-right' }
   ]
-}
+};

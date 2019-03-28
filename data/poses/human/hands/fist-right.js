@@ -22,4 +22,4 @@ export default {
     { id: 'PMR', x: -1.6 },
     { id: 'PTR', x: -1.6 }
   ]
-}
+};

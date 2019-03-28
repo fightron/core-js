@@ -1,6 +1,6 @@
-import chai from 'chai'
-import dirtyChai from 'dirty-chai'
+import chai from 'chai';
+import dirtyChai from 'dirty-chai';
 
-chai.use(dirtyChai)
+chai.use(dirtyChai);
 
-export default chai
+export default chai;

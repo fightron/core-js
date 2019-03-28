@@ -5,4 +5,4 @@ export default {
   fN: 'Ji-tae',
   lN: 'Gun',
   g: 'm'
-}
+};

@@ -1,5 +1,5 @@
-import training from './training'
+import training from './training';
 
 export default [
   training
-]
+];
