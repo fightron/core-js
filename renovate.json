@@ -2,5 +2,9 @@
   "extends": [
     "config:base"
   ],
-  "unpublishSafe": true
+  "unpublishSafe": true,
+  "schedule": [
+    "after 10pm every weekday",
+    "before 5am every weekday"
+  ]
 }
