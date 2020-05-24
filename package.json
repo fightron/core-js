@@ -27,7 +27,7 @@
     "coveralls": "3.0.3",
     "dirty-chai": "2.0.1",
     "esm": "3.2.25",
-    "mocha": "6.0.2",
+    "mocha": "6.2.3",
     "nyc": "13.3.0",
     "semistandard": "13.0.1"
   },
