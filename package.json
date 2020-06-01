@@ -28,7 +28,7 @@
     "dirty-chai": "2.0.1",
     "esm": "3.2.25",
     "mocha": "6.0.2",
-    "nyc": "13.3.0",
+    "nyc": "15.1.0",
     "semistandard": "13.0.1"
   },
   "semistandard": {
