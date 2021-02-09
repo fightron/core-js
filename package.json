@@ -23,7 +23,7 @@
     "crypto-js": "3.2.1"
   },
   "devDependencies": {
-    "chai": "4.2.0",
+    "chai": "4.3.0",
     "coveralls": "3.0.3",
     "dirty-chai": "2.0.1",
     "esm": "3.2.25",
